@@ -1,0 +1,237 @@
+[
+  {
+    "ID": 1,
+    "Name": "Change HealthCare",
+    "Category": "clearingHouse",
+    "tradingPartners": [
+      {
+        "Id": "DTYK92M",
+        "Name": "Health Alliance Plan Michigan",
+        "Type": "Other",
+        "services": [
+          {
+            "lob": "Medical",
+            "serviceDetails": [
+              {
+                "service": "kiran",
+                "additionalNotes": null,
+                "payorDirectId": "38224",
+                "status": "Active"
+              },
+              {
+                "service": "PClaims",
+                "additionalNotes": null,
+                "payorDirectId": "38224",
+                "status": "Active"
+              },
+              {
+                "service": "IClaims",
+                "additionalNotes": null,
+                "payorDirectId": "38224",
+                "status": "Active"
+              },
+              {
+                "service": "Eligibility",
+                "additionalNotes": null,
+                "payorDirectId": "HAPMC",
+                "status": "Active"
+              },
+              {
+                "service": "ERA",
+                "additionalNotes": null,
+                "payorDirectId": "38224",
+                "status": "Active"
+              }
+            ]
+          }
+        ],
+        "Active": true
+      },
+      {
+        "Id": "PXZLZCR",
+        "Name": "Blue Cross Complete Michigan",
+        "Type": "Other",
+        "services": [
+          {
+            "lob": "Medical",
+            "serviceDetails": [
+              {
+                "service": "PClaims",
+                "additionalNotes": null,
+                "payorDirectId": "32002",
+                "status": "Active"
+              },
+              {
+                "service": "IClaims",
+                "additionalNotes": null,
+                "payorDirectId": "32002",
+                "status": "Active"
+              },
+              {
+                "service": "Eligibility",
+                "additionalNotes": null,
+                "payorDirectId": "BCCMI",
+                "status": "Active"
+              },
+              {
+                "service": "Claim Status",
+                "additionalNotes": null,
+                "payorDirectId": "BCCMI",
+                "status": "Active"
+              },
+              {
+                "service": "ERA",
+                "additionalNotes": null,
+                "payorDirectId": "32002",
+                "status": "Active"
+              },
+              {
+                "service": "EFT",
+                "additionalNotes": null,
+                "payorDirectId": "32002",
+                "status": "Active"
+              },
+              {
+                "service": "Remittance Image",
+                "additionalNotes": null,
+                "payorDirectId": "32002",
+                "status": "Active"
+              }
+            ]
+          }
+        ],
+        "Active": true
+      },
+      {
+        "Id": "SBYURSP",
+        "Name": "Aetna Better Health Michigan",
+        "Type": "Other",
+        "services": [
+          {
+            "lob": "Medical",
+            "serviceDetails": [
+              {
+                "service": "PClaims",
+                "additionalNotes": null,
+                "payorDirectId": "128MI",
+                "status": "Active"
+              },
+              {
+                "service": "IClaims",
+                "additionalNotes": null,
+                "payorDirectId": "128MI",
+                "status": "Active"
+              },
+              {
+                "service": "Eligibility",
+                "additionalNotes": null,
+                "payorDirectId": "ABHMI",
+                "status": "Active"
+              },
+              {
+                "service": "Claim Status",
+                "additionalNotes": null,
+                "payorDirectId": "ABHMI",
+                "status": "Active"
+              },
+              {
+                "service": "healthServicesReviewInquiryDirectId",
+                "additionalNotes": null,
+                "payorDirectId": "ABHMI",
+                "status": "Active"
+              },
+              {
+                "service": "ERA",
+                "additionalNotes": null,
+                "payorDirectId": "128MI",
+                "status": "Active"
+              },
+              {
+                "service": "EFT",
+                "additionalNotes": null,
+                "payorDirectId": "128MI",
+                "status": "Active"
+              }
+            ]
+          }
+        ],
+        "Active": true
+      },
+      {
+        "Id": "U5V7NLC",
+        "Name": "Blue Cross Blue Shield Michigan",
+        "Type": "Other",
+        "services": [
+          {
+            "lob": "Medical",
+            "serviceDetails": [
+              {
+                "service": "PClaims",
+                "additionalNotes": null,
+                "payorDirectId": "SB710",
+                "status": "Active"
+              },
+              {
+                "service": "IClaims",
+                "additionalNotes": null,
+                "payorDirectId": "12B18",
+                "status": "Active"
+              },
+              {
+                "service": "Eligibility",
+                "additionalNotes": null,
+                "payorDirectId": "BCMIC00710P",
+                "status": "Active"
+              },
+              {
+                "service": "ERA",
+                "additionalNotes": null,
+                "payorDirectId": "SB710",
+                "status": "Active"
+              }
+            ]
+          }
+        ],
+        "Active": true
+      },
+      {
+        "Id": "XFGP9ZF",
+        "Name": "McLaren Health Plan",
+        "Type": "Other",
+        "services": [
+          {
+            "lob": "Medical",
+            "serviceDetails": [
+              {
+                "service": "PClaims",
+                "additionalNotes": null,
+                "payorDirectId": "38338",
+                "status": "Active"
+              },
+              {
+                "service": "IClaims",
+                "additionalNotes": null,
+                "payorDirectId": "38338",
+                "status": "Active"
+              },
+              {
+                "service": "ERA",
+                "additionalNotes": null,
+                "payorDirectId": "38338",
+                "status": "Active"
+              },
+              {
+                "service": "Remittance Image",
+                "additionalNotes": null,
+                "payorDirectId": "38338",
+                "status": "Active"
+              }
+            ]
+          }
+        ],
+        "Active": true
+      }
+    ]
+  }
+
+  ]

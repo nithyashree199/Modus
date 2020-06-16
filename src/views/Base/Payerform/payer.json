@@ -1,0 +1,52 @@
+[
+    {
+  
+    "orgName": "Modus",
+    "orgID" : 1,
+    "payers" : [
+    {
+      "id": 1,
+      "name": "AETNA",
+      "type": "Other",
+      "lob": ["Medical", "Pharmacy","Dental"],
+      "services":["ERA","Claim","Encounters"],
+      "Category" : "clearingHouse",
+      "clearingHouseName" : "Change HealthCare",
+      "tradingPartnerId": "77SL9W8",
+      "contactAddress": {
+        "street_1": "1 address",
+        "street_2": "",
+        "city": "bangalore",
+        "State" : "",
+        "zip": "51100",
+        "country": "IN"
+    },
+    "phone" : "",
+    "Notes" : "",
+    "active": true
+    },
+    {
+      "id": 2,
+      "name": "nithya",
+      "type": "Other",
+      "lob": ["Medical", "Pharmacy","Dental"],
+      "services":["ERA","Claim","Encounters"],
+      "Category" : "clearingHouse",
+      "clearingHouseName" : "Change HealthCare",
+      "tradingPartnerId": "77SL9W8",
+      "contactAddress": {
+        "street_1": "1 address",
+        "street_2": "",
+        "city": "bangalore",
+        "State" : "",
+        "zip": "51100",
+        "country": "IN"
+    },
+    "phone" : "",
+    "Notes" : "",
+    "active": true
+    }
+  
+    ]
+    }
+  ]

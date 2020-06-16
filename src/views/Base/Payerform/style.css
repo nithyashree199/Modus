@@ -1,0 +1,164 @@
+@media (min-width: 1200px)
+{
+.popup {
+  position: absolute;
+  width: 100%;
+  height: 120%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: white;
+
+}
+.popup\_inner {
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  top: 25%;
+  bottom: 25%;
+  margin: auto;
+  border-radius: 20px;
+  background: white;
+}
+.body-style{
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.7);
+  position: absolute;
+  background-color: lightgrey;
+  width: 80%;
+  height: 65%;
+  overflow: auto;
+  z-index: 1;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10%;
+}
+.message-error{
+  width: 40%;
+    margin: 10px;
+}
+
+.search-card-header{
+  display: inline-block;
+    float: right;
+    margin: 10px;
+}
+
+.additional-note{
+  min-height: 5em;
+  max-height: 50vh;
+  width: 60%;
+  word-wrap: break-word;
+  margin: 8px;
+
+
+}
+.search-body{
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15);
+width: 98%;
+margin-left: auto;
+margin-right: auto;
+}
+.search-body-table{
+margin-top: 15px;
+  width: 98%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.payer-address{
+  width: 50%;
+
+}
+.payer-layout2{
+  width: 50%;
+}
+.search-row3{
+  height: 9%;
+}
+
+.payer-container {
+  max-width: 1790px;
+  height: 100%;
+}
+
+.search-input{
+  width: 15%;
+  margin: 10px;
+}
+.search-row{
+  display: flex;
+}
+.search-label{
+  width: 10%;
+  margin: 10px;
+
+
+}
+.form-control{
+  width:17%
+}
+.search-button{
+width: 20%;
+float: right;
+margin: 10px;
+}
+.btn-primary{
+  margin-right: 20px;
+}
+.payer-container2 {
+  max-width: 1790px;
+  height: 100%;
+}
+.search-input2{
+  width: 20%;
+  margin: 10px;
+}
+.search-row2{
+  display: flex;
+}
+.search-label2{
+  width: 10%;
+  margin: 10px;
+
+
+}
+.search-input-address{
+  width: 40%;
+  margin: 8px;
+}
+.search-label-address{
+  width: 20%;
+  margin:10px;
+
+}
+.check-box{
+  width: 5%;
+  margin: 10px;
+
+
+}
+
+.search-button2{
+width: 70%;
+float: right;
+margin: 10px;
+}
+.btn-primary2{
+  margin-right: 20px;
+}
+
+.search-multiselect{
+  width: 17%;
+  margin: 10px;
+}
+.search-multiselect2{
+  width: 20%;
+  margin: 10px;
+}
+
+
+}
+.select {
+  display: none;
+}
