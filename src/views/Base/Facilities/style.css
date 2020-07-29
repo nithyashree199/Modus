@@ -1,0 +1,671 @@
+.sort-icon{
+
+  background: url('../../../../src/assets/img/brand/iconsort.png') no-repeat center center;
+
+  position: absolute;
+    width: 2%;
+    height: 24px;
+    background-size: 70%;
+    margin-left: 7%;
+
+}
+.switch {
+  position: relative;
+  width: 50px;
+  height: 25px;
+}
+.modal-footer > :not(:last-child) {
+    margin-right: 15px;
+}
+.modal-footer > :not(:first-child) {
+  margin-left: 0px;
+}
+.align-middle{
+  text-align: left;
+  padding-left:20px !important;
+}
+.org-container {
+  max-width: 1790px;
+  max-height: 100%;
+  }
+.requiredfield:after{
+  content:" *";
+  color: red;
+}
+.cursorforcardbody {
+  cursor: pointer;
+}
+.close{
+  color:white !important;
+}
+.trashbutton {
+  background-color:unset;
+  border: unset;
+}
+.trashbutton:hover {
+  background-color: rgb(224, 75, 75);
+}
+.switch-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.mainfacilitysearchborder{
+  border: 2px solid #e4e7ea;
+  }
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 5px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 17px;
+  width: 17px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius:3px;
+}
+.switch-input:checked + .slider {
+  background-color:#008081
+}
+.switch-input:focus + .slider {
+  box-shadow: #008081
+}
+.switch-input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+.switch-name{
+margin-left: 1%;
+}
+.orgtilecolor {
+background: darkslategrey;
+color: rgb(221, 219, 219);
+border-radius: 1.5rem;
+}
+.neworgflexdisplay {
+  display: flex;
+  }
+.orgtilecolor:hover {
+  background:rgb(73, 122, 122);
+  }
+.cursorforaddadmin {
+  cursor: pointer;
+}
+.linearGradientcolorforheading {
+padding-top: 0.5rem !important;
+padding-bottom: 0.5rem !important;
+background:  darkslategrey !important;
+color: rgb(221, 219, 219) !important;
+}
+.tilesfororg {
+font-weight: 600;
+color: rgb(221, 219, 219);
+text-align: center;
+text-decoration: none;
+cursor: pointer;
+}
+.Facility-header{
+  display: flex;
+  height:40px;
+  background: darkslategrey;
+  color: rgb(221, 219, 219);
+  align-content: flex-start;
+}
+
+.mainfacilitytrashbutton{
+  background-color:unset;
+  border: unset;
+  color:  rgb(221, 219, 219);
+  float: right;
+  margin-top:1%;
+}
+.switch1 {
+  position: relative;
+  width: 50px;
+  height: 25px;
+}
+.switch1-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider1 {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 5px;
+}
+.slider1:before {
+  position: absolute;
+  content: "";
+  height: 17px;
+  width: 17px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius:3px;
+}
+.switch1-input:checked + .slider1 {
+  background-color:#008081
+}
+.switch1-input:focus + .slider1 {
+  box-shadow: #008081
+}
+.switch1-input:checked + .slider1:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+.switch1-name{
+  font-weight: 600;
+  margin-left: 1%;
+}
+.Facility-Table{
+  width: 100%;
+  height:fit-content;
+ border-collapse: collapse;
+ white-space: nowrap;
+}
+.align-middle-2{
+  text-align: left;
+      padding-left:20px !important;
+      padding-top: 5px !important;
+      padding-bottom: 5px !important;
+      vertical-align: middle !important;
+}
+.Facilities-tablecolor {
+  background: darkslategrey;
+  border-collapse: collapse;
+  color: rgb(221, 219, 219);
+}
+.mainrfacilityflexdisplay {
+  margin-left:11px;
+  display: flex;
+  pointer-events: none;
+}
+.mainfacilitycardstyle{
+  display: grid !important;
+  height: 100% !important;
+}
+.facilitytilelayout {
+  color: white;
+  background: radial-gradient(at top right, var(--light), var(--dark));
+}
+.facilitytileheaderh3 {
+  text-align: center;
+  padding: 10px 0px;
+}
+@media only screen  and (min-width: 767px) {
+  .padding{
+    margin-right: 40px;
+  }
+  .padding2{
+    margin-right: 70px;
+  }
+  .mainfacilitytilepicmargin {
+    margin-top: 2%;
+    margin-left: 15px;
+  }
+  .roles-col11{
+    display: flex;
+    padding-right: 20%;
+  }
+  .roles-col22{
+    display: flex;
+    padding-right: 30%;
+
+  }
+  .tileheader {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    pointer-events: none;
+  }
+
+
+
+  .facilitytilebody {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+    --light: #358787;
+    --dark: #2f4f4f;
+  }
+
+  .facilitytilebody > div {
+    width: 271px;
+    height: 150px;
+    box-shadow: 15px -10px 20px -5px rgba(84, 114, 105, 0.9);
+    border-radius: 5px;
+  }
+
+  .facilitytilebody :hover {
+    box-shadow: 25px -10px 25px -5px rgba(47, 79, 70, 01);
+  }
+  .tileholder {
+    background: #ffffff;
+    margin: 40px;
+    display: grid;
+    place-items: center center;
+  }
+.modal-body-style{
+  margin-top:20px;
+  max-width: 80%;
+  height: 100%;
+  }
+.newfacilitiesmargin {
+  background-color: darkslategrey;
+  color:  rgb(221, 219, 219);
+border-radius: 1.25rem;
+font-size: 16px;
+font-weight: 400;
+width: 142px;
+float:right;
+}
+.newfacilitiesmargin:hover {
+  color:#008081;
+  background-color: #a8d8d8;
+}
+ .save-button-style{
+    background-color: #008081;
+    width: 142px;
+    color: white;
+    text-align: center;
+    float: right;
+  }
+  .facilities-switch{
+    display: inline;
+  margin-right: 169px;
+  margin-left: 36px;
+  }
+  .facilities-switch-option{
+    display: inline;
+  margin-right: 169px;
+  margin-left: 10px;
+  }
+  .facilities-switch-option2{
+    display: inline;
+  margin-right: 169px;
+  margin-left: 30px;
+  }
+  .save-button-style:hover{
+    color: #008081;
+    background-color: #a8d8d8;
+  }
+  .cancel-button-style{
+    background-color: white;
+    border-color:#008081 ;
+    width: 142px;
+    height: 5%;
+    color: #008081;
+    text-align: center;
+    float: right;
+    margin-right: 15px;
+  }
+  .cancel-button-style:hover{
+    color: white;
+    border-color:#008081 ;
+    background-color: #a8d8d8;
+    text-align: center;
+  }
+  .save-button-style-popup{
+    background-color: #008081;
+    width: 142px;
+    height: 5%;
+    color: white;
+    text-align: center;
+  }
+  .save-button-style-popup:hover{
+    color: #008081;
+    background-color: #a8d8d8;
+  }
+  .cancel-button-style-popup{
+    background-color: white;
+    border-color:#008081 ;
+    width: 142px;
+    height: 5%;
+    color: #008081;
+    text-align: center;
+    float: left;
+  }
+  .cancel-button-style-popup:hover{
+    color: white;
+    border-color:#008081 ;
+    background-color: #a8d8d8;
+  }
+  .facilities-table-title-style{
+    margin-top: 25px;
+  margin-bottom: 15px;
+    width: 100%;
+    font-size: 160%;
+  }
+.facilitiesbackbuttonstyle{
+  position: relative;
+  margin-left: 1%;
+  margin-top: -0.3%;
+}
+.table-title-styleforfacilityuser{
+margin-bottom: 30px;
+width: 100%;
+font-size: 140%;
+}
+.Facilities-row
+{
+  display: flex;
+}
+.textinputforfacilities{
+  width: 20%;
+  margin: 10px;
+  margin-left: 21px;
+  margin-right: 20px;
+}
+.Roles-title{
+  font-size: 140%;
+  font-weight: 500;
+  margin-bottom: 4%;
+  margin-left:10px;
+}
+.facility-container {
+  max-width: 1790px;
+  max-height: 100%;
+}
+.fu-switch{
+  display:flex;
+  margin-top:1%;
+  margin-left:10px;
+}
+.errorforFacilities{
+color: red;
+margin-left: 84.3%;
+}
+.facilities-backbutton {
+  margin-left: -1%;
+}
+.Facilities-label{
+  width: 9%;
+  font-weight:600;
+  margin: 10px;
+  margin-right: -1px;
+  margin-top:15px
+}
+.Facilities-label-role{
+  width: 9%;
+  font-weight:600;
+  margin: 10px;
+  margin-right: -1px;
+  margin-top:15px;
+  margin-left: 323px;
+}
+.search-label24{
+  width: 10%;
+  margin-left: 10px;
+  margin-top:15px;
+  margin-right: -13px;
+}
+.newfacilitymargin {
+  font-size: 150%;
+  font-weight: 600;
+  margin-top: 0.4%;
+  margin-left: 2%;
+}
+.searchboxstylefororg{
+margin-bottom: 3%;
+width: 30%;
+}
+.searchbutonstylefororg{
+background: darkslategrey;
+font-weight: 500;
+color: rgb(221, 219, 219);
+}
+.orgcarddetails {
+margin-left: 10%;
+font-size: 105%;
+}
+.tilecolumns{
+max-width: 24%;
+}
+.spacingbelowheader{
+margin-top: 10px;
+}
+.fu-switch3{
+display:flex;
+}
+.switch-name-toggle{
+font-weight: 600;
+padding-left: 10%;
+}
+.status{
+  font-weight: 600;
+  margin-left: 25%;
+  margin-top: 1%;
+}
+.switch-name{
+  padding-left: 4px;
+font-weight: 600;
+margin-left: 1%;
+white-space: nowrap;
+}
+}
+@media only screen and (max-width: 767px) and (min-width: 320px) {
+  .facilitytilebody {
+    display: block;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+    --light: #358787;
+    --dark: #2f4f4f;
+  }
+  .facilitytilebody > div {
+    margin-top: 23px;
+    margin-left: 17px;
+    margin-bottom: 20px;
+    width: 335px;
+  }
+  .facilitytilebody > div {
+    width: 300px;
+    height: 150px;
+    box-shadow: 15px -10px 20px -5px rgba(84, 114, 105, 0.9);
+    border-radius: 5px;
+  }
+
+  .facilitytilebody :hover {
+    box-shadow: 25px -10px 25px -5px rgba(47, 79, 70, 01);
+  }
+  .tileholder {
+    display: block;
+    margin: 20px 0px;
+  }
+.container-fluid{
+  padding-left: unset;
+  padding-right: unset;
+}
+.main .container-fluid{
+  padding: unset;
+}
+.status{
+  font-weight: 600;
+  margin-top: 1%;
+}
+.switch-name-toggle{
+  margin-left: 6%;
+  }
+.fu-switch3{
+margin-top: 3%;
+margin-bottom: -1%;
+}
+
+.searchboxstyleforfacility{
+  width: 100%;
+  margin-bottom: 4%;
+  padding-top: 2%;
+}
+.table-title-styleforfacilityuser{
+  margin-bottom: 30px;
+  width: 100%;
+  font-size: 16px;
+}
+.newfacilitymargin {
+  font-size: 150%;
+  font-weight: 600;
+  margin-top: 2%;
+  margin-left:20px;
+}
+.Facility-row-mobile-view{
+  display:flex;
+}
+.textinputforfacilities{
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+.Facilities-label{
+  width: 100%;
+  margin-top: 1%;
+  font-weight:600;
+}
+.Facilities-label-role{
+  width: 100%;
+  margin-top: 1%;
+  font-weight:600;
+}
+.facilities-table-title-style{
+  margin-top: 5%;
+  margin-bottom: 30px;
+  width: 100%;
+  font-size: 120%;
+}
+.NewFacilitybutton{
+  margin-top:2%;
+  float:right;
+  }
+  .Newuser-button-style{
+    width: 100%;
+    display: flex;
+  }
+  .save-button-style{
+    background-color: #008081;
+    width: 142px;
+    color: white;
+    text-align: center;
+    float: right;
+    margin-right:32px;
+  }
+  .save-button-style:hover{
+    color: #008081;
+    background-color: #a8d8d8;
+    text-align: center;
+  }
+  .cancel-button-style{
+    margin-right: 15px;
+    background-color: white;
+    border-color:#008081 ;
+    width: 142px;
+    color: #008081;
+    text-align: center;
+    float: right;
+  }
+  .cancel-button-style:hover{
+    color: white;
+    border-color:#008081 ;
+    background-color: #a8d8d8;
+  }
+  .save-button-style-popup{
+    background-color: #008081;
+    width: 142px;
+    color: white;
+    text-align: center;
+    margin-left: 15px;
+  }
+  .save-button-style-popup:hover{
+    color: #008081;
+    background-color: #a8d8d8;
+  }
+  .cancel-button-style-popup{
+    background-color: white;
+    border-color:#008081 ;
+    width: 142px;
+    color: #008081;
+  }
+  .cancel-button-style-popup:hover{
+    color: white;
+    border-color:#008081 ;
+    background-color: #a8d8d8;
+  }
+
+  .Faility-header-padding-mobileview{
+    margin-bottom: 2%;
+  }
+  .facilities-backbutton {
+    margin-left: -1%;
+  }
+  .Roles-title{
+    font-size: 140%;
+    font-weight: 500;
+    margin-bottom: 10%;
+  }
+  .newfacilitiesmargin {
+    background-color: darkslategrey;
+
+  color:  rgb(221, 219, 219);
+  border-radius: 1.25rem;
+  font-size: 16px;
+  font-weight: 400;
+  width:142px;
+  float:right;
+  margin-top: -1.6%;
+  }
+  .newfacilitiesmargin:hover {
+    color:#008081;
+      background-color: #a8d8d8;
+  }
+  .fu-switch{
+    display:flex;
+    margin-top:1%;
+  }
+  .modal-body-style{
+    margin:20px;
+    max-width: 95%;
+    height: 100%;
+    }
+    .facilities-switch{
+      display:flex;
+      margin-right: 20px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .facilities-switch-option{
+      display:flex;
+      margin-right: 20px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .errorforFacilities{
+      color: red;
+    }
+    .orgcarddetails {
+      margin-left: 5%;
+      font-size: 18px;
+      }
+}

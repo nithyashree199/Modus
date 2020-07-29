@@ -1,18 +1,11 @@
 import {
   Payerform,
 } from './Base';
-
+//import Logintbygoogle from '../login/Logintbygoogle'
 import Dashboard from './Dashboard';
-import { Login, Page404, Page500, Register } from './Pages';
 
 export {
-  Typography,
-  Colors,
-  Page404,
-  Page500,
-  Register,
-  Login,
-  Flags,
+  //Logintbygoogle,
   Dashboard,
   Payerform,
 };

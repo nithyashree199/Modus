@@ -1,0 +1,209 @@
+.sort-icon{
+
+  background: url('../../../../src/assets/img/brand/iconsort.png') no-repeat center center;
+
+  position: absolute;
+    width: 2%;
+    height: 24px;
+    background-size: 70%;
+    margin-left: 7%;
+
+}
+@media only screen and (min-width: 768px) {
+  .btn:focus {
+    outline: none;
+  }
+
+  .orgflexdisplay {
+    display: flex;
+    pointer-events: none;
+  }
+  .orgsearch-inputfororg {
+    width: 30%;
+    margin: 10px;
+    display: unset;
+    margin-left: 35px;
+    text-align: center;
+  }
+  .orgsearchboxstylefororg {
+    margin-bottom: 3%;
+    width: 30%;
+    margin-top: 2%;
+  }
+  .orgAdd_Admin_image {
+    padding: 0;
+    border: none;
+    background: none;
+    float: right;
+  }
+  .orgadd-admin {
+    margin-left: 76%;
+    font-weight: 400;
+  }
+
+  .orgcursorforaddadmin {
+    cursor: pointer;
+  }
+  .orglinearGradientcolor {
+    background: linear-gradient(45deg, #66a0a0, #596b6b);
+  }
+  .orgcarddetails {
+    margin-left: 5%;
+    font-size: 105%;
+  }
+  .org-container {
+    max-width: 1790px;
+    max-height: 100%;
+  }
+  .orgcardstyle {
+    display: grid !important;
+    height: 100% !important;
+  }
+
+  .orgstylefor-orgsrch-header {
+    font-size: 140%;
+    font-weight: 600;
+  }
+}
+@media only screen and (max-width: 767px) and (min-width: 320px) {
+  .container-fluid {
+    padding-left: unset;
+    padding-right: unset;
+  }
+  .main .container-fluid {
+    padding: unset;
+  }
+  .orgsearchboxstylefororg {
+    margin-bottom: 3%;
+    width: 100%;
+    margin-top: 7%;
+  }
+  .row {
+    display: unset;
+  }
+  .orgcarddetails {
+    margin-left: 5%;
+    font-size: 18px;
+  }
+  .org-container {
+    max-width: 1790px;
+    max-height: 100%;
+  }
+  .orgcardstyle {
+    display: grid !important;
+    height: 100% !important;
+  }
+
+  .orgstylefor-orgsrch-header {
+    font-size: 140%;
+    font-weight: 600;
+  }
+
+  .orgflexdisplay {
+    display: flex;
+    pointer-events: none;
+  }
+
+  .orgAdd_Admin_image {
+    padding: 0;
+    border: none;
+    background: none;
+    float: right;
+  }
+  .orgadd-admin {
+    font-weight: 400;
+  }
+
+  .orgcursorforaddadmin {
+    cursor: pointer;
+  }
+}
+.orgtilepicmargin {
+  margin-top: 2%;
+  margin-left: 15px;
+}
+.orgsearchboxmargin {
+  border: 2px solid #e4e7ea;
+}
+.orgtrashbutton {
+  background-color: unset;
+  border: unset;
+  color: rgb(221, 219, 219);
+}
+.orgtrashbutton:hover {
+  background-color: rgb(73, 122, 122);
+}
+.org-addbuttoncolor {
+  background-color: darkslategrey;
+  color: rgb(221, 219, 219);
+  border-radius: 1.25rem;
+  font-size: 16px;
+  font-weight: 400;
+  float: right;
+  width: 140px;
+}
+.org-addbuttoncolor:hover {
+  color: darkslategrey;
+  background-color: #a8d8d8;
+}
+.orgsearchbutonstylefororg {
+  background: darkslategrey;
+  font-weight: 500;
+  color: rgb(221, 219, 219);
+}
+
+/* this is for tile layout */
+.tileholder {
+  background: #ffffff;
+  margin: 40px;
+  display: grid;
+  place-items: center center;
+}
+.tilebody {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+  --light: #358787;
+  --dark: #2f4f4f;
+}
+
+.tilebody > div {
+  width: 271px;
+  height: 150px;
+  box-shadow: 15px -10px 20px -5px rgba(84, 114, 105, 0.9);
+  border-radius: 5px;
+}
+
+.tilebody :hover {
+  box-shadow: 25px -10px 25px -5px rgba(47, 79, 70, 01);
+}
+
+.tilelayout {
+  color: white;
+  background: radial-gradient(at top right, var(--light), var(--dark));
+}
+.tileheader {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  pointer-events: none;
+}
+
+.tileheaderh3 {
+  text-align: center;
+  padding: 10px 0px;
+}
+
+@media only screen and (max-width: 767px) and (min-width: 320px) {
+  .tileholder {
+    display: block;
+    margin: 20px 0px;
+  }
+  .tilebody {
+    display: block;
+  }
+  .tilebody > div {
+    margin-bottom: 20px;
+    width: 335px;
+  }
+}

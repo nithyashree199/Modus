@@ -6,22 +6,25 @@ import { Badge, Button, Card, Input, Label } from "reactstrap";
 import Select from "react-select";
 import config from "../../../server/config.js";
 import {queryItems} from "../../../server/cosmosconnection"
- 
+
+
+
+
 const containerId = config.container.id;
-const partitionKey = { kind: "Hash", paths: ["/category"] }; 
+const partitionKey = { kind: "Hash", paths: ["/category"] };
 const querySpec = {
   query: 'SELECT *  from c',
- 
+
 }
 var epid="",ename="",ephone="",ezip="",ecountry="",estate="",eadditionalnotes="",eadl1="",eadl2="",etpid="",elob=[],eservices=[];
- 
+
 
 class Payerform extends Component {
   constructor(props) {
     super(props);
 
     this.togglePopup = this.togglePopup.bind(this);
-    
+
     this.toggle = this.toggle.bind(this);
     this.toggleFade = this.toggleFade.bind(this);
     this.onchangeofid = this.onchangeofid.bind(this);
@@ -35,9 +38,9 @@ class Payerform extends Component {
     this.handleEdit=this.handleEdit.bind(this);
     this.afteredit=this.afteredit.bind(this);
     this.enableingoncreate=this.enableingoncreate.bind(this);
-    
+
     this.settingvalueforedit=this.settingvalueforedit.bind(this);
-   
+
 
     this.state = {
       payoridforedit:"",
@@ -99,19 +102,19 @@ class Payerform extends Component {
       ],
       jsondata: null,
       isToggleOn: true,
-     
+
       color:"success",
     };
   }
   togglePopup() {
-    
+
     this.setState({
       showPopup: !this.state.showPopup,
-     
+
     });
     this.handleClick();
   }
-  
+
   toggle() {
     this.setState({ collapse: !this.state.collapse });
   }
@@ -183,7 +186,7 @@ class Payerform extends Component {
     const response = await queryItems(searchQuery);
     this.setState({ jsondataforedit: response });
     this.settingvalueforedit()
-  } 
+  }
 
   settingvalueforedit(){
     this.state.jsondataforedit.map((e)=>{
@@ -195,14 +198,14 @@ class Payerform extends Component {
         epname:e.name
       })
       */
-     
+
       estate=e.contactAddress.State
       ecountry=e.contactAddress.country
       ezip=e.contactAddress.zip
       eadl1=e.contactAddress.street_1
       eadl2=e.contactAddress.street_2
 
-    
+
       etpid=e.tradingPartnerRealId
       ename=e.name
       epid=e.id
@@ -211,8 +214,8 @@ class Payerform extends Component {
       elob=e.lob
       eservices=e.services
 
-     
-      
+
+
 
  })
     this.togglePopup();
@@ -227,7 +230,7 @@ class Payerform extends Component {
       searchQuery = null,
       clob = [],
       clob2 = "";
-    
+
     var cservice =[],
         cservice2 = "";
 
@@ -309,8 +312,8 @@ class Payerform extends Component {
   handleClick() {
     this.setState(state => ({
       isToggleOn: !state.isToggleOn,
-      
-      
+
+
     }));
     if(this.state.color=="success"){
       this.setState({
@@ -328,9 +331,9 @@ class Payerform extends Component {
       ephone=""
       eadditionalnotes=""
   }
-  
+
   handleEdit(payorid){
-    
+
    /* this.setState({
       payoridforedit:payorid
     });
@@ -340,13 +343,13 @@ class Payerform extends Component {
     enableupdate:true,
     enableadd:false
   })
-  
+
   var editQuery="";
   editQuery = 'SELECT * FROM c WHERE c.category = "orgPayer" and c.tradingPartnerRealId = "' +payorid + '"';
   console.log(editQuery);
   this.afteredit(editQuery)
   }
-  
+
 enableingoncreate(){
   this.setState({
     enableadd:true,
@@ -371,6 +374,7 @@ wrapperforcreate(){
 
         <Card>
           <div className="search-card-header">
+
             <strong>Payer Search</strong>
 
             <Button
@@ -382,7 +386,7 @@ wrapperforcreate(){
             </Button>
 
             {this.state.showPopup ? (
-              <Popup epid={epid} ename={ename} eadditionalnotes={eadditionalnotes} ephone={ephone} etpid={etpid} ecountry={ecountry} estate={estate} ezip={ezip} eadl1={eadl1} eadl2={eadl2} 
+              <Popup epid={epid} ename={ename} eadditionalnotes={eadditionalnotes} ephone={ephone} etpid={etpid} ecountry={ecountry} estate={estate} ezip={ezip} eadl1={eadl1} eadl2={eadl2}
               elob={elob} eservices={eservices} enableadd={this.state.enableadd} enableupdate={this.state.enableupdate} closePopup={this.togglePopup.bind(this)} />
             ) : null
             }
@@ -439,7 +443,7 @@ wrapperforcreate(){
                 closeMenuOnSelect={false}
                 isMulti
                 options={this.state.pservices}
-                
+
                 onChange={this.onchangeofpservice}
               ></Select>
 
@@ -550,21 +554,21 @@ wrapperforcreate(){
                               onClick={() =>
                                 this.handleEdit(item.tradingPartnerRealId)
 
-                                
-                              
-                                
+
+
+
                               }
                             >
                               Edit
                             </Button>
-                           
+
                           </td>
                         </tr>
                       );
                     })
                   : null
                   }
-                  
+
               </tbody>
             </Table>
             <nav></nav>

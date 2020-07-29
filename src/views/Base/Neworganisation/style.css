@@ -1,0 +1,630 @@
+
+.sort-icon{
+
+  background: url('../../../../src/assets/img/brand/iconsort.png') no-repeat center center;
+
+  position: absolute;
+    width: 2%;
+    height: 24px;
+    background-size: 70%;
+    margin-left: 7%;
+
+}
+@media only screen  and (min-width: 767px){
+  .neworgpopuperrorlbl{
+    margin: 10px;
+    margin-top: 2.2%;
+    width: auto;
+    margin-left: auto;
+    margin-right: 3%;
+    color: red;
+    font-size: 15px;
+  }
+  .neworgsearch-input2formodus{
+    width: 30%;
+    margin: 10px;
+  }
+  .neworgsearch-label2{
+    width: 11%;
+    margin: 10px;
+    margin-top: 2.2%;
+    font-weight: 600;
+  }
+  .neworgsearch-row2{
+    display: flex;
+  }
+  .neworgbottombuttonalignment {
+    float: right;
+
+      }
+  .neworgmarginleftalignforicon{
+    margin-left: -25.5%;
+    width: 50%;
+  }
+
+  .neworg-adduserfacility {
+    background-color:darkslategrey;
+  color:  rgb(221, 219, 219);
+  border-radius: 1.25rem;
+  font-size: 16px;
+  font-weight: 400;
+     margin-left: 63%;
+  width: 140px;
+
+  }
+  .neworg-adduserfacility:hover {
+
+    color:darkslategrey;
+
+      background-color: #a8d8d8;
+  }
+  .neworg-addfacility {
+    background-color:darkslategrey;
+  color:  rgb(221, 219, 219);
+  border-radius: 1.25rem;
+  font-size: 16px;
+  font-weight: 400;
+
+  margin-left: 58%;
+    width: 140px;
+
+  }
+  .neworg-addfacility:hover {
+  color:darkslategrey;
+     background-color: #a8d8d8;
+  }
+.neworgbtn-link2 {
+    font-weight: 600;
+    color: white;
+   text-align: center;
+    background: #63c2de !important;
+    text-decoration: none;
+    border: #63c2de !important;
+    cursor: pointer;
+}
+.neworgstyleforswitch{
+  margin-left: 2%;
+  margin-top: 1%;
+}
+.neworgbtn:focus {
+    outline: none;
+  }
+.neworgsearch-card-header22 {
+   margin: 10px;
+}
+.neworgwidthstyleforfootertable{
+  width: 100%;
+}
+.neworgalign-middle3 {
+padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    vertical-align: middle !important;
+
+}
+.neworgalignmentofsearchbutton {
+width: 65px;
+margin-left: 30px;
+margin-bottom: 5px;
+font-weight: 700;
+}
+.neworgcursorforcardbody {
+    cursor: pointer;
+
+}
+ .neworgsearch-inputfororg{
+        width: 30%;
+        margin: 10px;
+        display: unset;
+        margin-left: 35px;
+        text-align: center;
+
+}
+.neworgimg-avatar2 {
+    height: 40px;
+    margin-bottom: 10px;
+    margin-left: 40px;
+}
+.neworgorgcardwidth {
+    width: 300px;
+}
+.neworgorg-container {
+    max-width: 1790px;
+    max-height: 100%;
+  }
+  .neworgsearch-row22
+  {
+    display: flex;
+  }
+  .neworgsearch-input22{
+    width: 15%;
+    margin: 10px;
+  }
+  .neworgsearch-label22{
+    width: 6%;
+    margin: 10px;
+    margin-left: 2%;
+    margin-top: 1.3%;
+    font-weight: 600;
+
+  }
+.neworgtextinputforneworg{
+    width: 15%;
+    margin: 10px;
+
+    margin-left: unset;
+  }
+.neworgpatient-consent-form{
+  width:12%;
+}
+ .neworg-container {
+    max-width: 1790px;
+    max-height: 100%;
+
+  }
+.neworgfootertable {
+    margin-top: 4%;
+    justify-content: unset;
+    display: block;
+  }
+  .neworgfootertable2{
+    margin-top: 15px;
+      width: 98%;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15);
+    }
+  .neworgwidthofdivforneworgtable{
+    width: 95%;
+  }
+  .neworgAdd-Admin-image-forneworg{
+    padding: 0;
+    border: none;
+    background: none;
+    float: right;
+  }
+  .neworgadd-forneworg{
+    margin-left: 58%;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .neworgadd-forneworg:hover{
+    background: unset;
+  }
+.neworgcursorforaddadmin {
+    cursor: pointer;
+  }
+.neworgsearch-input2{
+  width: 20%;
+  margin: 10px;
+}
+.neworgfileupload {
+  margin-top: 17px;
+  width: 15%;
+}
+.neworgsearch-card-headerforneworg {
+  display: inline-block;
+}
+.neworgbottomheaderforneworg
+  {
+    display: flex;
+  }
+  .neworgwidthforneworg{
+    width: 50%;
+  }
+  .neworgalignmentforneworgfooter {
+    font-size: 130%;
+    margin-left: 3%;
+  }
+.neworgFacility-button-style3{
+  margin-left:0%;
+  margin-top:2%;
+}
+.neworgcancel-button-style{
+    background-color: white;
+    border-color:#008081 ;
+    width: 9%;
+    color: #008081;
+    text-align: center;
+
+  }
+  .neworgcancel-button-style:hover{
+    color: white;
+    border-color:#008081 ;
+    width: 9%;
+    background-color: #a8d8d8;
+    text-align: center;
+
+  }
+.neworgsave-button-style{
+    background-color: #008081;
+    width: 9%;
+    color: white;
+
+    text-align: center;
+  }
+
+  .neworgsave-button-style:hover{
+    color: #008081;
+    width: 9%;
+    background-color: #a8d8d8;
+
+    text-align: center;
+  }
+  .neworgmargin {
+    font-size: 130%;
+    font-weight: 600;
+    margin-top: 0.5%;
+    margin-left: 1%;
+  }
+}
+.requiredfield:after{
+  content:" *";
+  color: red;
+}
+.close{
+  color:white !important;
+}
+.neworgpopup-addbuttoncolor {
+  background-color: #008081;
+color:  rgb(221, 219, 219);
+width: 140px;
+
+}
+.neworgpopup-addbuttoncolor:hover {
+
+  color: #008081;
+
+    background-color: #a8d8d8;
+}
+.neworgpopup-deletebuttoncolor {
+  background-color: white;
+  border-color:#008081 ;
+
+  color: #008081;
+  width: 140px;
+  margin-right: 13px !important;
+}
+.neworgpopup-deletebuttoncolor:hover {
+  color: white;
+    border-color:#008081 ;
+
+    background-color: #a8d8d8;
+
+}
+.neworgpopupswitch-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.neworgpopupslider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 5px;
+}
+
+.neworgpopupslider:before {
+  position: absolute;
+  content: "";
+  height: 17px;
+  width: 17px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius:3px;
+}
+
+.neworgpopupswitch-input:checked + .neworgpopupslider {
+  background-color:#008081
+}
+
+.neworgpopupswitch-input:focus + .neworgpopupslider {
+  box-shadow: #008081
+}
+
+.neworgpopupswitch-input:checked + .neworgpopupslider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+.neworgpopup-switch-name{
+
+margin-top: 1.5%;
+margin-left: 20%;
+min-width: 100px;
+font-weight: 600;
+}
+.neworgpopup-switch {
+  position: relative;
+  width: 50px;
+  height: 25px;
+  margin-left: 21%;
+    margin-top: 1.5%;
+}
+.neworglinearGradientcolor {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+  background:  darkslategrey !important;
+  color: rgb(221, 219, 219) !important;
+}
+.neworgprevbutton{
+  margin-bottom: 1%;
+}
+.neworgtrashbutton {
+  background-color:unset;
+  border: unset;
+
+}
+.neworgtrashbutton:hover {
+  background-color: rgb(224, 75, 75);
+}
+.neworgerrorlbl{
+  margin: 10px;
+  margin-top: 2.2%;
+  width: auto;
+  margin-left: auto;
+  margin-right: 3%;
+  color: red;
+  font-size: 15px;
+}
+.neworgfordisplayflex{
+  margin-top:-28px;
+  display: flex;
+}
+.neworgtablealignment{
+  margin-bottom: unset;
+}
+.neworgpicupload {
+  width: 3%;
+  margin-left: 11.8%;
+}
+.neworgmarginleftalignforfile{
+  width: 50%;
+  margin-left: 0.5%;
+}
+.neworgtablecolorforneworg {
+  background: darkslategrey;
+  border-collapse: collapse;
+  color: rgb(221, 219, 219);
+}
+.neworgswitch {
+  position: relative;
+  width: 50px;
+  height: 25px;
+}
+
+.neworgswitch-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.neworgslider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 5px;
+}
+
+.neworgslider:before {
+  position: absolute;
+  content: "";
+  height: 17px;
+  width: 17px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius:3px;
+}
+
+.neworgswitch-input:checked + .neworgslider {
+  background-color:#008081
+}
+
+.neworgswitch-input:focus + .neworgslider {
+  box-shadow: #008081
+}
+
+.neworgswitch-input:checked + .neworgslider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+
+.neworgswitch-name{
+margin-left: 1%;
+font-weight: 600;
+}
+.neworgalignmentforupload{
+  margin-left: 0%;
+}
+
+@media only screen and (max-width: 767px) and (min-width: 320px){
+  .neworggapbtwuploadandbuttons{
+    margin-top: 3%;
+  }
+  .neworgmarginleftalignforicon{
+    margin-left: -3.5%;
+    width: 50%;
+  }
+  .neworgpicupload {
+    width: 10%;
+    margin-left: 13.8%;
+  }
+  .neworgleftalignmentforaddfacility{
+    margin-left: 40%;
+  }
+  .container-fluid{
+    padding-left: unset;
+    padding-right: unset;
+  }
+  .main .container-fluid{
+    padding: unset;
+  }
+  .neworg-adduserfacility {
+    background-color:darkslategrey;
+  color:  rgb(221, 219, 219);
+  border-radius: 1.25rem;
+  font-size: 16px;
+  font-weight: 400;
+  margin-left: 34%;
+  margin-left: 41%;
+  width: 140px;
+
+  }
+  .neworg-adduserfacility:hover {
+
+    color:darkslategrey;
+
+      background-color: #a8d8d8;
+  }
+  .neworg-addfacility {
+    background-color:darkslategrey;
+  color:  rgb(221, 219, 219);
+  border-radius: 1.25rem;
+  font-size: 16px;
+  font-weight: 400;
+  margin-left: 62%;
+  margin-left: 34%;
+  width: 140px;
+
+  }
+  .neworg-addfacility:hover {
+
+    color:darkslategrey;
+
+      background-color: #a8d8d8;
+  }
+  .neworgmargin {
+    font-size: 130%;
+    font-weight: 600;
+    margin-top: 1.8%;
+    margin-left: 1%;
+  }
+  .neworgwidthstyleforfootertable{
+    width: 100%;
+    display: flex;
+  }
+  .neworgfordisplayflex{
+    margin-top:2px;
+    display: flex;
+  }
+  .neworgbuttonsizeinmob{
+width:auto
+  }
+  .neworgstyleforswitch{
+    margin-left: 1%;
+    margin-top: 1%;
+    margin-bottom: unset;
+  }
+  .neworgalignmentforupload{
+    margin-left: unset;
+    margin-right: 14%;
+  }
+  .neworgfootertable2{
+    margin-top: 15px;
+      width: 98%;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15);
+    }
+  .neworgwidthofdivforneworgtable{
+    width: 95%;
+  }
+
+  .neworgfootertable {
+    margin-top: 20%;
+    justify-content: unset;
+    display: block;
+    padding: unset;
+  }
+
+  .neworgsearch-card-headerforneworg {
+    display: inline-block;
+    margin-top: 2%;
+
+  }
+  .neworgbottomheaderforneworg
+    {
+      display: grid;
+    }
+    .neworgwidthforneworg{
+      width: 95%;
+    }
+}
+
+.neworgroundforneworg {
+  border-radius: 50%;
+   width: 70px;
+    height: 40px;
+    font-size: 30px;
+    padding: unset;
+    font-weight: 900;
+    background-color: unset;
+    color: rgb(221, 219, 219);
+    border-color: transparent;
+
+}
+.neworgroundforneworg:hover {
+  border-radius: 50%;
+   width: 70px;
+    height: 40px;
+    font-size: 30px;
+    padding: unset;
+    font-weight: 900;
+    background-color: unset;
+
+    color: rgb(221, 219, 219);
+    border-color: transparent;
+
+}
+
+    .neworg-addbuttoncolor {
+      background-color: #008081;
+    color:  rgb(221, 219, 219);
+    width: 140px;
+
+    }
+    .neworg-addbuttoncolor:hover {
+
+      color: #008081;
+
+        background-color: #a8d8d8;
+    }
+    .neworg-deletebuttoncolor {
+      background-color: white;
+      border-color:#008081 ;
+
+      color: #008081;
+      width: 140px;
+    }
+    .neworg-deletebuttoncolor:hover {
+      color: white;
+        border-color:#008081 ;
+
+        background-color: #a8d8d8;
+
+    }
+
+    .neworgbottomdiv{
+      position: relative;
+      margin-left: 1%;
+    }

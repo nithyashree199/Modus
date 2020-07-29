@@ -1,0 +1,7 @@
+
+{
+  "name": "Facilities",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Facilities.js"
+}

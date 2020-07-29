@@ -1,0 +1,579 @@
+.sort-icon{
+
+  background: url('../../../../src/assets/img/brand/iconsort.png') no-repeat center center;
+
+  position: absolute;
+    width: 2%;
+    height: 24px;
+    background-size: 70%;
+    margin-left: 7%;
+
+}
+.button-discription{
+  display:none;
+  text-align: center;
+  }
+  .modal-footer > :not(:last-child){
+margin-right: 15px;
+  }
+  .modal-footer > :not(:first-child){
+    margin-left: 0px;
+      }
+  .close{
+    color:white !important;
+  }
+
+.orgadminfirstheader{
+  display:flex;
+  margin-bottom:3px;
+}
+
+.requiredfield:after{
+  content:" *";
+  color: red;
+}
+
+
+  .search-body-table2{
+    margin-top: 15px;
+      width: 98%;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15);
+    }
+
+    .orgadmin-container {
+      max-width: 1790px;
+      height: 100%;
+    }
+    .linearGradientcolorforheading {
+      padding-top: 0.5rem !important;
+      padding-bottom: 0.5rem !important;
+      background:  darkslategrey !important;
+      color: rgb(221, 219, 219) !important;
+    }
+
+
+    .orgadmin-header{
+      display:flex;
+    }
+
+.align-middle{
+  text-align: left;
+  padding-left:20px !important;
+}
+    .align-middle2 {
+
+      text-align: left;
+      padding-left:20px !important;
+      padding-top: 5px !important;
+      padding-bottom: 5px !important;
+      vertical-align: middle !important;
+    }
+    .trashbutton {
+      background-color:unset;
+      border: unset;
+
+    }
+    .trashbutton:hover {
+      background-color: rgb(224, 75, 75);
+    }
+
+  @media only screen  and (min-width: 767px){
+    .orgadmin-backbutton {
+    margin-left:-2%;
+    }
+
+    .orgadmin-margin {
+      font-size: 130%;
+      font-weight: 600;
+      margin-top: 4.4%;
+      margin-left:23%;
+      width: max-content;
+    }
+    .rolesalignorgadmin{
+      display:inline;
+      font-weight: 600;
+    }
+    .orgadmin-searchsrcbutton{
+      margin-left: 73.5%;
+
+      display: flex;
+
+
+    }
+    .orgAdmin-srcbuttoncolor {
+      background-color: #008081;
+      color:  rgb(221, 219, 219);
+      margin-right: 2%;
+    margin-left: 15px;
+    width: 140px;
+    height: 76%;
+    margin-top:10px;
+    }
+    .orgAdmin-clrbuttoncolor {
+    background-color: white;
+    border-color:#008081 ;
+    color: #008081;
+    width: 140px;
+    height: 76%;
+    margin-top:10px;
+    margin-bottom: 4%;
+    }
+    .orgAdmin-srcbuttoncolor:hover {
+      background-color: #008081;
+    color:  rgb(221, 219, 219);
+    }
+    .orgAdmin-clrbuttoncolor:hover{
+    background-color: white;
+    border-color:#008081 ;
+    color: #008081;
+    margin-top:10px;
+    }
+    .orgadmin-addacilityadmin {
+      background-color: darkslategrey;
+    color:  rgb(221, 219, 219);
+    border-radius: 1.25rem;
+    font-size: 16px;
+    font-weight: 400;
+    width: 142px;
+    margin-bottom: 1%;
+    margin-top: 0.2%;
+    margin-left: 83%;
+    }
+    .orgadmin-addacilityadmin:hover {
+
+      color:#008081;
+
+        background-color: #a8d8d8;
+    }
+    .orgadmin-txtforsearchbox{
+      width: 6%;
+      font-weight:600;
+      margin-left: 3%;
+      margin-top: 1.2%;
+      display:flex;
+    }
+    .orgadmin-lableforsearchbox{
+      width: 15%;
+      margin: 10px;
+      text-align: center;
+    }
+    .orgadmin-body{
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15);
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+    }
+
+  .orgadminbackbuttonstyle{
+    position: relative;
+    margin-left: 1px;
+    margin-top: -0.3%;
+  }
+  .modal-info{
+  padding-top:10%;
+  max-width: 50%;
+  height: 40%;
+  border:2px;
+  }
+
+
+
+  .orgadmin-row{
+    display: flex;
+  }
+
+  .orgadmin-row2{
+    font-weight: 600;
+    display: flex;
+  }
+  .orgadmin-label2{
+    width: 11%;
+    margin: 10px;
+  }
+
+  .switch-name{
+    margin-left: 1%;
+    }
+  .search-input2formodus{
+    width: 30%;
+    margin: 10px;
+  }
+  .search-input-address{
+    width: 40%;
+    margin: 8px;
+
+  }
+
+
+  .check-box{
+    width: 5%;
+    margin: 10px;
+
+
+  }
+
+
+  .errorfororgadmin{
+    color: red;
+    margin-left: 77%;
+    }
+
+
+  .linearGradientcolor {
+    background: linear-gradient(45deg, #a7f0f0, #384242);
+  }
+
+
+
+  .cursorforaddadmin {
+    cursor: pointer;
+  }
+
+
+  .orgadmin-tablecolor {
+    background: darkslategrey;
+    border-collapse: collapse;
+    color: rgb(221, 219, 219);
+  }
+
+  .modal-header{
+    background-color: darkslategrey;
+    color:white
+  }
+  .position-align-fornewmod-popup{
+    margin-top: 5%;
+  }
+  .switch5 {
+    position: relative;
+    width: 50px;
+    height: 25px;
+  }
+
+  .switch-input5 {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider5 {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 5px;
+  }
+
+  .slider5:before {
+    position: absolute;
+    content: "";
+    height: 17px;
+    width: 17px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius:3px;
+  }
+
+  .switch-input5:checked + .slider5 {
+    background-color:#008081
+  }
+
+  .switch-input5:focus + .slider5 {
+    box-shadow: #008081
+  }
+
+  .switch-input5:checked + .slider5:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+  .save-button-style1{
+    background-color: #008081;
+    width: 142px;
+    color: white;
+    text-align: center;
+    height: 5%;
+
+  }
+
+  .save-button-style1:hover{
+    color: #008081;
+    background-color: #a8d8d8;
+    text-align: center;
+
+  }
+
+  .cancel-button-style1{
+    background-color: white;
+    border-color:#008081;
+    color: #008081;
+    text-align: center;
+    width: 142px;
+    margin-right: 15px;
+    height: 5%;
+  }
+  .cancel-button-style1:hover{
+    color: white;
+    border-color:#008081 ;
+    background-color: #a8d8d8;
+    text-align: center;
+
+
+  }
+  .save-button-style{
+    background-color: #008081;
+    width: 142px;
+    color: white;
+    text-align: center;
+
+  }
+
+  .save-button-style:hover{
+    color: #008081;
+    background-color: #a8d8d8;
+    text-align: center;
+  }
+
+  .cancel-button-style{
+    background-color: white;
+    border-color:#008081 ;
+    width: 142px;
+    color: #008081;
+    text-align: center;
+  }
+  .cancel-button-style:hover{
+    color: white;
+    border-color:#008081 ;
+    background-color: #a8d8d8;
+    text-align: center;
+
+  }
+  }
+  @media only screen and (max-width: 767px) and (min-width: 320px)
+  {
+    .orgadmin-searchsrcbutton{
+      margin-left: 9%;
+      display: flex;
+    }
+    .container-fluid{
+      padding-left: unset;
+      padding-right: unset;
+    }
+    .main .container-fluid{
+      padding: unset;
+    }
+    .orgadmin-tablecolor {
+      background: darkslategrey;
+      border-collapse: collapse;
+      width: 100%;
+      color: rgb(221, 219, 219);
+      font-size: 75%;
+    }
+     .Facility-header{
+      display: flex;
+      height:40px;
+      background: darkslategrey;
+      color: rgb(221, 219, 219);
+      align-content: flex-start;
+      margin-top: -0.6%;
+    }
+    .orgadminbackbuttonstyle{
+      position: relative;
+      margin-top: -1%;
+    }
+    .orgadmin-row{
+      display: inline;
+    }
+    .orgadmin-body{
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15);
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+    }
+    .orgadmin-txtforsearchbox{
+      width: 100%;
+      margin-left: 2%;
+      font-weight:600;
+      margin-top: 1%;
+      font-size: 90%;
+    }
+    .orgadmin-lableforsearchbox{
+      margin-left: 2%;
+    width: 96%;
+      text-align: center;
+    }
+
+
+      .orgAdmin-srcbuttoncolor {
+        background-color: #008081;
+        color:  rgb(221, 219, 219);
+        float:right;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width: 140px;
+      }
+
+      .orgAdmin-clrbuttoncolor {
+      background-color: white;
+      border-color:#008081 ;
+      color: #008081;
+      float:right;
+      margin-right:15px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      width: 140px;
+
+      }
+      .orgAdmin-srcbuttoncolor:hover {
+        background-color: #008081;
+      color:  rgb(221, 219, 219);
+      }
+      .orgAdmin-clrbuttoncolor:hover{
+      background-color: white;
+      border-color:#008081 ;
+      color: #008081;
+      }
+
+      .search-body-table2{
+        margin-top: 15px;
+          width: 98%;
+          margin-left: auto;
+          margin-right: auto;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15);
+        }
+        .save-button-style1{
+          background-color: #008081;
+          width: 142px;
+          color: white;
+          text-align: center;
+          float: right;
+
+        }
+
+        .save-button-style1:hover{
+          color: #008081;
+          background-color: #a8d8d8;
+          text-align: center;
+        }
+
+        .cancel-button-style1{
+          background-color: white;
+          border-color:#008081 ;
+          width: 142px;
+          color: #008081;
+          text-align: center;
+          float: left;
+        }
+        .cancel-button-style1:hover{
+          color: white;
+          border-color:#008081 ;
+          background-color: #a8d8d8;
+          text-align: center;
+
+        }
+        .switch5 {
+          position: absolute;
+          width: 35px;
+          height: 25px;
+        }
+        .switch-name5{
+          margin-left:50px;
+          }
+        .switch-input5{
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
+
+        .slider5 {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ccc;
+          -webkit-transition: .4s;
+          transition: .4s;
+          border-radius: 5px;
+        }
+
+        .slider5:before {
+          position: absolute;
+          content: "";
+          height: 17px;
+          width: 12px;
+          left: 4px;
+          bottom: 4px;
+          background-color: white;
+          -webkit-transition: .4s;
+          transition: .4s;
+          border-radius:3px;
+        }
+
+        .switch-input5:checked + .slider5 {
+          background-color:#008081
+        }
+
+        .switch-inpu5t:focus + .slider5 {
+          box-shadow: #008081
+        }
+
+        .switch-input5:checked + .slider5:before {
+          -webkit-transform: translateX(15px);
+          -ms-transform: translateX(16px);
+          transform: translateX(15px);
+        }
+        .roles-label{
+          width: 10%;
+          margin-top: 10px;
+          margin-bottom: 10px;
+          margin-right: 10px;
+        }
+        .orgadmin-table{
+          white-space: nowrap;
+          font-weight:600;
+        }
+        .orgadmin-addacilityadmin {
+          background-color: darkslategrey;
+    color:  rgb(221, 219, 219);
+    border-radius: 1.25rem;
+    font-size: 16px;
+    font-weight: 400;
+    width: 142px;
+    margin-bottom: 2%;
+    margin-top: 1 .2%;
+    margin-left: 48%;
+
+        }
+        .orgadmin-addacilityadmin:hover {
+
+          color:#008081;
+
+            background-color: #a8d8d8;
+        }
+        .orgadmin-margin {
+          font-size: 130%;
+          font-weight: 600;
+          margin-top: 4.4%;
+          margin-left:23%;
+          width: max-content;
+        }
+          .orgadmin-backbutton {
+            margin-left:-1%;
+                }
+                .errorfororgadmin{
+                  color: red;
+                }
+
+  }

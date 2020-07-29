@@ -1,0 +1,252 @@
+.login-box-controller {
+ visibility: visible;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-width: 40%;
+  height: 35px;
+  align-items: center;
+  transition: visibility 0.5s ease-out;
+}
+.login-font{
+  font-weight: 600;
+}
+.login-controller-login {
+  font-weight: 700;
+  flex: 1 1;
+  text-align: center;
+  height: 100%;
+  line-height: 2;
+  cursor: pointer;
+  font-size: 17px;
+  color:#bdbdbd;
+}
+.login-controller-register {
+  font-weight: 700;
+flex: 1;
+  text-align: center;
+  height: 100%;
+  line-height: 2;
+  cursor: pointer;
+  font-size: 17px;
+  color:#cacaca;
+}
+.login-login-btn {
+  text-align: center;
+  height: 45px;
+  width: 96% !important;
+    background-color: rgb(255, 255, 255);
+    display: grid;
+    align-items: center;
+    color: #027f7f;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
+    padding: 0px;
+    border-radius: 2px;
+    border: 3px solid #027f7f  !important;
+    font-size: 19px;
+    font-weight: 500;
+    font-family: Roboto, sans-serif;
+}
+
+.login-login-btn:hover,
+.login-login-btn:focus {
+
+  color: white;
+}
+
+/*my css */
+.login-margin-left{
+  margin-left: 5%;
+}
+.login-input-width{
+  width: 100% !important;
+}
+@media only screen  and (min-width: 767px){
+.login-backgroud-img{
+  background-image: url("./background.png");
+  background-color: #cccccc;
+  background-size: 100% 100%;
+}
+.login-displayflex{
+  height: 715px;
+  display: flex ;
+}
+.login-width70{
+  box-shadow: 15px -10px 20px -5px rgba(84, 114, 105, 0.9);
+  margin-left: 76px;
+  margin-top: 0.5%;
+  height: 100%;
+  background-color: darkslategrey;
+  max-width: 60%;
+  min-width: 50%;
+}
+.login-width30{
+  padding: 75px 75px 75px 75px;
+height:100%;
+  margin-top: 0.5%;
+  background-color: white;
+
+  min-width:40%;
+}
+.login-logo-img {
+
+  margin-top: 18%;
+    width: 84%;
+    height: 77px;
+    margin-left: 7%;
+}
+.login-text-size{
+  font-family: Bahnschrift SemiBold;
+  color:#525252;
+  margin-left: 11%;
+
+    font-size: 33px;
+    font-weight: 400;
+}
+.login-icon{
+
+    background: url('./google.png') no-repeat center center;
+    background-size: 100%;
+    position: absolute;
+
+    width: 2%;
+    height: 36px;
+
+    background-size: 100%;
+
+    margin-left: 6%;
+
+}
+
+.login-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 5px;
+}
+.login-switch-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.login-switch-input:checked + .login-slider {
+  background-color:#008081
+}
+
+.login-switch-input:focus + .login-slider {
+  box-shadow: #008081
+}
+
+.login-switch-input:checked + .login-slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+.login-switch {
+  position: relative;
+  width: 50px;
+  height: 25px;
+  margin-left: -4%;
+    margin-top: 1.5%;
+}
+.login-slider:before {
+  position: absolute;
+  content: "";
+  height: 17px;
+  width: 17px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius:3px;
+}
+.login-switch-name{
+
+margin-top: 1.5%;
+margin-left: 20%;
+min-width: 100px;
+font-weight: 600;
+}
+.login-div{
+border-top: 2px solid #027f7f;
+  max-width: 50%;
+
+}
+.login-btn-primary{
+  font-size: 23px;
+  height: 46px;
+  border-color: #027f7f;
+  background-color: #027f7f;
+  margin-top: 43px;
+  width: 96%;
+
+    margin-bottom: 11px;
+}
+.login-button-size{
+  width:42% ;
+}
+
+.login-google-button-align{
+
+  margin-left: 5.5%;
+  width:100%;
+}
+.login-please-login{
+  font-family: Bahnschrift SemiBold;
+  width: 101%;
+  margin-left: 11%;
+  color: #525252;
+  font-size: 33px;
+  font-weight: 400;
+
+}
+}
+@media only screen and (max-width: 767px) and (min-width: 320px)
+  {
+    .login-width30{
+      height: 1000px;
+
+    background-color: white;
+    min-height: 100%;
+
+    }
+    .login-logo-img {
+      margin-top: 50px;
+    width: 87%;
+    height: 77px;
+    margin-left: 23px;
+ }
+    .login-text-size{
+      color: rgb(221, 219, 219);
+      margin-left: 27%;
+      margin-top: 27%;
+      font-size: 48px;
+      font-weight: 400;
+    }
+    .login-icon{
+        width: 18%;
+    height: 166px;
+    background-size: 100%;
+    position: absolute;
+    margin-left: 36%;
+    margin-top: 4.5%;
+    background: url('./user1.png') no-repeat center center;
+    }
+    .login-google-button-align{
+      margin-top: 10%;
+      margin-left: 26%;
+    }
+    .login-please-login{
+      color: rgb(221, 219, 219);
+    font-size: 25px;
+    font-weight: 600;
+    margin-left: 25%;
+    }
+ }

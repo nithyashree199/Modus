@@ -1,0 +1,736 @@
+
+.sort-icon{
+
+  background: url('../../../../src/assets/img/brand/iconsort.png') no-repeat center center;
+
+  position: absolute;
+    width: 2%;
+    height: 24px;
+    background-size: 70%;
+    margin-left: 7%;
+
+}
+.Facilityuser-body-style{
+  background-color: white;
+  max-width: 1790px;
+  height: 100%;
+  overflow: inherit;
+  z-index: 1;
+  }
+
+  .cursorforcardbody {
+    cursor: pointer;
+  }
+  .mobileviewswitch{
+ margin-right: 9.7%;
+  }
+  .close{
+    color:white !important;
+  }
+  .requiredfield:after{
+    content:" *";
+    color: red;
+  }
+  .linearGradientcolorforheading {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    background:  darkslategrey !important;
+    color: rgb(221, 219, 219) !important;
+  }
+  .errorforFacilityusers{
+    color: red;
+  }
+  .Facilityuser-margin {
+    font-size: 130%;
+    font-weight: 600;
+    margin-top: 0.4%;
+  }
+  .Newuser-header{
+    display: flex;
+    height:40px;
+    background: darkslategrey;
+    color: rgb(221, 219, 219);
+    align-content: flex-start;
+  }
+  .switch {
+    position: relative;
+    width: 50px;
+    height: 25px;
+  }
+  .switch-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 5px;
+  }
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 17px;
+    width: 17px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius:3px;
+  }
+  .switch-input:checked + .slider {
+    background-color:#008081
+  }
+  .switch-input:focus + .slider {
+    box-shadow: #008081
+  }
+  .switch-input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  .fu-switch{
+    display:flex;
+    margin-top:1%;
+  }
+  .fu-switches{
+    display:flex;
+    margin-top:1%;
+ }
+  .align-middle-2 {
+    text-align: center;
+  }
+  .Facilityuser-tablecolor {
+    background: darkslategrey;
+    border-collapse: collapse;
+    color: rgb(221, 219, 219);
+  }
+  .Facilityuser-row2{
+    display: flex;
+  }
+  .facilityusersbackbuttonstyle{
+    position: relative;
+    margin-left: 1%;
+    margin-top: -0.3%;
+  }
+@media only screen  and (min-width: 767px){
+  .roles-col1{
+    display:flex;
+    padding-right: 39%;
+  }
+  .roles-col2{
+    display:flex;
+    padding-right: 12%;
+  }
+  .Facilities-row
+  {
+    display: flex;
+  }
+  .save-button-style-popup{
+    background-color: #008081;
+    width: 142px;
+    height: 5%;
+    color: white;
+    text-align: center;
+  }
+  .save-button-style-popup:hover{
+    color: #008081;
+    background-color: #a8d8d8;
+  }
+  .cancel-button-style-popup{
+    background-color: white;
+    border-color:#008081 ;
+    width: 142px;
+    height: 5%;
+    color: #008081;
+    text-align: center;
+    float: left;
+  }
+  .cancel-button-style-popup:hover{
+    color: white;
+    border-color:#008081 ;
+    background-color: #a8d8d8;
+  }
+  .status{
+    margin-left: 26%;
+    margin-top: 1%;
+    font-weight: 600;
+  }
+  .Facilityusertoogle{
+    font-weight: 600;
+    }
+    .textinputforroles{
+      width: 20%;
+      margin: 10px;
+      margin-left: 21px;
+      margin-right: 20px;
+            }
+
+    .Facilityusers-label-role{
+      width: 9%;
+      font-weight:600;
+      margin: 10px;
+      margin-right: -21px;
+      margin-top:15px;
+      margin-left: 25.6%;
+    }
+
+  .modal-body-style{
+    margin-top:20px;
+    max-width: 80%;
+    height: 100%;
+    }
+  .fu-switch3{
+    display:flex;
+  }
+  .Facilities-label{
+    width: 9%;
+    font-weight:600;
+    margin: 10px;
+    margin-right: -1px;
+    margin-top:15px
+  }
+  .orgadmin-searchclrbutton{
+    margin-left:75%;
+  }
+  .Facilityuser-backbutton {
+    border:none;
+     width: 70px;
+      height: 50px;
+      font-size: 30px;
+      padding: unset;
+      font-weight: 900;
+      background-color: transparent;
+      padding-left:2%;
+  }
+  .Facilityuser-backbutton:hover {
+    background: transparent;
+    border: none;
+  }
+  .Facilityuser-srcbuttoncolor {
+    margin-left: 3%;
+    margin-bottom: 3%;
+    background-color: #008081;
+  color:  rgb(221, 219, 219);
+  width: 140px;
+  height: 5%;
+  margin-top:10px;
+  }
+  .Facilityuser-clrbuttoncolor {
+    margin-bottom: 3%;
+  background-color: white;
+  border-color:#008081 ;
+  color: #008081;
+  margin-left: 1%;
+  width: 140px;
+  height: 5%;
+  margin-top:10px;
+  }
+  .Facilityuser-srcbuttoncolor:hover {
+    background-color: #008081;
+  color:  rgb(221, 219, 219);
+  width: 140px;
+  height: 5%;
+  margin-top:10px;
+  }
+  .Facilityuser-clrbuttoncolor:hover{
+  background-color: white;
+  border-color:#008081 ;
+  color: #008081;
+  margin-left: 1%;
+  width: 140px;
+  height: 5%;
+  margin-top:10px;
+  }
+  .Facilityuser-txtforsearchbox{
+    width: 6%;
+    margin-left: 3%;
+    margin-top: 1.2%;
+    font-weight:600;
+  }
+  .Facilityuser-lableforsearchbox{
+    width: 15%;
+    margin: 10px;
+    text-align: center;
+  }
+  .Facilityuser-body{
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15);
+  width: 98%;
+  margin-left: auto;
+  margin-right: auto;
+  }
+  .facilityuser-header{
+    display:flex;
+  }
+  .bottomdiv{
+    position: relative;
+    margin-left: 1%;
+    margin-top: -0.3%;
+  }
+  .fu-switch2{
+    display:flex;
+    margin-left: 10px;
+  }
+  .facilityusers-margin {
+    font-size: 150%;
+    font-weight: 600;
+    margin-top: 0.4%;
+    margin-left: 2%;
+  }
+  .Facilityuser-adduser {
+    margin-bottom: 1%;
+    background-color: darkslategrey;
+    color:  rgb(221, 219, 219);
+  border-radius: 1.25rem;
+  font-size: 16px;
+  font-weight: 400;
+  width: 12%;
+  float:right;
+  }
+  .Facilityuser-adduser:hover {
+    color:#008081;
+      background-color: #a8d8d8;
+  }
+  .facilityusers-backbutton {
+    margin-left: -1%;
+  }
+  .Newuser-button-style{
+    margin-top:2%;
+    display: flex;
+  }
+    .Facilityuser-row{
+      display:flex;
+      margin-bottom: 20px;
+    }
+    .save-button-style{
+      background-color: #008081;
+      width: 142px;
+      height: 5%;
+      color: white;
+      text-align: center;
+      float: right;
+    }
+    .save-button-style:hover{
+      color: #008081;
+      background-color: #a8d8d8;
+    }
+    .cancel-button-style{
+      background-color: white;
+      border-color:#008081 ;
+      width: 142px;
+      height: 5%;
+      color: #008081;
+      text-align: center;
+      float: right;
+      margin-right: 15px;
+    }
+    .cancel-button-style:hover{
+      color: white;
+      border-color:#008081 ;
+      background-color: #a8d8d8;
+    }
+    .tablecolor {
+      background: darkslategrey;
+    }
+    .Facility-Table{
+      width: 97%;
+      height:fit-content;
+     border-collapse: collapse;
+    }
+  .Facilityuser-status-title{
+    margin-left: 13.3%;
+  }
+.Roles-title-for-faciltyuser{
+  font-size: 140%;
+  margin-bottom: 4%;
+}
+.errorforFacilityusers{
+  color: red;
+  margin-left: 40%;
+  margin-top: 10px;
+}
+.Facilityusers-row
+{
+  display: flex;
+}
+.Facilityusers-label{
+  width: 9%;
+  margin-bottom: 10px;
+  margin-right: -1px;
+  margin-top: 15px;
+  margin-left: 10px;
+  font-weight:600;
+}
+.roles{
+  margin-left: 10px;
+}
+.search-label24{
+  width: 10%;
+  margin-left: 10px;
+  margin-top:10px;
+  margin-right: -13px;
+}
+.Facilityusers-input1{
+  width: 20%;
+  margin: 10px;
+}
+.Facilityusers-input2{
+  width: 20%;
+  margin-top:10px;
+}
+.Facilityuser-container {
+  max-width: 1790px;
+  max-height: 100%;
+}
+.tablecolorforneworg {
+  background: darkslategrey;
+  border-collapse: collapse;
+}
+.switch-name-facilityuser{
+margin-left: 10px;
+font-weight:600;
+}
+
+.status2{
+  margin-left: 23.5%;
+  margin-top: 1%;
+  font-weight:600;
+}
+
+
+.Facility-body-style{
+  background-color: white;
+  width: 80%;
+  height: 65%;
+  overflow: auto;
+  z-index: 1;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10%;
+  padding-left: 35px;
+  padding-right: 35px;
+  }
+  .Facility-body-style{
+    max-width: 1790px;
+    height: 100%;
+  }
+
+    .Facility-row{
+      display:flex;
+      margin-bottom: 4%;
+    }
+    .Facility-row1{
+      display:inline;
+    }
+
+    .table-title-styleforfacilityuser{
+      margin-bottom: 30px;
+      width: 100%;
+      font-size: 160%;
+    }
+    .align-middle-2 {
+      padding: unset !important;
+      padding-top: 10.5px !important;
+      padding-bottom: 10.5px !important;
+      vertical-align: middle !important;
+      text-align: left;
+      padding-left: 10.5px !important;
+    }
+    .Facility-Table{
+      width: 100%;
+      height:fit-content;
+     border-collapse: collapse;
+    }
+
+.spacingbelowheader{
+  margin-top: 10px;
+}
+  .Facilityusers-input{
+    width: 20%;
+    margin: 10px;
+    margin-right: 23px;
+    margin-left: -1px;
+  }
+  .facilityusers-margin {
+    font-size: 150%;
+    font-weight: 600;
+    margin-top: 0.4%;
+  }
+  .tablecolorforneworg {
+    background: darkslategrey;
+    border-collapse: collapse;
+  }
+  .tilesfororg {
+  font-weight: 600;
+  color: rgb(221, 219, 219);
+
+  text-align: center;
+
+  text-decoration: none;
+
+
+  cursor: pointer;
+
+
+}
+
+.neworgflexdisplay {
+display: flex;
+}
+
+.linearGradientcolor {
+background: linear-gradient(45deg, #66a0a0, #596b6b);
+}
+.orgcarddetails {
+margin-left: 10%;
+font-size: 105%;
+}
+.orgtilecolor {
+background: darkslategrey;
+color: rgb(221, 219, 219);
+}
+.orgtilecolor:hover {
+background:rgb(73, 122, 122);
+}
+.orgtilecolor:hover +.trashbutton {
+display:block;
+  }
+.orgcardstyle {
+display: grid !important;
+height: 100%;
+}
+.NewFacilitybutton{
+margin-top:2%;
+}
+
+}
+
+@media only screen and (max-width: 767px) and (min-width: 320px)
+{
+  .orgadmin-searchclrbutton{
+    margin-left:17%;
+  }
+
+  .save-button-style-popup{
+    background-color: #008081;
+    width: 142px;
+    color: white;
+    text-align: center;
+    margin-left: 15px;
+  }
+
+  .save-button-style-popup:hover{
+    color: #008081;
+    background-color: #a8d8d8;
+    text-align: center;
+  }
+
+  .cancel-button-style-popup{
+    background-color: white;
+    border-color:#008081 ;
+    width: 142px;
+    color: #008081;
+    text-align: center;
+  }
+  .status{
+   font-weight: 600;
+    margin-top: 1%;
+
+  }
+  .switch-name-toggle{
+    margin-left: 6%;
+    }
+  .modal-body-style{
+    margin:20px;
+    max-width: 95%;
+    height: 100%;
+    }
+  .fu-switch3{
+    font-weight: 600;
+    margin-top: 3%;
+    margin-bottom: -1%;
+  }
+  .textinputforroles{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+
+  }
+  .Facilities-label{
+    width: 100%;
+    margin-top: 1%;
+    font-weight:600;
+  }
+
+  .newfacilityusersmargin {
+    font-size: 150%;
+    font-weight: 600;
+    margin-top: 2%;
+    margin-left: 5%;
+  }
+  .Facilityusers-input{
+    width: 100%;
+    margin-bottom: 2%;
+  }
+  .Facilityusers-label-mobileview{
+    width: 100%;
+    font-weight:600;
+    margin-top: 1%;
+  }
+  .Faility-header-padding-mobileview{
+    margin-bottom: 2%;
+  }
+
+.status2{
+  margin-left: 20%;
+  margin-top: 1%;
+  font-weight:600;
+}
+
+.fu-switch2{
+  display:flex;
+  margin-top: 3%;
+  margin-bottom: -1%;
+}
+.Roles-title-for-faciltyuser{
+  font-size: 140%;
+  margin-bottom: 10%;
+}
+.Newuser-button-style{
+  margin-top:2%;
+  }
+  .save-button-style{
+    background-color: #008081;
+    width: 142px;
+    color: white;
+    text-align: center;
+    float: right;
+
+  }
+
+  .save-button-style:hover{
+    color: #008081;
+    background-color: #a8d8d8;
+    text-align: center;
+  }
+
+  .cancel-button-style{
+    background-color: white;
+    border-color:#008081 ;
+    width: 142px;
+    color: #008081;
+    text-align: center;
+    float: right;
+    margin-right: 15px;
+
+  }
+  .cancel-button-style:hover{
+    color: white;
+    border-color:#008081 ;
+    background-color: #a8d8d8;
+    text-align: center;
+
+  }
+  .table-title-styleforfacilityuser{
+    margin-bottom: 1px;
+    width: 100%;
+    font-size: 140%;
+  }
+
+.switch-name-facilityuser{
+  margin-left: 10px;
+  font-weight:600;
+  white-space: nowrap;
+}
+.Facilityuser-body{
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15);
+  width: 98%;
+  margin-left: auto;
+  margin-right: auto;
+  }
+  .Facilityuser-row2{
+    display: inline;
+  }
+  .Facilityuser-txtforsearchbox{
+    width: 100%;
+    font-weight:600;
+    margin-left: 2%;
+    margin-top: 1%;
+    font-size: 90%;
+  }
+  .Facilityuser-lableforsearchbox{
+    width: 98%;
+    margin: 3px;
+    text-align: center;
+  }
+  .Facilityuser-srcbuttoncolor {
+    background-color: #008081;
+    color:  rgb(221, 219, 219);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 140px;
+    margin-left: 15px;
+    margin-right: 5px;
+  }
+  .Facilityuser-srcbuttoncolor:hover {
+    background-color: #008081;
+  color:  rgb(221, 219, 219);
+  }
+  .Facilityuser-clrbuttoncolor {
+  background-color: white;
+  border-color:#008081 ;
+  color: #008081;
+  margin-right: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 140px;
+  }
+  .Facilityuser-clrbuttoncolor:hover{
+    background-color: white;
+    border-color:#008081 ;
+    color: #008081;
+    }
+  .facilityuser-header{
+    display:flex;
+  }
+  .Facilityuser-backbutton {
+    border:none;
+     width: 70px;
+      height: 50px;
+      font-size: 30px;
+      padding: unset;
+      font-weight: 900;
+      background-color: transparent;
+      padding-left:2%;
+      margin: 10px;
+      margin-top:-5px;
+      margin-right: -30px;
+  }
+  .Facilityuser-backbutton:hover {
+
+    background: transparent;
+    border: none;
+
+  }
+  .facilityusers-backbutton {
+    margin-left: -1%;
+  }
+  .mobileviewswitch{
+    margin-right:2%
+  }
+  .Facilityusers-label-role{
+    width: 100%;
+    margin-top: 1%;
+    font-weight:600;
+    display:flex;
+  }
+}
