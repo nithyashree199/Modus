@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import DragAndDrop from "../DragAndDrop/DragAndDrop";
 import { OrgUpdate,OrgAdd,OrgFacilityDelete,OrgAdminuserDelete,OrgAdminuserAdd,OrgAdminUserGetAll,OrgAdminuserUpdate,OrgFacilityGetAll } from "./Api.js";
-import fs from 'fs';
 
+import fs from 'fs';
+import {OrgAdminuserGet,OrgFacilityGet} from '../Organisation/Api'
 import {
   Button,
   Modal,
@@ -31,6 +32,7 @@ class Neworganisation extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      facilitytable:'new',
       country:[
         { value: 'United States', label: 'United States' },
         { value: 'INDIA', label: 'INDIA' }
@@ -72,8 +74,8 @@ class Neworganisation extends Component {
       email:"",
       phone:"",
       buttonvalue:"Add",
-      base64valueforlogo:"",
-      base64valueforconsentform:"",
+      base64valueforlogo:null,
+      base64valueforconsentform:null,
       newaddeddata:[],
     };
     this.initialState={
@@ -259,6 +261,7 @@ base64valueforconsentform:this.props.location.state.singleorgdata.patientConsent
       info:false
     })
     this.setState(this.initialState)
+
   }
   Handlereset(e) {
     e.preventDefault();
@@ -306,9 +309,6 @@ base64valueforconsentform:this.props.location.state.singleorgdata.patientConsent
       "logo": this.state.base64valueforlogo,
       "patientConsentForm": this.state.base64valueforconsentform
     };
-    console.log(this.state.buttonvalue)
-    console.log(datatoadd)
-    console.log(datatoupdate)
 
 
 
@@ -331,14 +331,19 @@ base64valueforconsentform:this.props.location.state.singleorgdata.patientConsent
   async handleorgfacilitytable(facilityid){
     await OrgFacilityGetAll(facilityid).then((data)=>
     this.setState({ orgfacilitydatafull:data,
-      gotofacility:true
+      gotofacility:true,
+      facilitytable:'update'
+
     })
+
     )
+
       }
 
       handleaddfacility(){
         this.setState({
-          gotofacility:true
+          gotofacility:true,
+          facilitytable:'new'
         })
       }
  async handleaddusers(e){
@@ -379,15 +384,25 @@ base64valueforconsentform:this.props.location.state.singleorgdata.patientConsent
         "healthcareServiceId": "",
         "source": null
         }
-      console.log(datatoadd)
-      console.log(datatoupdate)
 
       if(this.state.orguserbuttonvalue=="Add"){
       await OrgAdminuserAdd(datatoadd);
+      if(datatoadd){
+        await OrgAdminuserGet(this.state.singleorgdata.id).then((data)=>
+        this.setState({ orgadminuserdata:data})
+
+
+    )}
        this.toggleInfoClose();
       }
-      else if(this.state.buttonvalue=="Update"){
+      else if(this.state.orguserbuttonvalue=="Update"){
        await OrgAdminuserUpdate(this.state.orgadminuserdatafull.practitionerId,datatoupdate)
+       if(datatoupdate){
+        await OrgAdminuserGet(this.state.singleorgdata.id).then((data)=>
+        this.setState({ orgadminuserdata:data})
+        )
+       }
+
         this.toggleInfoClose();
       }
 
@@ -395,6 +410,9 @@ base64valueforconsentform:this.props.location.state.singleorgdata.patientConsent
 
   async handlefacilitydelete(facilityid){
     await OrgFacilityDelete(facilityid)
+    await OrgFacilityGet(this.state.singleorgdata.id).then((data)=>
+    this.setState({ facilitydata : data })
+    );
   }
   async handleorgadminuserdelete(practionerid){
     await OrgAdminuserDelete(practionerid)
@@ -407,7 +425,8 @@ base64valueforconsentform:this.props.location.state.singleorgdata.patientConsent
     this.setState({ orgadminuserdatafull:data,
       firstname:data.firstName,
       lastname:data.lastName,
-      email:data.email})
+      email:data.email,
+    phone:data.cellphone})
     )
     if(this.state.orgadminuserdatafull.role=="Org Admin"){
       this.setState({
@@ -454,7 +473,7 @@ base64valueforconsentform:this.props.location.state.singleorgdata.patientConsent
   let base64Image = base64String.split(';base64,').pop();
 
   fs.writeFile('image.png', base64Image, {encoding: 'base64'}, function(err) {
-      console.log('File created');
+     
 
   });
   }
@@ -684,10 +703,10 @@ base64valueforconsentform:this.props.location.state.singleorgdata.patientConsent
 
             <div id="a" className="neworgfordisplayflex">
               <div className="neworgmarginleftalignforfile">
-                <DragAndDrop message="Patient Consent Form" type="file" updatebase64valueforconsentform={this.updatebase64valueforconsentform}></DragAndDrop>
+                <DragAndDrop message="Patient Consent Form" type="file" base64valueforconsentform={this.state.base64valueforconsentform} updatebase64valueforconsentform={this.updatebase64valueforconsentform}></DragAndDrop>
               </div>
               <div className="neworgmarginleftalignforicon">
-                <DragAndDrop  message="Logo"  type="image" updatebase64valueforlogo={this.updatebase64valueforlogo}></DragAndDrop>
+                <DragAndDrop  message="Logo"  type="image" base64valueforlogo={this.state.base64valueforlogo} updatebase64valueforlogo={this.updatebase64valueforlogo}></DragAndDrop>
             </div>
             </div>
 
@@ -871,7 +890,10 @@ base64valueforconsentform:this.props.location.state.singleorgdata.patientConsent
                   >
                     <i className="fa fa-plus"></i> Users{" "}
                   </Button>
-                  <div className="neworgfootertable2 neworgwidthofdivforneworgtable">
+                  <div id="tabeldiv" className="neworgfootertable2 neworgwidthofdivforneworgtable">
+                    <script>
+                    $('#tabeldiv').load(document.URL +  '#tabeldiv');
+                      </script>
                     <Table
                       striped
                       hover
@@ -891,7 +913,7 @@ base64valueforconsentform:this.props.location.state.singleorgdata.patientConsent
                        {this.state.orgadminuserdata? this.state.orgadminuserdata.map((o)=>{
                           return(
 
-                            <tr >
+                            <tr key={o.practitionerId}>
                             <td className="neworgalign-middle3" onClick={()=>this.handleorgusertable(o.practitionerId)}>{o.practitionerName}</td>
                             <td className="neworgalign-middle3" onClick={()=>this.handleorgusertable(o.practitionerId)}>{o.roleName}</td>
                             <td className="neworgalign-middle3" onClick={()=>this.handleorgusertable(o.practitionerId)}>accepted</td>
@@ -922,7 +944,7 @@ base64valueforconsentform:this.props.location.state.singleorgdata.patientConsent
                 <Redirect
                   to={{
                     pathname: "/base/OrgFacility",
-                    state: {orgfacilitydatafull:this.state.orgfacilitydatafull,orgid:this.state.singleorgdata.id},
+                    state: {orgfacilitydatafull:this.state.orgfacilitydatafull,orgid:this.state.singleorgdata.id,facilitytable:this.state.facilitytable},
                   }}
                 ></Redirect>
               ) : null}

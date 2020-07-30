@@ -56,6 +56,10 @@ export class Logintbygoogle extends Component {
         "organizationId",
         this.state.userinfo.organizationId
       );
+      sessionStorage.setItem(
+        "organizationName",
+        this.state.userinfo.organizationName
+      );
       this.props.history.push("/base/Mainfacility");
     }
      //this.setRefreshTimeout(response.tokenObj.expires_at);

@@ -86,7 +86,6 @@ export const DeleteFacility = function(id){
   .catch(error => console.error('Error:', error));
 }
 export const GetFacilityUsers = function(facility_id)  {
-console.log(facility_id)
   var abc;
   return fetch(`/rest/facility/users/`+facility_id, {
       method: 'GET',
@@ -127,7 +126,7 @@ export const AddFacilityUser = function(body){
 
   .catch(error => console.error('Error:', error));
 }
-export const getroles = function()  {
+export const GetRoles = function()  {
 
   var abc;
   return fetch(`/rest/modus/roles`, {

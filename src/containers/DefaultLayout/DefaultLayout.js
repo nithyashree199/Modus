@@ -41,7 +41,6 @@ constructor(props){
 
     var  navigationItem = RolebasedNav()
 
-console.log("navigation in default",this.state.navigationItem);
     return (
       <div>
         <div className="app">

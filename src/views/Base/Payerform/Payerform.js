@@ -131,7 +131,6 @@ class Payerform extends Component {
   }
 
   result(params) {
-    console.log(params);
   }
 
   onchangeofid(e) {
@@ -251,7 +250,6 @@ class Payerform extends Component {
     }
     if (this.state.plobselected) {
       if (this.state.plobselected.includes("All")) {
-        console.log("i am All");
       } else {
         for (var i = 0; i < this.state.plobselected.length; i++) {
           clob.push(
@@ -270,14 +268,12 @@ class Payerform extends Component {
             }
           }
 
-          console.log(clob2);
         }
       }
     }
 
     if (this.state.pserviceselected){
       if (this.state.pserviceselected.includes("All")){
-        console.log("i am service");
       }
       else {
         for (var k=0; k<this.state.pserviceselected.length; k++){
@@ -296,7 +292,6 @@ class Payerform extends Component {
           }
         }
 
-        console.log(cservice2)
       }
       }
     }
@@ -304,7 +299,6 @@ class Payerform extends Component {
     searchpayorQuery = 'SELECT * FROM c WHERE c.category = "orgPayer"';
     searchQuery = searchpayorQuery + cname + ctradingPartnerRealId + cactive + clob2 + cservice2;
 
-    console.log(searchQuery);
 
     this.aftersubmit(searchQuery);
   }
@@ -346,7 +340,6 @@ class Payerform extends Component {
 
   var editQuery="";
   editQuery = 'SELECT * FROM c WHERE c.category = "orgPayer" and c.tradingPartnerRealId = "' +payorid + '"';
-  console.log(editQuery);
   this.afteredit(editQuery)
   }
 

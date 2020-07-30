@@ -115,7 +115,7 @@ class ModusAdmin extends Component {
   }
   Previousbuttonhandler(e) {
     e.preventDefault();
-    window.location.href = "#/base/payerform";
+   // window.location.href = "#/base/payerform";
   }
   async addupdatebuttonhandler(e) {
    e.preventDefault();
@@ -137,15 +137,16 @@ class ModusAdmin extends Component {
       "healthcareServiceId": "",
       "source": null
       }
-console.log(datatoadd)
+
 
  await AddModusadmin(datatoadd);
  this.toggleInfo();
+ window.location.reload();
   }
 
-  deletebuttonhandler(practitionerId){
-    console.log(practitionerId)
-   DeleteModusadmin(practitionerId)
+  async deletebuttonhandler(practitionerId){
+  await DeleteModusadmin(practitionerId)
+   window.location.reload();
   }
 
   render() {
@@ -236,19 +237,19 @@ console.log(datatoadd)
                   htmlFor="lbl-mdadm-email"
                   className="modustxtforsearchbox-modusadmin"
                 >
-                  Email ID
+                  Email
                 </Label>
                 <Input
                   type="text"
                   id="txt-mdadm-email"
-                  placeholder="Enter Email ID"
+                  placeholder="Enter Email"
                   className="moduslableforsearchbox-modusadmin payorsearchlabel"
                   onChange={this.onchangeofid}
                 />
               </div>
               <div className="modussearch-button">
-                <Button type="reset" size="lm" className="modus-clrbuttoncolor">
-                  <i className="fa fa-ban "></i> Reset
+                <Button type="reset" size="lm" className="modus-clrbuttoncolor" >
+                  <i className="fa fa-ban "></i> Cancel
                 </Button>
                 <Button
                   type="submit"
@@ -301,7 +302,7 @@ console.log(datatoadd)
               >
                 Modus Admin
               </ModalHeader>
-              <Form>
+              <Form onSubmit={this.addupdatebuttonhandler}>
               <ModalBody>
                 <div className="modussearch-row2">
                   <Label
@@ -343,14 +344,14 @@ console.log(datatoadd)
                     htmlFor="txtnewmodadminemail"
                     className="modussearch-label2 requiredfield"
                   >
-                    Email ID
+                    Email
                   </Label>
                   <Input
                     name="ipnewmodadminemail"
                     type="text"
                     id="ipnewmodadminemail"
                     value={this.state.etpid}
-                    placeholder="Enter your Email ID "
+                    placeholder="Enter your Email "
                     required
                     className="modussearch-input2formodus"
                     value={this.state.ipnewmodadminemail}
@@ -374,7 +375,7 @@ console.log(datatoadd)
   }
                 </div>
                 <div className="modussearch-row2">
-                  <Label className="modussearch-label2">Roles</Label>
+
                   {!this.state.errorphone ? (
                     <Label className="moduserrorlbl">
                       *enter valid phone number
@@ -387,6 +388,7 @@ console.log(datatoadd)
                     <Label className="moduserrorlbl"></Label>
                   )}
                 </div>
+               {/* <Label className="modussearch-label2">Roles</Label>
                 <div style={{ display: "flex" }}>
                   <div>
                     <label className="modus-switch ">
@@ -435,14 +437,14 @@ console.log(datatoadd)
                 <Button
                   type="reset"
                   className="modusneworg-deletebuttoncolor"
-                  onClick={this.Handlereset}
+                  onClick={this.toggleInfo}
                 >
-                  <i className="fa fa-ban "></i> Reset
+                  <i className="fa fa-ban " ></i> Cancel
                 </Button>
                 <Button
                 type='submit'
                   className="modusneworg-addbuttoncolor"
-                  onClick={this.addupdatebuttonhandler}
+
                 >
                   <i className="fa fa-dot-circle-o"></i> Save
                 </Button>{" "}
@@ -461,9 +463,9 @@ console.log(datatoadd)
               >
                 <thead>
                   <tr className="modusalign-middle2 modustablecolor">
-                    <th className="modustableheaderwidth" onClick={()=>this.onSortChange("practitionerName")}><i class="sort-icon"></i>First Name</th>
-                    <th className="modustableheaderwidth">Last Name</th>
-                    <th>Email</th>
+                    <th className="modustableheaderwidth" onClick={()=>this.onSortChange("firstName")}><i class="sort-icon"></i>First Name</th>
+                    <th className="modustableheaderwidth" onClick={()=>this.onSortChange("lastName")}><i class="sort-icon"></i>Last Name</th>
+                    <th onClick={()=>this.onSortChange("email")}><i class="sort-icon"></i>Email</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -472,9 +474,11 @@ console.log(datatoadd)
                   const [fname,lname]=o.practitionerName.split(" ")
                     return(
                       <tr key={o.id} >
-                      <td className="modusalign-middle2"onClick={this.toggleInfo}>{fname}</td>
-                      <td className="modusalign-middle2" data-toggle="tooltip" data-placement="top" title="Edit">{lname}</td>
-                      <td className="modusalign-middle2"></td>
+                      <td className="modusalign-middle2"
+                      //onClick={this.toggleInfo}
+                      >{o.firstName}</td>
+                      <td className="modusalign-middle2" data-toggle="tooltip" data-placement="top" title="Edit">{o.lastName}</td>
+                    <td className="modusalign-middle2">{o.email}</td>
                       <td className="modusalign-middle2">
                         <Button className="modustrashbutton fa fa-trash" onClick={()=>this.deletebuttonhandler(o.practitionerId)}></Button>
                       </td>

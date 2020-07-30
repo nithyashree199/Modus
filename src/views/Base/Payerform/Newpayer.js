@@ -13,7 +13,6 @@ import {updateItem} from "../../../server/cosmosconnection"
 class Popup extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props)
 
     this.handlelabel = this.handlelabel.bind(this);
     this.GetPayorLob = this.GetPayorLob.bind(this);
@@ -36,8 +35,8 @@ class Popup extends React.Component {
     this.onreset=this.onreset.bind(this);
     this.handleEdit=this.handleEdit.bind(this);
     this.onHandleUpdate=this.onHandleUpdate.bind(this);
-    
-    
+
+
 
     this.state = {
       pid:null,
@@ -101,9 +100,9 @@ class Popup extends React.Component {
       checkedA: true,
       enableupdate:true,
       enableadd:true
-      
+
     };
-    
+
   }
   componentDidMount(){
     var dummy=[],dummy2=[]
@@ -133,15 +132,14 @@ class Popup extends React.Component {
   }
 
   handleEdit(){
-   
+
     this.setState({
       enamee:this.props.ename,
       elob:[{value:this.props.elob,label:this.props.elob}]
  })
- console.log(this.state.elob)
-    
+
   }
-  
+
 
   handlelabel(evt) {
     evt.preventDefault();
@@ -193,10 +191,9 @@ onHandleSubmit(e) {
     "services": this.state.pserviceselected,
     "active": this.state.checkedA
 }
-console.log(dataToSend)
 
 createItem(dataToSend);
-  
+
 }
  onHandleUpdate(e){
   e.preventDefault();
@@ -207,7 +204,7 @@ createItem(dataToSend);
   for(var i=0;i<this.state.eservices.length;i++){
     obj2.push(this.state.eservices[i].value)
   }
-  
+
   var dataToSend = {
     "id": this.state.epid,
     "name":this.state.ename,
@@ -253,7 +250,7 @@ onreset(){
       { value: "Attachments", label: "Attachments" },
       { value: "All", label: "All" },
     ]
-    
+
   })
 }
 
@@ -338,9 +335,8 @@ onreset(){
           }
         }
       }
-      
+
       service=this.removeDuplicates(service,"value")
-      //console.log(service)
       if(service.length<1)
       {
         this.setState(()=>({
@@ -367,7 +363,7 @@ onreset(){
       }
     });
   }
-  
+
   onchangeofpid(e){
     e.preventDefault();
     this.setState({pid:e.target.value,
@@ -375,7 +371,7 @@ onreset(){
     });
   }
   onchangeoftpid(e){
-    
+
     this.setState({tpid:e.target.value,
     etpid:e.target.value});
   }
@@ -386,15 +382,15 @@ onreset(){
     });
 
   }
-  
+
   onchangeofptype = selectedOption => {
     this.setState({ ptypeselected:selectedOption.value
      });
   };
- 
+
   onchangeofpcountry = selectedOption => {
     this.setState({ pcountryselected:selectedOption.value,
-    ecountry:selectedOption 
+    ecountry:selectedOption
   });
   };
 
@@ -417,7 +413,7 @@ onreset(){
   onchangeofaddline2(e){
     e.preventDefault();
     this.setState({adl2:e.target.value,
-    eadl2:e.target.value 
+    eadl2:e.target.value
     });
   }
   onchangeofcontactnumber(e){
@@ -447,15 +443,15 @@ onreset(){
     this.setState({ plobselected:value,
     elob:selectedOption });
   };
-  
+
 
   render() {
-    
+
     return (
       <Form id="create-payor-form">
         <CardBody className="body-style">
           <div className="search-row2">
-         
+
             <Label htmlFor="pname" className="search-label2">
               Payor Name
             </Label>
@@ -469,7 +465,7 @@ onreset(){
               value={this.state.ename}
               onChange={this.onchangeofpname}
             />
-            
+
             <Label htmlFor="pid" className="search-label2">
               Payor ID
             </Label>
@@ -486,7 +482,7 @@ onreset(){
             <Label htmlFor="ptype" className="search-label2">
               Payor type{" "}
             </Label>
-            
+
             <Select
                 name="ptype"
                 id="ptype"
@@ -573,7 +569,7 @@ onreset(){
                 <Label htmlFor="pstate" className="search-label-address">
                   State
                 </Label>
-                
+
                 <Select
                 name="pstate"
                 id="pstate"
@@ -599,7 +595,7 @@ onreset(){
                 value={this.state.ecountry}
                 onChange={this.onchangeofpcountry}
               ></Select>
-                
+
               </div>
               <div className="search-row2">
                 <Label htmlFor="pzipcode" className="search-label-address">
@@ -662,7 +658,7 @@ onreset(){
                 >
                   <i className="fa fa-dot-circle-o"></i> Update
                 </Button>
-                
+
                 <Button
                   type="submit"
                   size="lm"
@@ -676,7 +672,7 @@ onreset(){
                 <Button type="reset" size="lm" color="danger" onClick={this.onreset}>
                   <i className="fa fa-ban"></i> Reset
                 </Button>
-                
+
               </div>
             </div>
           </div>

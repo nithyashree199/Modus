@@ -46,7 +46,6 @@ export const GetOrgAdminusers = function()  {
     .catch(error => console.error('Error:', error));
   }
   export const UpdateOrgAdmin = function(id,body){
-console.log("In api js"+JSON.stringify(body))
     return fetch(`/rest/organization/user/`+id, {
       method: 'PUT',
 

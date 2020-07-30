@@ -7,7 +7,6 @@ export default function  RolebasedNav()
 { var role=sessionStorage.getItem("role")
   var routingnav
  routingnav=navconfig[role]
-console.log(routingnav)
  /* if("Orgadmin" === sessionStorage.getItem("role"))
   {
     routingnav=navconfig.sessionStorage.getItem("role");

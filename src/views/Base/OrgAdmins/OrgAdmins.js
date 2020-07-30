@@ -85,7 +85,6 @@ class OrgAdmins extends Component {
   }
   await  GetOrgAdminusers().then((data) =>
  this.setState({ orgadminusersdyndis: data, orgadminusers: data }),
- console.log(this.state.orgadminusers)
  );
    }
 
@@ -100,7 +99,6 @@ email:data.email,
 phone:data.cellphone})
 
   );
-  console.log(this.state.jsondata)
   this.toggleInfo();
   }
   togglePopup() {
@@ -110,7 +108,6 @@ phone:data.cellphone})
     });
   }
   toggleInfo() {
-    console.log(this.state.jsondata);
     this.setState({
       info: !this.state.info,
     });
@@ -131,7 +128,7 @@ phone:data.cellphone})
 
 	};
 
-  onHandleSubmit(e) {
+ async onHandleSubmit(e) {
     e.preventDefault();
     var dataToSend = {
 "firstName": this.state.firstname,
@@ -153,16 +150,17 @@ phone:data.cellphone})
 
 
   }
-  console.log(dataToSend)
 
-  AddOrgAdminUser(dataToSend);
-
+ await AddOrgAdminUser(dataToSend);
+this.toggleInfo();
+if(dataToSend){
+  window.location.reload();
+}
   }
-  onHandleUpdate(e){
+  async onHandleUpdate(e){
     e.preventDefault();
 
  var id=this.state.jsondata.practitionerId;
- console.log("phone number"+this.state.phone)
  var dataToUpdate = {
   "firstName": this.state.firstname,
   "lastName":this.state.lastname,
@@ -181,18 +179,24 @@ phone:data.cellphone})
   "healthcareServiceId": "",
   "source": null
         }
-      console.log(dataToUpdate)
 
-      UpdateOrgAdmin(id,dataToUpdate)
+    await  UpdateOrgAdmin(id,dataToUpdate)
+    if(dataToUpdate){
+      window.location.reload();
+    }
+      this.toggleInfo();
+
    }
   Handlereset(e) {
     e.preventDefault();
     this.setState(this.initialState);
   }
-  onHandledeleteorgadminuser(id){
+ async onHandledeleteorgadminuser(id){
 
-      console.log(id);
-      DeleteOrgAdminUser(id);
+      await DeleteOrgAdminUser(id);
+      await  GetOrgAdminusers().then((data) =>
+ this.setState({ orgadminusersdyndis: data, orgadminusers: data }),
+ );
    }
   OnchangeHandler(e) {
     const {
@@ -507,9 +511,9 @@ phone:data.cellphone})
               >
                 <thead >
                   <tr className=" orgadmin-tablecolor">
-                    <th className="align-middle"  onClick={()=>this.onSortChange("practitionerName")}><i class="sort-icon"></i>First Name</th>
-                    <th className="align-middle">Last Name</th>
-                    <th className="align-middle">Email</th>
+                    <th className="align-middle"  onClick={()=>this.onSortChange("firstName")}><i class="sort-icon"></i>First Name</th>
+                    <th className="align-middle" onClick={()=>this.onSortChange("lasttName")}><i class="sort-icon"></i>Last Name</th>
+                    <th className="align-middle"onClick={()=>this.onSortChange("email")}><i class="sort-icon"></i>Email</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -521,9 +525,9 @@ phone:data.cellphone})
 
                 <tbody>
             <tr >
-                  <td className="align-middle2" onClick={() => this.onclickoforgadmin(o.practitionerId)}>{this.state.splitfirstname}</td>
-                    <td className="align-middle2" onClick={() => this.onclickoforgadmin(o.practitionerId)}>{this.state.splitlastname}</td>
-                    <td className="align-middle2" onClick={() => this.onclickoforgadmin(o.practitionerId)}>admin@gmail.com</td>
+                  <td className="align-middle2" onClick={() => this.onclickoforgadmin(o.practitionerId)}>{o.firstName}</td>
+                    <td className="align-middle2" onClick={() => this.onclickoforgadmin(o.practitionerId)}>{o.lastName}</td>
+                  <td className="align-middle2" onClick={() => this.onclickoforgadmin(o.practitionerId)}>{o.email}</td>
                     <td className="align-middle2">
                       <Button className="trashbutton fa fa-trash" onClick={() => this.onHandledeleteorgadminuser(o.practitionerId)}></Button>
                     </td>

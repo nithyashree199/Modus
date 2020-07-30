@@ -44,7 +44,6 @@ class Organisation extends Component {
   }
   deletebuttonhandler(id){
 
-    console.log(id);
    // delete(id);
   }
   Onchangehandler(e) {
@@ -68,19 +67,14 @@ class Organisation extends Component {
       this.setState({
         orgdyndis: z,
       });
-      console.log("true");
     } else {
       this.setState({
         orgdyndis: this.state.organisations,
       });
-      console.log("false");
     }
 
-    console.log(this.state.orgdyndis);
-    console.log(z);
   }
   async onclickoftile(orgid) {
-    console.log(orgid);
 
     await GetSingleOrg(orgid).then((data) =>
       this.setState({ jsondata: data })
@@ -92,8 +86,6 @@ class Organisation extends Component {
     this.setState({ orgadminuserdata:data})
     )
 
-    console.log(this.state.jsondata);
-    console.log(this.state.orgadminuserdata);
     this.togglePopup("update");
   }
   togglePopup(neworupdate) {
@@ -145,7 +137,7 @@ class Organisation extends Component {
                 type="text"
                 id="search"
                 name="search"
-                placeholder="search.."
+                placeholder="Search"
                 className="orgsearchboxmargin"
                 onChange={this.Onchangehandler}
               />

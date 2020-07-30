@@ -30,7 +30,7 @@ export const DeleteFacilityUser = function(id){
   }).then(res=>{return(res)})
   .catch(error => console.error('Error:', error));
 }
-export const getroles = function()  {
+export const GetRoles = function()  {
 
   var abc;
   return fetch(`/rest/modus/roles`, {

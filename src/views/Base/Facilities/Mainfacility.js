@@ -30,7 +30,7 @@ class Mainfacility extends Component {
       showPopup: false,
       jsondata: [],
     };
-    this.Dynamicrenderoforg = this.Dynamicrenderoforg.bind(this);
+    this.Dynamicrenderoffacility = this.Dynamicrenderoffacility.bind(this);
     this.Onchangehandler = this.Onchangehandler.bind(this);
     this.togglePopup = this.togglePopup.bind(this);
     this.onclickoftile=this.onclickoftile.bind(this);
@@ -46,14 +46,14 @@ this.setState({ facilitydyndis: data, facilities: data }),
 );
 }
 async onclickoftile(faciity_id) {
-  console.log(faciity_id);
+
   await GetSingleFacility(faciity_id).then((data) =>
   this.setState({ jsondata: data })
 );
 this.togglePopup();
 }
 togglePopup() {
-  console.log(this.state.jsondata);
+ 
   this.setState({
     showPopup: !this.state.showPopup,
   });
@@ -66,13 +66,12 @@ togglePopup() {
     } = e;
     this.setState({ [name]: value });
   }
-  Dynamicrenderoforg(e) {
+  Dynamicrenderoffacility(e) {
     e.preventDefault();
     var value
     var z=[]
     value=document.getElementById("search").value;
-
-    orgdata.map((o)=>{
+  this.state.facilitydyndis.map((o)=>{
        if (o.name == value) {
           z.push(o)
         }
@@ -80,17 +79,14 @@ togglePopup() {
         if(z.length!=0)
         {
          this.setState({
-           orgdyndis: z
+          facilitydyndis: z
           })
-          console.log("true")
         }
           else{
             this.setState({
-              orgdyndis: this.state.organisations
+              facilitydyndis: this.state.facilities
              })
-          console.log("false")}
-    console.log(this.state.orgdyndis)
-    console.log(z);
+        }
   }
 
   render() {
@@ -104,7 +100,7 @@ togglePopup() {
         <Card className="mainfacilitycardstyle">
           <CardBody>
           <div className="table-title-styleforfacilityuser">
-        <span><strong>Facilities</strong></span>
+    <span><strong>{sessionStorage.getItem("organizationName")} Facilities</strong></span>
 
                 <Button
                   className="newfacilitiesmargin"
@@ -126,12 +122,12 @@ togglePopup() {
                 size="16"
                 type="text"
                 id="search" name="search"
-                placeholder="search.."
+                placeholder="Search"
                 className="mainfacilitysearchborder"
                 onChange={this.Onchangehandler}
               />
               <InputGroupAddon addonType="append">
-                <Button  className="searchbutonstylefororg" >Search</Button>
+                <Button  className="searchbutonstylefororg" onClick={this.Dynamicrenderoffacility}>Search</Button>
               </InputGroupAddon>
             </InputGroup>
             </div>

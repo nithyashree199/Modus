@@ -19,13 +19,14 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Table from "react-bootstrap/Table";
 import prev from "../../../assets/img/brand/prevbutton.png";
 import {validateZipcode,formatPhoneNumber,validateEmail , validateTaxID} from "../../../validation/validator";
-import {GetFacilityUsers,GetSingleFacilityUser,AddFacility,UpdateFacility,AddFacilityUser,DeleteFacility,getroles} from "../Facilities/Api"
+import {GetFacilityUsers,GetSingleFacilityUser,AddFacility,UpdateFacility,AddFacilityUser,DeleteFacility,GetRoles} from "../Facilities/Api"
 import {DeleteFacilityUser} from "../Facilityusers/Api"
 var sortJsonArray = require('sort-json-array');
 class OrgFacility extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      newFacilityData:[],
       country:[
         { value: 'United States', label: 'United States' },
         { value: 'INDIA', label: 'INDIA' }
@@ -86,19 +87,7 @@ class OrgFacility extends Component {
       roles:[],
 role:"",
 furoles:[
-  { value: 'Select', label: 'Select' },
-{ value: 'IT Staff', label: 'IT Staff' },
-{ value: 'Org Admin', label: 'Org Admin' },
-{ value: 'Facility Admin', label: 'Facility Admin' },
-{ value: 'Biller', label: 'Biller' },
-{ value: 'Case Manager', label: 'Case Manager' },
-{ value: 'Doctor', label: 'Doctor' },
-{ value: 'Medical Assistant', label: 'Medical Assistant' },
-{ value: 'Nurse', label: 'Nurse' },
-{ value: 'Nurse Practitioner', label: 'Nurse Practitioner' },
-{ value: 'Physician Assistant', label: 'Physician Assistant' },
-{ value: 'PT', label: 'PT' },
-{ value: 'Occupational Therapist', label: 'Occupational Therapist' },
+  { value: '', label: '' }
 ],
     };
 
@@ -113,11 +102,25 @@ furoles:[
       erroremailpopup:true,
       firstname: "",
       lastname: "",
-      email: "",
+
       newphone:"",
       name:"",
       rolept:"",
       roledoctor:"",
+      txtname: "",
+      email: "",
+      website: "",
+      phone: "",
+      fax: "",
+      address: "",
+      city: "",
+      npi: "",
+      taxid: "",
+      state: "",
+      country: "",
+      zipcode: "",
+
+
     };
         this.Previousbuttonhandler = this.Previousbuttonhandler.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -149,6 +152,12 @@ this.state.facilityusersdyndis ?this.state.facilityusersdyndis.map((o)  => {
     async componentDidMount() {
 
      if( this.props.location.state) {
+      if(this.props.location.state.facilitytable=='new'){
+        document.getElementById("facilityUsers").style.display="none"
+       }
+      else {
+       document.getElementById("facilityUsers").style.display="all"
+      }
 this.setState({ orgId:this.props.location.state.orgid});
       if( this.props.location.state.FacilityUpdate) {
       this.setState({
@@ -174,6 +183,7 @@ this.setState({ orgId:this.props.location.state.orgid});
       })
 
   }
+
   if(this.props.location.state.orgfacilitydatafull){
     this.setState({
 
@@ -199,9 +209,17 @@ this.setState({ orgId:this.props.location.state.orgid});
   }
 }
 
-  await  getroles().then((data) =>
-  this.setState({ rolesdyndis: data, roles: data })
-  );
+await  GetRoles().then(data => {
+  let rolesFromApi = data.map(role => {
+    return {value: role.value, label: role.text}
+  });
+  this.setState({
+    furoles: [{value: '', label: 'Select'}].concat(rolesFromApi),
+  });
+})
+if(!this.props.location.state){
+  document.getElementById("facilityUsers").style.display="none"
+ }
     }
     onchangeofroles = (selectedOption) => {
       this.setState({ roleselected:selectedOption,
@@ -209,7 +227,6 @@ this.setState({ orgId:this.props.location.state.orgid});
     };
 
     onChangeHandler = (event) => {
-      console.log(event.target.files[0]);
     };
     onchangeofrole = (selectedOption) => {
       this.setState({ roleselected: selectedOption.value });
@@ -267,10 +284,12 @@ this.setState({ orgId:this.props.location.state.orgid});
         });
       }
      }
-     onHandledeletefacilityuser(id){
+    async onHandledeletefacilityuser(id){
 
-        console.log(id);
-        DeleteFacilityUser(id);
+       await DeleteFacilityUser(id);
+        await  GetFacilityUsers(this.props.location.state.orgfacilitydatafull.id).then((data) =>
+        this.setState({ facilityusersdyndis: data, facilitiyusers: data })
+        );
      }
 
      Onchangehandler2(e) {
@@ -314,7 +333,7 @@ this.setState({ orgId:this.props.location.state.orgid});
 
     Previousbuttonhandler(e) {
         e.preventDefault();
-        window.location.href = "#/base/Mainfacility";
+        window.location.href = "#/base/Neworganisation";
       }
       redirectfacility(e) {
         e.preventDefault();
@@ -334,10 +353,8 @@ this.setState({ orgId:this.props.location.state.orgid});
           info: !this.state.info,
         });
       }
-      onHandleSubmit(e) {
+    async  onHandleSubmit(e) {
         e.preventDefault();
-       // this.onchangeofpid();
-        //this.onchangeoftpid();
         var dataToSend = {
   "id":null,
  "name": this.state.txtname,
@@ -359,15 +376,16 @@ this.setState({ orgId:this.props.location.state.orgid});
 "addRoom": null,
 "rooms": []
       }
-      console.log(dataToSend)
+if(dataToSend){
+  await  AddFacility(dataToSend).then((data)=> this.setState({newFacilityData:data}))
+if(this.state.newFacilityData.length!=0){
+  document.getElementById("facilityUsers").style.display="block"
+}
 
-      AddFacility(dataToSend);
+}
 
       }
-      onHandleSubmitnew(e) {
-        e.preventDefault();
-       // this.onchangeofpid();
-        //this.onchangeoftpid();
+   async   onHandleSubmitnew(e) {
         e.preventDefault();
         var dataToSend = {
       "firstName": this.state.newfname,
@@ -387,10 +405,12 @@ this.setState({ orgId:this.props.location.state.orgid});
       "healthcareServiceId":this.props.location.state.orgfacilitydatafull.id,
       "source": null
       }
-      console.log(dataToSend)
 
-      AddFacilityUser(dataToSend);
-
+    await AddFacilityUser(dataToSend);
+      this.toggleInfo()
+      await  GetFacilityUsers(this.props.location.state.orgfacilitydatafull.id).then((data) =>
+      this.setState({ facilityusersdyndis: data, facilitiyusers: data })
+      );
 
       }
 
@@ -419,29 +439,30 @@ this.setState({ orgId:this.props.location.state.orgid});
     "addRoom": null,
     "rooms": []
           }
-          console.log(dataToUpdate)
 
           UpdateFacility(id,dataToUpdate)
        }
        async onclickoffacilityuser(faciityuser_id) {
-        console.log(faciityuser_id);
         await GetSingleFacilityUser(faciityuser_id).then((data) =>
         this.setState({ jsondata: data })
       );
+
       this.togglePopup();
+
       }
       togglePopup() {
-        console.log(this.state.jsondata);
+
         this.setState({
           showPopup: !this.state.showPopup,
         });
       }
 
-      onHandledeletefacility(e){
+     async onHandledeletefacility(e){
         e.preventDefault();
      var id=this.props.location.state.FacilityUpdate.id;
-          console.log(id);
-          DeleteFacility(id);
+
+         await DeleteFacility(id);
+
        }
   render() {
 
@@ -695,7 +716,7 @@ Email
               )}
 </div>
 <br></br>
-{ this.props.location.state.orgfacilitydatafull ? (
+{ this.state.facilitydata ? (
                     <div>
                             <Button className="save-button-style" type="submit" onClick={this.onHandleUpdate}>
                             <i className="fa fa-dot-circle-o"></i> Update
@@ -708,7 +729,7 @@ Email
 
                   ) : (
                     <div>
-                    <Button className="save-button-style" type="submit" onClick={this.onHandleSubmit} onSubmit={this.toggleInfo}>
+                    <Button className="save-button-style" type="submit" onClick={this.onHandleSubmit} >
                   <i className="fa fa-dot-circle-o"></i> Save
                   </Button>
                    <Button type="cancel" className="cancel-button-style" >
@@ -717,10 +738,10 @@ Email
                      </div>
                   )}
 
-{ this.props.location.state.orgfacilitydatafull ? (
+
   <div>
        <hr></hr>
-
+       <div id="facilityUsers">
         <div className="facilities-table-title-style">
           <span><strong>Users</strong></span>
                 <Button
@@ -728,17 +749,17 @@ Email
                   size="lm"
                   onClick={this.toggleInfo.bind(this)}
                   ><i className="fa fa-plus"></i> User </Button>
-                  {this.state.redirectlink2?  <Redirect to="/base/Newuser"></Redirect>:null}
+
 
         </div>
-        <div>
+
         <Table hover variant="light" responsive className="Facility-Table" striped >
 
             <thead>
               <tr className="align-middle Facilities-tablecolor">
-                <th className="align-middle" onClick={()=>this.onSortChange("practitionerName")}><i class="sort-icon"></i> First Name</th>
-                <th className="align-middle">Last Name</th>
-                <th className="align-middle">Email-ID</th>
+                <th className="align-middle" onClick={()=>this.onSortChange("firstName")}><i class="sort-icon"></i> First Name</th>
+                <th className="align-middle"onClick={()=>this.onSortChange("lastName")}><i class="sort-icon"></i> Last Name</th>
+                <th className="align-middle" onClick={()=>this.onSortChange("email")}><i class="sort-icon"></i> Email-ID</th>
                 <th className="align-middle" onClick={()=>this.onSortChange("roleName")}><i class="sort-icon"></i>Roles(s)</th>
                 <th className="align-middle" >Action</th>
 
@@ -752,9 +773,9 @@ Email
             <tbody>
             <tr
             >
-                <td className="align-middle-2" onClick={() => this.onclickoffacilityuser(o.practitionerId)}>{this.state.splitfirstname}</td>
-                <td className="align-middle-2" onClick={() => this.onclickoffacilityuser(o.practitionerId)}>{this.state.splitlastname}</td>
-                <td className="align-middle-2"onClick={() => this.onclickoffacilityuser(o.practitionerId)}>Doctoruser@gmail.com</td>
+                <td className="align-middle-2" onClick={() => this.onclickoffacilityuser(o.practitionerId)}>{o.firstName}</td>
+                <td className="align-middle-2" onClick={() => this.onclickoffacilityuser(o.practitionerId)}>{o.lastName}</td>
+          <td className="align-middle-2"onClick={() => this.onclickoffacilityuser(o.practitionerId)}>{o.email}</td>
                 <td className="align-middle-2"onClick={() => this.onclickoffacilityuser(o.practitionerId)}>{o.roleName}</td>
                 <td className="align-middle-2">
                     <Button className="trashbutton fa fa-trash" onClick={() => this.onHandledeletefacilityuser(o.practitionerId)}></Button>
@@ -764,11 +785,11 @@ Email
                     )}):null}
           </Table>
           {this.state.showPopup ? (
-          <Redirect to={{pathname:"/base/Facilityusers",state:{singledata:this.state.jsondata}}}></Redirect>):null}
+          <Redirect to={{pathname:"/base/Facilityusers",state:{singledata:this.state.jsondata,redirect:"OrgFacility"}}}></Redirect>):null}
 
           </div>
           </div>
-):null}
+
 
 
 
@@ -921,7 +942,7 @@ Email
     <div className="fu-switch3">
     <div className="fu-switch">
     <label class="switch">
-<input type="checkbox" className="switch-input"></input>
+<input type="checkbox" className="switch-input" name="toggleActiveNew" onChange={this.handleChange} checked={this.state.toggleActiveNew}></input>
 <span class="slider"></span>
 </label>
 <Label className="switch-name-toggle" className="toggleActiveNew">Active</Label>

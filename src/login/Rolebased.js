@@ -13,9 +13,6 @@ import * as router from "react-router-dom";
 
 
 
-  console.log(role)
-    console.log(routing)
-    console.log(rolesConfig.System_Admin)
         return(routing.routes.map((route, idx) => {
           return route ? (
             <Route

@@ -55,7 +55,6 @@ export const OrgFacilityDelete = function(id){
 export const OrgAdminUserGetAll=function(practionerid){
 
   var abc;
-  console.log(practionerid)
   return fetch(`/rest/organization/user/`+practionerid, {
       method: 'GET',
 

@@ -65,7 +65,6 @@ export const OrgFacilityGet=function(orgid){
 export const OrgAdminuserGet=function(orgid){
 
   var abc;
-  console.log(orgid)
   return fetch(`/rest/organization/users/`+orgid, {
       method: 'GET',
 

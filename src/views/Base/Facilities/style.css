@@ -454,7 +454,8 @@ display:flex;
 }
 .switch-name-toggle{
 font-weight: 600;
-padding-left: 10%;
+transform: translateX(10px);
+
 }
 .status{
   font-weight: 600;

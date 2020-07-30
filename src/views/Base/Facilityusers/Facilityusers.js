@@ -5,7 +5,7 @@ import { Button, Form,Card, CardBody, Input, Label } from "reactstrap";
 import prev from "../../../assets/img/brand/prevbutton.png";
 import { AppNavbarBrand } from "@coreui/react";
 import {validateZipcode,formatPhoneNumber , validateTaxID, validateEmail} from "../../../validation/validator";
-import {AddFacilityUser,UpdateFacilityUser,DeleteFacilityUser,getroles} from "./Api"
+import {AddFacilityUser,UpdateFacilityUser,DeleteFacilityUser,GetRoles} from "./Api"
 var abc=[];
 class Facilityusers extends Component {
   constructor(props) {
@@ -37,19 +37,8 @@ class Facilityusers extends Component {
        toggleactive:false,
 
       furoles:[
-        { value: 'Select', label: 'Select' },
-      { value: 'IT Staff', label: 'IT Staff' },
-      { value: 'Org Admin', label: 'Org Admin' },
-      { value: 'Facility Admin', label: 'Facility Admin' },
-      { value: 'Biller', label: 'Biller' },
-      { value: 'Case Manager', label: 'Case Manager' },
-      { value: 'Doctor', label: 'Doctor' },
-      { value: 'Medical Assistant', label: 'Medical Assistant' },
-      { value: 'Nurse', label: 'Nurse' },
-      { value: 'Nurse Practitioner', label: 'Nurse Practitioner' },
-      { value: 'Physician Assistant', label: 'Physician Assistant' },
-      { value: 'PT', label: 'PT' },
-      { value: 'Occupational Therapist', label: 'Occupational Therapist' },
+        { value: '', label: '' }
+
       ],
 
           };
@@ -71,7 +60,7 @@ class Facilityusers extends Component {
        lno: "",
        birthdate: "",
        toggleactive:false,
-       
+
      };
 
 
@@ -99,12 +88,17 @@ class Facilityusers extends Component {
      }
    })
 
-   console.log(this.state.roleselected)
-   await  getroles().then((data) =>
-  this.setState({ rolesdyndis: data, roles: data })
-  );
+
   }
 }
+await  GetRoles().then(data => {
+  let rolesFromApi = data.map(role => {
+    return {value: role.value, label: role.text}
+  });
+  this.setState({
+    furoles: [{value: '', label: 'Select'}].concat(rolesFromApi),
+  });
+})
  }
 onHandleUpdate(e) {
   e.preventDefault();
@@ -127,7 +121,6 @@ onHandleUpdate(e) {
 "healthcareServiceId":this.props.location.state.singledata.healthcareServiceId,
 "source": null
 }
-console.log(dataToUpdate)
 UpdateFacilityUser(id,dataToUpdate)
 }
 
@@ -141,7 +134,13 @@ UpdateFacilityUser(id,dataToUpdate)
 
  Previousbuttonhandler(e) {
    e.preventDefault();
-   window.location.href = "#/base/Facilities";
+   if(this.props.location.state.redirect=="OrgFacility")
+   {
+    window.location.href = "#/base/OrgFacility";
+   }else{
+    window.location.href = "#/base/Facilities";
+   }
+
  }
  Onchangehandler(evt) {
   evt.preventDefault();
@@ -349,7 +348,7 @@ UpdateFacilityUser(id,dataToUpdate)
    <div className="fu-switch2">
    <div className="fu-switches">
    <label class="switch">
-<input onChange={this.handleChange} checked={this.state.toggleactive} type="checkbox" className="switch-input"></input>
+<input name="toggleactive" onChange={this.handleChange} checked={this.state.toggleactive} type="checkbox" className="switch-input"></input>
 <span class="slider"></span>
 </label>
 <Label className="switch-name-facilityuser" >Active</Label>

@@ -18,7 +18,7 @@ import Select from "react-select";
 import Table from "react-bootstrap/Table";
 import prev from "../../../assets/img/brand/prevbutton.png";
 import {validateZipcode,formatPhoneNumber,validateEmail , validateTaxID} from "../../../validation/validator";
-import {GetFacilityUsers,GetSingleFacilityUser,AddFacility,UpdateFacility,AddFacilityUser,DeleteFacility,getroles} from "./Api"
+import {GetFacilityUsers,GetSingleFacilityUser,AddFacility,UpdateFacility,AddFacilityUser,DeleteFacility,GetRoles} from "./Api"
 import {DeleteFacilityUser} from "../Facilityusers/Api"
 var sortJsonArray = require('sort-json-array');
 class Facilities extends Component {
@@ -54,7 +54,7 @@ class Facilities extends Component {
       firstname: "",
       lastname: "",
       email: "",
-      roleselected:null,
+
       toggleactive:false,
       toggleActiveNew:false,
       toggleappointment:false,
@@ -81,19 +81,8 @@ class Facilities extends Component {
       splitlastname:"",
       array:[],
       furoles:[
-        { value: 'Select', label: 'Select' },
-      { value: 'IT Staff', label: 'IT Staff' },
-      { value: 'Org Admin', label: 'Org Admin' },
-      { value: 'Facility Admin', label: 'Facility Admin' },
-      { value: 'Biller', label: 'Biller' },
-      { value: 'Case Manager', label: 'Case Manager' },
-      { value: 'Doctor', label: 'Doctor' },
-      { value: 'Medical Assistant', label: 'Medical Assistant' },
-      { value: 'Nurse', label: 'Nurse' },
-      { value: 'Nurse Practitioner', label: 'Nurse Practitioner' },
-      { value: 'Physician Assistant', label: 'Physician Assistant' },
-      { value: 'PT', label: 'PT' },
-      { value: 'Occupational Therapist', label: 'Occupational Therapist' },
+        { value: '', label: '' },
+
       ],
     };
 
@@ -108,9 +97,24 @@ class Facilities extends Component {
       erroremailpopup:true,
       firstname: "",
       lastname: "",
+
+
+
+      txtname: "",
       email: "",
+      website: "",
+      phone: "",
+      fax: "",
+      address: "",
+      city: "",
+      npi: "",
+      taxid: "",
+      state: "",
+      country: "",
+      zipcode: "",
       newphone:"",
       name:"",
+
     };
         this.Previousbuttonhandler = this.Previousbuttonhandler.bind(this);
         this.HandleChange = this.HandleChange.bind(this);
@@ -185,7 +189,17 @@ this.state.facilityusersdyndis ?this.state.facilityusersdyndis.map((o)  => {
         toggleappointment:this.props.location.state.orgfacilitydatafull.appointment
     })
   }
+
 }
+await  GetRoles().then(data => {
+  let rolesFromApi = data.map(role => {
+    
+    return {value: role.value, label: role.text}
+  });
+  this.setState({
+    furoles: [{value: '', label: 'Select'}].concat(rolesFromApi),
+  });
+})
     }
     OnchangeofCountry = selectedOption => {
       this.setState({ pcountryselected:selectedOption.value,
@@ -233,10 +247,13 @@ this.state.facilityusersdyndis ?this.state.facilityusersdyndis.map((o)  => {
         });
       }
      }
-     OnHandleDeleteFacilityUser(id){
+    async OnHandleDeleteFacilityUser(id){
 
-      console.log(id);
-      DeleteFacilityUser(id);
+
+     await DeleteFacilityUser(id);
+     await  GetFacilityUsers(this.props.location.state.FacilityUpdate.id).then((data) =>
+      this.setState({ facilityusersdyndis: data, facilitiyusers: data })
+      );
     }
     onSortChange = (property) => {
       var currentSort;
@@ -323,14 +340,14 @@ this.state.facilityusersdyndis ?this.state.facilityusersdyndis.map((o)  => {
          "addRoom": null,
          "rooms": []
       }
-      console.log(dataToSend)
+
 
       AddFacility(dataToSend);
 
       }
-      OnHandleSubmitFacilityUser(e) {
+ async OnHandleSubmitFacilityUser(e) {
         e.preventDefault();
-        e.preventDefault();
+
         var dataToSend = {
           "firstName": this.state.newfname,
           "cellphone": this.state.newphone,
@@ -349,14 +366,16 @@ this.state.facilityusersdyndis ?this.state.facilityusersdyndis.map((o)  => {
           "healthcareServiceId":this.props.location.state.FacilityUpdate.id,
           "source": null
       }
-      console.log(dataToSend)
-
-      AddFacilityUser(dataToSend);
 
 
+       await AddFacilityUser(dataToSend);
+      await  GetFacilityUsers(this.props.location.state.FacilityUpdate.id).then((data) =>
+      this.setState({ facilityusersdyndis: data, facilitiyusers: data })
+      );
+      this.ToggleInfo();
       }
 
-      OnHandleUpdateFacility(e){
+    async  OnHandleUpdateFacility(e){
         e.preventDefault();
 
      var id=this.props.location.state.FacilityUpdate.id;
@@ -381,19 +400,19 @@ this.state.facilityusersdyndis ?this.state.facilityusersdyndis.map((o)  => {
     "addRoom": null,
     "rooms": []
           }
-          console.log(dataToUpdate)
-          console.log(id)
-          UpdateFacility(id,dataToUpdate)
+
+         await UpdateFacility(id,dataToUpdate)
+
        }
        async OnClickOfFacilityUser(faciityuser_id) {
-        console.log(faciityuser_id);
+
         await GetSingleFacilityUser(faciityuser_id).then((data) =>
         this.setState({ jsondata: data })
       );
       this.TogglePopup();
       }
       TogglePopup() {
-        console.log(this.state.jsondata);
+
         this.setState({
           showPopup: !this.state.showPopup,
         });
@@ -402,7 +421,7 @@ this.state.facilityusersdyndis ?this.state.facilityusersdyndis.map((o)  => {
       OnHandleDeleteFacility(e){
         e.preventDefault();
      var id=this.props.location.state.FacilityUpdate.id;
-          console.log(id);
+
           DeleteFacility(id);
        }
   render() {
@@ -668,7 +687,7 @@ Email
 
                   ) : (
                     <div>
-                    <Button className="save-button-style" type="submit" onClick={this.OnHandleSubmitFacility} onSubmit={this.ToggleInfo}>
+                    <Button className="save-button-style" type="submit" onClick={this.OnHandleSubmitFacility} >
                   <i className="fa fa-dot-circle-o"></i> Save
                   </Button>
                    <Button type="cancel" className="cancel-button-style" >
@@ -696,9 +715,9 @@ Email
 
             <thead>
               <tr className="align-middle Facilities-tablecolor">
-                <th className="align-middle" onClick={()=>this.onSortChange("practitionerName")}><i class="sort-icon"></i>First Name</th>
-                <th className="align-middle">Last Name</th>
-                <th className="align-middle">Email-ID</th>
+                <th className="align-middle" onClick={()=>this.onSortChange("firstName")}><i class="sort-icon"></i>First Name</th>
+                <th className="align-middle" onClick={()=>this.onSortChange("lastName")}><i class="sort-icon"></i>Last Name</th>
+                <th className="align-middle" onClick={()=>this.onSortChange("email")}><i class="sort-icon"></i>Email-ID</th>
                 <th className="align-middle" onClick={()=>this.onSortChange("roleName")}><i class="sort-icon"></i>Roles(s)</th>
                 <th className="align-middle" >Action</th>
 
@@ -712,9 +731,9 @@ Email
             <tbody>
             <tr
             >
-                <td className="align-middle-2" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{this.state.splitfirstname}</td>
-                <td className="align-middle-2" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{this.state.splitlastname}</td>
-                <td className="align-middle-2" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>Doctoruser@gmail.com</td>
+                <td className="align-middle-2" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{o.firstName}</td>
+                <td className="align-middle-2" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{o.lastName}</td>
+          <td className="align-middle-2" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{o.email}</td>
                 <td className="align-middle-2" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{o.roleName}</td>
                 <td className="align-middle-2">
                 <Button className="trashbutton fa fa-trash" onClick={() => this.OnHandleDeleteFacilityUser(o.practitionerId)}></Button>
@@ -881,7 +900,7 @@ Email
     <div className="fu-switch3">
     <div className="fu-switch">
     <label class="switch">
-    <input type="checkbox" className="switch-input"  name="toggleactiveNew" onChange={this.HandleChange} checked={this.state.toggleactiveNew}></input>
+    <input type="checkbox" className="switch-input"  name="toggleActiveNew" onChange={this.HandleChange} checked={this.state.toggleActiveNew}></input>
 <span class="slider"></span>
 </label>
 <Label className="switch-name-toggle">Active</Label>
@@ -900,6 +919,8 @@ Email
               onChange={this.OnChangeOfRoles}
               isMulti={false}
               value={this.state.selectedrole}
+
+
             ></Select>
 </div>
 {!this.state.errorphonepopup ? (
