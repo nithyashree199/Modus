@@ -30,7 +30,7 @@ class OrgAdmins extends Component {
     this.Previousbuttonhandler = this.Previousbuttonhandler.bind(this);
     this.toggleInfo = this.toggleInfo.bind(this);
     this.Handlereset = this.Handlereset.bind(this);
-    this.toggleInfo2 = this.toggleInfo.bind(this);
+   // this.toggleInfo2 = this.toggleInfo.bind(this);
     this.Onchangehandler = this.Onchangehandler.bind(this);
     this.onclickoforgadmin=this.onclickoforgadmin.bind(this);
     this.togglePopup=this.togglePopup.bind(this);
@@ -39,6 +39,8 @@ class OrgAdmins extends Component {
     this.onHandledeleteorgadminuser=this.onHandledeleteorgadminuser.bind(this);
 
     this.state = {
+      pageSize:3,
+      pageIndex:0,
       currentSort: 'des',
       previous: false,
       info: false,
@@ -104,8 +106,9 @@ phone:data.cellphone})
   togglePopup() {
 
     this.setState({
-      showPopup: !this.state.showPopup,
+      info: !this.state.info,
     });
+    this.setState(this.initialState);
   }
   toggleInfo() {
     this.setState({
@@ -152,7 +155,7 @@ phone:data.cellphone})
   }
 
  await AddOrgAdminUser(dataToSend);
-this.toggleInfo();
+this.togglePopup();
 if(dataToSend){
   window.location.reload();
 }
@@ -184,7 +187,7 @@ if(dataToSend){
     if(dataToUpdate){
       window.location.reload();
     }
-      this.toggleInfo();
+    this.togglePopup();
 
    }
   Handlereset(e) {
@@ -231,6 +234,25 @@ if(dataToSend){
       });
     }
    }
+   handlePrevPageClickuser(event) {
+    event.preventDefault();
+    this.setState(prevState => ({
+      pageIndex: prevState.pageIndex > 0 ? prevState.pageIndex - 1 : 0
+    }));
+  }
+
+  handleNextPageClickuser(event) {
+   event.preventDefault();
+    this.setState(prevState => ({
+      pageIndex:
+        prevState.pageIndex <
+       ( Math.ceil(prevState.orgadminusersdyndis.length / prevState.pageSize)-1)
+          ? prevState.pageIndex + 1
+          : prevState.pageIndex
+    }));
+
+
+  }
 
   render() {
     return (
@@ -355,12 +377,12 @@ if(dataToSend){
               backdrop="static"
               keyboard="false"
               isOpen={this.state.info}
-              toggle={this.toggleInfo}
+              toggle={this.togglePopup}
               className="modal-info position-align-fornewmod-popup"
             >
 <Form>
               <ModalHeader
-                toggle={this.toggleInfo}
+                toggle={this.togglePopup}
                 className="linearGradientcolorforheading"
               >
                 Admin
@@ -482,7 +504,7 @@ if(dataToSend){
               <Button type="cancel" className="cancel-button-style1">
                 <i className="fa fa-ban "></i> Reset
                 </Button>
-                <Button className="save-button-style1" type="submit"  onClick={this.onHandleUpdate} onSubmit={this.toggleInfo}>
+                <Button className="save-button-style1" type="submit"  onClick={this.onHandleUpdate} >
                 <i className="fa fa-dot-circle-o"></i> Update
                 </Button>
                 </div>
@@ -491,7 +513,7 @@ if(dataToSend){
                 <Button type="cancel" className="cancel-button-style1">
                 <i className="fa fa-ban "></i> Reset
                 </Button>
-                <Button className="save-button-style1" type="submit" onClick={this.onHandleSubmit} onSubmit={this.toggleInfo}>
+                <Button className="save-button-style1" type="submit" onClick={this.onHandleSubmit}>
                 <i className="fa fa-dot-circle-o"></i> Save
                 </Button>
                 </div>
@@ -517,7 +539,11 @@ if(dataToSend){
                     <th></th>
                   </tr>
                 </thead>
-                {this.state.orgadminusersdyndis ?this.state.orgadminusersdyndis.map((o)  => {
+                {this.state.orgadminusersdyndis ?this.state.orgadminusersdyndis.slice(
+                this.state.pageIndex * this.state.pageSize,
+                this.state.pageIndex * this.state.pageSize + this.state.pageSize
+              )
+.map((o)  => {
                   return(
                     this.state.array=(o.practitionerName).split(' '),
                     this.state.splitfirstname=this.state.array[0],
@@ -525,17 +551,24 @@ if(dataToSend){
 
                 <tbody>
             <tr >
-                  <td className="align-middle2" onClick={() => this.onclickoforgadmin(o.practitionerId)}>{o.firstName}</td>
-                    <td className="align-middle2" onClick={() => this.onclickoforgadmin(o.practitionerId)}>{o.lastName}</td>
-                  <td className="align-middle2" onClick={() => this.onclickoforgadmin(o.practitionerId)}>{o.email}</td>
+                  <td className="align-middle2" data-toggle="tooltip" data-placement="top" title="Edit" onClick={() => this.onclickoforgadmin(o.practitionerId)}>{o.firstName}</td>
+                    <td className="align-middle2" data-toggle="tooltip" data-placement="top" title="Edit" onClick={() => this.onclickoforgadmin(o.practitionerId)}>{o.lastName}</td>
+                  <td className="align-middle2" data-toggle="tooltip" data-placement="top" title="Edit" onClick={() => this.onclickoforgadmin(o.practitionerId)}>{o.email}</td>
                     <td className="align-middle2">
-                      <Button className="trashbutton fa fa-trash" onClick={() => this.onHandledeleteorgadminuser(o.practitionerId)}></Button>
+                      <Button className="trashbutton fa fa-trash" data-toggle="tooltip" data-placement="top" title="Edit" onClick={() => this.onHandledeleteorgadminuser(o.practitionerId)}></Button>
                     </td>
                   </tr>
                 </tbody>
                                     )}):null}
 
               </Table>
+              <div className="modusadminprevnext">
+            <Button className="modusadminprev" onClick={event => this.handlePrevPageClickuser(event)} >&laquo; Prev
+        </Button>
+        <Button className="modusadminnext" onClick={event => this.handleNextPageClickuser(event)} >Next &raquo;
+        </Button>
+        </div>
+
             </div>
             <br></br>
           </CardBody>

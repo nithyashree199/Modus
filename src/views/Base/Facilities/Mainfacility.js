@@ -14,7 +14,7 @@ import { Redirect } from "react-router-dom";
 import { AppNavbarBrand } from "@coreui/react";
 import hospital_location from "../../../assets/img/brand/hospital_location.png"
 import orgdata from "./org.json"
-import {GetSingleFacility,GetFacilities} from "./Api"
+import {GetSingleFacility,GetFacilities,GetFacilityUsers} from "./Api"
 
 class Mainfacility extends Component {
   constructor(props) {
@@ -29,6 +29,8 @@ class Mainfacility extends Component {
       search: "",
       showPopup: false,
       jsondata: [],
+      neworupdate:"new",
+      facilitydata:[]
     };
     this.Dynamicrenderoffacility = this.Dynamicrenderoffacility.bind(this);
     this.Onchangehandler = this.Onchangehandler.bind(this);
@@ -46,17 +48,22 @@ this.setState({ facilitydyndis: data, facilities: data }),
 );
 }
 async onclickoftile(faciity_id) {
-
   await GetSingleFacility(faciity_id).then((data) =>
   this.setState({ jsondata: data })
 );
-this.togglePopup();
+await GetFacilityUsers(faciity_id).then((data)=>
+this.setState({ facilitydata : data })
+);
+sessionStorage.setItem("facildata",JSON.stringify(this.state.jsondata));
+sessionStorage.setItem("singledata",JSON.stringify(this.state.facilitydata));
+this.togglePopup("update")
 }
-togglePopup() {
- 
+togglePopup(data) {
   this.setState({
+    neworupdate:data,
     showPopup: !this.state.showPopup,
   });
+  sessionStorage.setItem("neworold",this.state.neworupdate)
 }
 
 
@@ -105,12 +112,12 @@ togglePopup() {
                 <Button
                   className="newfacilitiesmargin"
                   size="lm"
-                  onClick={this.togglePopup}>
-                    <i className="fa fa-plus"></i>  Facility </Button>
-              {this.state.showPopup ? (
-                <Redirect to="/base/facilities"></Redirect>
-              ) : null}
-        </div>
+                  onClick={()=>this.togglePopup("new")}>
+                  <i className="fa fa-plus"></i>  Facility </Button>
+                  {this.state.showPopup ? (
+                                        <Redirect to={{pathname:"/base/Facilities",state:{FacilityUpdate:this.state.jsondata,facilitydata:this.state.facilitydata,neworupdate:this.state.neworupdate}}}></Redirect>
+                                        )
+                                        :null}         </div>
         <div >
             <InputGroup className="input-prepend searchboxstylefororg searchboxstyleforfacility">
               <InputGroupAddon addonType="prepend">
@@ -146,8 +153,7 @@ togglePopup() {
                             {o.name}
                           </h5>
 
-                           {this.state.showPopup ? (
-                                        <Redirect to={{pathname:"/base/Facilities",state:{FacilityUpdate:this.state.jsondata}}}></Redirect>):null}
+                           
 
                           <div className="mainrfacilityflexdisplay">
                             <img

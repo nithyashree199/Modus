@@ -1,13 +1,13 @@
 const url='https://modus-services-testing.azurewebsites.net/rest/organizations';
 const urlforsingleorg='https://modus-services-testing.azurewebsites.net/rest/organization/';
-const YOUR_TOKEN='Bearer ya29.a0AfH6SMDNHBq3L0C2avOV9C1NIJaTasx6y4E6-qbnnQOXH1hiivvUbEszo6Yco61yx0tmMj32D87TviadnecG2rlbZNmqhqNBWDRujocgl1Im9Q45dG46Wm8fgw3IIv7D8Yhat4S2jUQpXCnR0uqZWvN87a-q9Gt1nDI';
+const YOUR_TOKEN=sessionStorage.getItem("tokenId")
 const Org_id='470273a9-1f39-475f-87ab-0f1025d0ed23';
 const facility_id='810c7470-708d-41e1-814d-2b5800462478';
 const org_admin_id=sessionStorage.getItem("organizationId");
 export const GetOrgAdminusers = function()  {
 
   var abc;
-  return fetch(`/rest/organization/users/`+org_admin_id, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/organization/users/`+org_admin_id, {
       method: 'GET',
 
       headers:{
@@ -20,7 +20,7 @@ export const GetOrgAdminusers = function()  {
     .catch(error => console.error('Error:', error));
   }
   export const GetSingleOrgAdminUser=function(id) {
-    return fetch(`/rest/organization/user/`+id, {
+    return fetch(`https://modus-services-testing.azurewebsites.net/rest/organization/user/`+id, {
         method:'GET',
         headers:{
             'Authorization': YOUR_TOKEN,
@@ -32,7 +32,7 @@ export const GetOrgAdminusers = function()  {
   }
   export const AddOrgAdminUser = function(body){
 
-    return fetch(`/rest/organization/user/`, {
+    return fetch(`https://modus-services-testing.azurewebsites.net/rest/organization/user/`, {
       method: 'POST',
 
       headers:{
@@ -46,7 +46,7 @@ export const GetOrgAdminusers = function()  {
     .catch(error => console.error('Error:', error));
   }
   export const UpdateOrgAdmin = function(id,body){
-    return fetch(`/rest/organization/user/`+id, {
+    return fetch(`https://modus-services-testing.azurewebsites.net/rest/organization/user/`+id, {
       method: 'PUT',
 
       headers:{
@@ -62,7 +62,7 @@ export const GetOrgAdminusers = function()  {
   }
   export const DeleteOrgAdminUser = function(id){
 
-    return fetch(`/rest/organization/user/`+id, {
+    return fetch(`https://modus-services-testing.azurewebsites.net/rest/organization/user/`+id, {
       method: 'DELETE',
      headers:{
         'Authorization': YOUR_TOKEN,

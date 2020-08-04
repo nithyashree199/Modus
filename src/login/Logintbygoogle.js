@@ -202,10 +202,10 @@ reloadAuthToken() {
                           ></input>
                           <span class="login-slider"></span>
                         </label>
-                        <label style={{ marginLeft: "10px",fontWeight:"600" }}>
+                        <label class="login-remember-me">
                           Remember me
                         </label>
-                        <label style={{ marginLeft: "162px",fontWeight:"600",color: "#008081" }}>
+                        <label class="login-forget-password">
                           Forgot Password ?
                         </label>
                       </div>

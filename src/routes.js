@@ -70,7 +70,6 @@ OrgFacility:{
   path:'/base/OrgFacility',name:'OrgFacility',component:OrgFacility
 }
 
-
 };
 const rolesConfig={
 

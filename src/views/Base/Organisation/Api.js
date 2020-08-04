@@ -1,9 +1,9 @@
-const YOUR_TOKEN='Bearer ya29.a0AfH6SMDNHBq3L0C2avOV9C1NIJaTasx6y4E6-qbnnQOXH1hiivvUbEszo6Yco61yx0tmMj32D87TviadnecG2rlbZNmqhqNBWDRujocgl1Im9Q45dG46Wm8fgw3IIv7D8Yhat4S2jUQpXCnR0uqZWvN87a-q9Gt1nDI';
+const YOUR_TOKEN=sessionStorage.getItem("tokenId")
 
  export const GetOrg = function()  {
 
   var abc;
-  return fetch(`/rest/organizations`, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/organizations`, {
       method: 'GET',
 
       headers:{
@@ -14,6 +14,12 @@ const YOUR_TOKEN='Bearer ya29.a0AfH6SMDNHBq3L0C2avOV9C1NIJaTasx6y4E6-qbnnQOXH1hi
     .then(response => {return response})
 
     .catch(error => console.error('Error:', error));
+
+    //import axios from 'axios'
+
+    //const instance = axios.create({baseURL: '<api-url>'});
+
+   // instance.get('//fdjslk')
 
  /*  const [data, setData] = useState([]);
 useEffect(()=>{
@@ -33,7 +39,7 @@ axios.get(`/#/base/organisation`).then(res=>res.json)
 export const GetSingleOrg=function(id){
 
   var abc;
-  return fetch(`/rest/organization/`+id, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/organization/`+id, {
       method: 'GET',
 
       headers:{
@@ -49,7 +55,7 @@ export const GetSingleOrg=function(id){
 export const OrgFacilityGet=function(orgid){
 
   var abc;
-  return fetch(`/rest/facilities/`+orgid, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/facilities/`+orgid, {
       method: 'GET',
 
       headers:{
@@ -65,7 +71,7 @@ export const OrgFacilityGet=function(orgid){
 export const OrgAdminuserGet=function(orgid){
 
   var abc;
-  return fetch(`/rest/organization/users/`+orgid, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/organization/users/`+orgid, {
       method: 'GET',
 
       headers:{

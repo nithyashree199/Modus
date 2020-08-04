@@ -68,25 +68,25 @@ flex: 1;
   background-size: 100% 100%;
 }
 .login-displayflex{
-  height: 715px;
+  margin: 2%;
+  height: 650px;
   display: flex ;
 }
 .login-width70{
   box-shadow: 15px -10px 20px -5px rgba(84, 114, 105, 0.9);
-  margin-left: 76px;
-  margin-top: 0.5%;
+
   height: 100%;
   background-color: darkslategrey;
   max-width: 60%;
-  min-width: 50%;
+  min-width: 55%;
 }
 .login-width30{
   padding: 75px 75px 75px 75px;
 height:100%;
-  margin-top: 0.5%;
+
   background-color: white;
 
-  min-width:40%;
+  min-width:45%;
 }
 .login-logo-img {
 
@@ -207,9 +207,42 @@ border-top: 2px solid #027f7f;
   font-weight: 400;
 
 }
+.login-remember-me{
+  margin-left: "10px";
+  font-weight:"600";
+}
+.login-forget-password{
+  margin-left: 162px;
+  font-weight:600;
+  color: #008081 ;
+}
 }
 @media only screen and (max-width: 767px) and (min-width: 320px)
   {
+
+    .login-forget-password{
+      margin-left: 89px;
+      font-weight:600;
+      color: #008081 ;
+    }
+    .login-remember-me{
+      margin-left: 10px;
+      font-weight:600;
+    }
+    .login-div{
+      margin-left: 5%;
+      display:grid;
+    }
+    .login-btn-primary{
+      font-size: 23px;
+      height: 46px;
+      border-color: #027f7f;
+      background-color: #027f7f;
+      margin-top: 43px;
+      width: 91%;
+
+        margin-bottom: 11px;
+    }
     .login-width30{
       height: 1000px;
 
@@ -224,29 +257,28 @@ border-top: 2px solid #027f7f;
     margin-left: 23px;
  }
     .login-text-size{
-      color: rgb(221, 219, 219);
-      margin-left: 27%;
-      margin-top: 27%;
+      color: #525252;
+
       font-size: 48px;
       font-weight: 400;
     }
     .login-icon{
-        width: 18%;
-    height: 166px;
+        width: 8%;
+    height: 28px;
     background-size: 100%;
     position: absolute;
-    margin-left: 36%;
-    margin-top: 4.5%;
-    background: url('./user1.png') no-repeat center center;
+
+    margin-top: 0px;
+    background: url('./google.png') no-repeat center center;
     }
     .login-google-button-align{
-      margin-top: 10%;
-      margin-left: 26%;
+
+      margin-left: 5%;
     }
     .login-please-login{
-      color: rgb(221, 219, 219);
+      color: #525252;
     font-size: 25px;
     font-weight: 600;
-    margin-left: 25%;
+
     }
  }

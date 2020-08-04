@@ -1,3 +1,31 @@
+.modusadminprevnext{
+  float: right;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-right: 1%;
+}
+
+.modusadminnext{
+  background-color: #008081;
+  color: rgb(221, 219, 219);
+}
+
+.modusadminprev{
+  background-color: white;
+  border-color: #008081;
+  margin-right: 15px;
+}
+.modusadminprev:hover{
+  color: white;
+  border-color:#008081 ;
+
+  background-color: #a8d8d8;
+}
+.modusadminnext:hover{
+  color: #008081;
+
+  background-color: #a8d8d8;
+}
 .sort-icon{
 
   background: url('../../../../src/assets/img/brand/iconsort.png') no-repeat center center;

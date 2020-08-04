@@ -5,7 +5,8 @@ import { Button, Form,Card, CardBody, Input, Label } from "reactstrap";
 import prev from "../../../assets/img/brand/prevbutton.png";
 import { AppNavbarBrand } from "@coreui/react";
 import {validateZipcode,formatPhoneNumber , validateTaxID, validateEmail} from "../../../validation/validator";
-import {AddFacilityUser,UpdateFacilityUser,DeleteFacilityUser,GetRoles} from "./Api"
+import {AddFacilityUser,UpdateFacilityUser,DeleteFacilityUser,GetRoles} from "./Api";
+import Moment from 'moment';
 var abc=[];
 class Facilityusers extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class Facilityusers extends Component {
        lno: "",
        birthdate: "",
        toggleactive:false,
-
+       dataDMY:"",
       furoles:[
         { value: '', label: '' }
 
@@ -68,6 +69,8 @@ class Facilityusers extends Component {
  async componentDidMount() {
   if( this.props.location.state) {
    if( this.props.location.state.singledata) {
+    let str = this.props.location.state.singledata.birthDate.substring(0,10)
+    this.state.dateDMY= Moment(str).format('YYYY-MM-DD')
    this.setState({
      singledata: this.props.location.state.singledata,
    });
@@ -79,7 +82,7 @@ class Facilityusers extends Component {
      lno: this.props.location.state.singledata.licenseNumber,
      npi: this.props.location.state.singledata.npi,
      taxid: this.props.location.state.singledata.taxId,
-     birthdate: this.props.location.state.singledata.birthDate,
+     birthdate: this.state.dateDMY,
      toggleactive: this.props.location.state.singledata.active,
      email: this.props.location.state.singledata.email,
      roleselected:{
@@ -90,6 +93,30 @@ class Facilityusers extends Component {
 
 
   }
+}
+else if(sessionStorage.getItem("facilityusersdata")){
+  this.state.singledata=JSON.parse(sessionStorage.getItem("facilityusersdata"));
+  console.log(this.state.singledata)
+    let str = this.state.singledata.birthDate.substring(0,10)
+    this.state.dateDMY= Moment(str).format('YYYY-MM-DD')
+  this.setState({
+    fname: this.state.singledata.firstName,
+    phone: this.state.singledata.cellphone,
+    mname: this.state.singledata.middleName,
+    lname: this.state.singledata.lastName,
+    lno: this.state.singledata.licenseNumber,
+    npi: this.state.singledata.npi,
+    taxid: this.state.singledata.taxId,
+    birthdate: this.state.dateDMY,
+    toggleactive: this.state.singledata.active,
+    email: this.state.singledata.email,
+    roleselected:{
+      value:this.state.singledata.role,
+      label:this.state.singledata.role
+    }
+  })
+} else{
+  sessionStorage.removeItem("facilityusersdata")
 }
 await  GetRoles().then(data => {
   let rolesFromApi = data.map(role => {
@@ -134,12 +161,24 @@ UpdateFacilityUser(id,dataToUpdate)
 
  Previousbuttonhandler(e) {
    e.preventDefault();
-   if(this.props.location.state.redirect=="OrgFacility")
-   {
-    window.location.href = "#/base/OrgFacility";
-   }else{
-    window.location.href = "#/base/Facilities";
+   if(this.props.location.state){
+    if(this.props.location.state.redirect=="OrgFacility")
+    {
+     window.location.href = "#/base/OrgFacility";
+    }else{
+     window.location.href = "#/base/Facilities";
+    }
    }
+   else if(sessionStorage.getItem("fromorgfac")){
+     if(sessionStorage.getItem("fromorgfac")=="OrgFacility"){
+       window.location.href = "#/base/OrgFacility";
+
+     }
+     else if(sessionStorage.getItem("fromorgfac")=="Facility"){
+       window.location.href = "#/base/Facilities";
+     }
+   }
+
 
  }
  Onchangehandler(evt) {
@@ -307,7 +346,7 @@ UpdateFacilityUser(id,dataToUpdate)
      </Label>
      <Input
        name="birthdate"
-       type="text"
+       type="date"
        id="birthdate"
        placeholder="Enter Birth Date"
        required

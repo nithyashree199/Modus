@@ -1,4 +1,4 @@
-export default  {
+/*export default  {
   items: [
 
     {
@@ -65,7 +65,8 @@ export default  {
 
 
   ],
-};
+};*/
+
 const components={
   Home : {
     name: 'Dashboard',
@@ -134,6 +135,7 @@ const components={
 
 
 }
+
 }
 const navconfig={
   Org_Admin:{

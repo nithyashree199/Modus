@@ -1,6 +1,6 @@
 const url='https://modus-services-testing.azurewebsites.net/rest/organizations';
 const urlforsingleorg='https://modus-services-testing.azurewebsites.net/rest/organization/';
-const YOUR_TOKEN='Bearer ya29.a0AfH6SMDNHBq3L0C2avOV9C1NIJaTasx6y4E6-qbnnQOXH1hiivvUbEszo6Yco61yx0tmMj32D87TviadnecG2rlbZNmqhqNBWDRujocgl1Im9Q45dG46Wm8fgw3IIv7D8Yhat4S2jUQpXCnR0uqZWvN87a-q9Gt1nDI';
+const YOUR_TOKEN=sessionStorage.getItem("tokenId")
 const Org_id=sessionStorage.getItem("organizationId");
 
 //const facility_id='810c7470-708d-41e1-814d-2b5800462478';
@@ -8,7 +8,7 @@ const Org_id=sessionStorage.getItem("organizationId");
 export const GetFacilities = function()  {
 
   var abc;
-  return fetch(`rest/facilities/`+ Org_id, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/facilities/`+ Org_id, {
       method: 'GET',
 
       headers:{
@@ -35,7 +35,7 @@ axios.get(`/#/base/organisation`).then(res=>res.json)
 */
 }
 export const GetSingleFacility=function(id) {
-    return fetch(`/rest/facility/`+id, {
+    return fetch(`https://modus-services-testing.azurewebsites.net/rest/facility/`+id, {
         method:'GET',
         headers:{
             'Authorization': YOUR_TOKEN,
@@ -47,7 +47,7 @@ export const GetSingleFacility=function(id) {
 }
 export const UpdateFacility = function(id,body){
 
-  return fetch(`/rest/facility/`+id, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/facility/`+id, {
     method: 'PUT',
 
     headers:{
@@ -63,7 +63,7 @@ export const UpdateFacility = function(id,body){
 }
 export const AddFacility = function(body){
 
-  return fetch(`/rest/facility`, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/facility`, {
     method: 'POST',
 
     headers:{
@@ -77,7 +77,7 @@ export const AddFacility = function(body){
 }
 export const DeleteFacility = function(id){
 
-  return fetch(`/rest/facility`+id, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/facility`+id, {
     method: 'DELETE',
    headers:{
       'Authorization': YOUR_TOKEN,
@@ -87,7 +87,7 @@ export const DeleteFacility = function(id){
 }
 export const GetFacilityUsers = function(facility_id)  {
   var abc;
-  return fetch(`/rest/facility/users/`+facility_id, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/facility/users/`+facility_id, {
       method: 'GET',
 
       headers:{
@@ -101,7 +101,7 @@ export const GetFacilityUsers = function(facility_id)  {
   }
 
 export const GetSingleFacilityUser=function(id) {
-  return fetch(`/rest/facility/user/`+id, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/facility/user/`+id, {
       method:'GET',
       headers:{
           'Authorization': YOUR_TOKEN,
@@ -113,7 +113,7 @@ export const GetSingleFacilityUser=function(id) {
 }
 export const AddFacilityUser = function(body){
 
-  return fetch(`/rest/facility/user`, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/facility/user`, {
     method: 'POST',
 
     headers:{
@@ -129,7 +129,7 @@ export const AddFacilityUser = function(body){
 export const GetRoles = function()  {
 
   var abc;
-  return fetch(`/rest/modus/roles`, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/modus/roles`, {
       method: 'GET',
 
       headers:{

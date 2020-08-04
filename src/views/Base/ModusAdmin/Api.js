@@ -1,8 +1,7 @@
-const YOUR_TOKEN='Bearer ya29.a0AfH6SMDNHBq3L0C2avOV9C1NIJaTasx6y4E6-qbnnQOXH1hiivvUbEszo6Yco61yx0tmMj32D87TviadnecG2rlbZNmqhqNBWDRujocgl1Im9Q45dG46Wm8fgw3IIv7D8Yhat4S2jUQpXCnR0uqZWvN87a-q9Gt1nDI';
-
+const YOUR_TOKEN=sessionStorage.getItem("tokenId")
 export const AddModusadmin = function(body){
 
-  return fetch(`/rest/systemadmin`, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/systemadmin`, {
     method: 'POST',
     headers:{
       'Authorization': YOUR_TOKEN,
@@ -18,7 +17,7 @@ export const AddModusadmin = function(body){
 
 export const DeleteModusadmin = function(id){
 
-  return fetch(`/rest/systemadmin/`+id, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/systemadmin/`+id, {
     method: 'DELETE',
    headers:{
       'Authorization': YOUR_TOKEN,
@@ -30,7 +29,7 @@ export const DeleteModusadmin = function(id){
 export const ModusadminTableGet=function(){
 
   var abc;
-  return fetch(`/rest/systemadmins`, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/systemadmins`, {
       method: 'GET',
 
       headers:{

@@ -25,6 +25,11 @@ class Facilities extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      pageSize:3,
+      pageIndex:0,
+      singlefacilityuserdata:'new',
+      jsondata:[],
+      newFacilityData:[],
       country:[
         { value: 'United States', label: 'United States' },
         { value: 'INDIA', label: 'INDIA' }
@@ -142,7 +147,12 @@ this.state.facilityusersdyndis ?this.state.facilityusersdyndis.map((o)  => {
     async componentDidMount() {
 
      if( this.props.location.state) {
-
+      if(this.props.location.state.neworupdate=='new'){
+        document.getElementById("facilityUsers").style.display="none"
+       }
+      else {
+       document.getElementById("facilityUsers").style.display="all"
+      }
       if( this.props.location.state.FacilityUpdate) {
       this.setState({
         FacilityUpdate: this.props.location.state.FacilityUpdate,
@@ -166,10 +176,11 @@ this.state.facilityusersdyndis ?this.state.facilityusersdyndis.map((o)  => {
         toggleappointment:this.props.location.state.FacilityUpdate.appointment
       })
       await  GetFacilityUsers(this.props.location.state.FacilityUpdate.id).then((data) =>
-  this.setState({ facilityusersdyndis: data, facilitiyusers: data })
-  );
+      this.setState({ facilityusersdyndis: data, facilitiyusers: data, singlefacilityuserdata:'update'
+    })
+    );
   }
-  if(this.props.location.state.orgfacilitydatafull){
+ /* if(this.props.location.state.orgfacilitydatafull){
     this.setState({
 
       facilitydata:this.props.location.state.orgfacilitydatafull,
@@ -188,12 +199,42 @@ this.state.facilityusersdyndis ?this.state.facilityusersdyndis.map((o)  => {
         toggleactive: this.props.location.state.orgfacilitydatafull.active,
         toggleappointment:this.props.location.state.orgfacilitydatafull.appointment
     })
-  }
+  }*/
 
 }
+else if(sessionStorage.getItem("facildata") && (sessionStorage.getItem("neworold")=="update")){
+  this.state.FacilityUpdate=JSON.parse(sessionStorage.getItem("facildata"));
+  this.state.facilityusersdyndis=JSON.parse(sessionStorage.getItem("singledata"));
+  console.log(JSON.stringify(sessionStorage.getItem("facildata")))
+  this.setState({
+    txtname: this.state.FacilityUpdate.name,
+    phone: this.state.FacilityUpdate.phone,
+    fax: this.state.FacilityUpdate.fax,
+    email: this.state.FacilityUpdate.email,
+    address: this.state.FacilityUpdate.addressLine,
+    city: this.state.FacilityUpdate.city,
+    npi: this.state.FacilityUpdate.npi,
+    taxid: this.state.FacilityUpdate.taxId,
+    state: this.state.FacilityUpdate.state,
+    country: this.state.FacilityUpdate.country,
+    zipcode: this.state.FacilityUpdate.zipCode,
+    website: this.state.FacilityUpdate.website,
+    toggleactive: this.state.FacilityUpdate.active,
+    toggleappointment:this.state.FacilityUpdate.appointment
+  })
+
+
+  document.getElementById("facilityUsers").style.display="block"
+ console.log(this.state.FacilityUpdate);
+ console.log(this.state.txtname)
+ }
+else{
+  sessionStorage.removeItem("facildata")
+  document.getElementById("facilityUsers").style.display="none"
+ }
 await  GetRoles().then(data => {
   let rolesFromApi = data.map(role => {
-    
+
     return {value: role.value, label: role.text}
   });
   this.setState({
@@ -251,7 +292,7 @@ await  GetRoles().then(data => {
 
 
      await DeleteFacilityUser(id);
-     await  GetFacilityUsers(this.props.location.state.FacilityUpdate.id).then((data) =>
+     await  GetFacilityUsers(this.state.FacilityUpdate.id).then((data) =>
       this.setState({ facilityusersdyndis: data, facilitiyusers: data })
       );
     }
@@ -317,7 +358,7 @@ await  GetRoles().then(data => {
           info: !this.state.info,
         });
       }
-      OnHandleSubmitFacility(e) {
+     async OnHandleSubmitFacility(e) {
         e.preventDefault();
         var dataToSend = {
           "id":null,
@@ -342,7 +383,13 @@ await  GetRoles().then(data => {
       }
 
 
-      AddFacility(dataToSend);
+      if(dataToSend){
+        await  AddFacility(dataToSend).then((data)=> this.setState({newFacilityData:data}))
+      if(this.state.newFacilityData.length!=0){
+        document.getElementById("facilityUsers").style.display="block"
+      }
+
+      }
 
       }
  async OnHandleSubmitFacilityUser(e) {
@@ -362,23 +409,23 @@ await  GetRoles().then(data => {
           "role": this.state.roleselected,
           "practitionerId": "",
           "originalEmail": "ptuser2@modus.org",
-          "orgId":this.props.location.state.FacilityUpdate.organizationId ,
-          "healthcareServiceId":this.props.location.state.FacilityUpdate.id,
+          "orgId":this.state.FacilityUpdate.organizationId ,
+          "healthcareServiceId":this.state.FacilityUpdate.id,
           "source": null
       }
 
 
        await AddFacilityUser(dataToSend);
-      await  GetFacilityUsers(this.props.location.state.FacilityUpdate.id).then((data) =>
-      this.setState({ facilityusersdyndis: data, facilitiyusers: data })
-      );
+      await  GetFacilityUsers(this.state.FacilityUpdate.id).then((data) =>
+      this.setState({ facilityusersdyndis: data, facilitiyusers: data ,singlefacilityuserdata:'new'
+    }));
       this.ToggleInfo();
       }
 
     async  OnHandleUpdateFacility(e){
         e.preventDefault();
 
-     var id=this.props.location.state.FacilityUpdate.id;
+     var id=this.state.FacilityUpdate.id;
      var dataToUpdate = {
       "id":id,
      "name": this.state.txtname,
@@ -409,6 +456,7 @@ await  GetRoles().then(data => {
         await GetSingleFacilityUser(faciityuser_id).then((data) =>
         this.setState({ jsondata: data })
       );
+      sessionStorage.setItem("facilityusersdata",JSON.stringify(this.state.jsondata));
       this.TogglePopup();
       }
       TogglePopup() {
@@ -416,14 +464,35 @@ await  GetRoles().then(data => {
         this.setState({
           showPopup: !this.state.showPopup,
         });
+        sessionStorage.setItem("fromorgfac","Facility")
+        sessionStorage.setItem("neworold","update")
       }
 
       OnHandleDeleteFacility(e){
         e.preventDefault();
-     var id=this.props.location.state.FacilityUpdate.id;
+     var id=this.state.FacilityUpdate.id;
 
           DeleteFacility(id);
        }
+       handlePrevPageClickuser(event) {
+        event.preventDefault();
+        this.setState(prevState => ({
+          pageIndex: prevState.pageIndex > 0 ? prevState.pageIndex - 1 : 0
+        }));
+      }
+
+      handleNextPageClickuser(event) {
+       event.preventDefault();
+        this.setState(prevState => ({
+          pageIndex:
+            prevState.pageIndex <
+           ( Math.ceil(prevState.facilityusersdyndis.length / prevState.pageSize)-1)
+              ? prevState.pageIndex + 1
+              : prevState.pageIndex
+        }));
+
+
+      }
   render() {
 
     return (
@@ -696,10 +765,10 @@ Email
                      </div>
                   )}
 
-{ this.state.FacilityUpdate ? (
+
   <div>
        <br></br>
-
+       <div id="facilityUsers">
         <div className="facilities-table-title-style">
           <span><strong>Users</strong></span>
                 <Button
@@ -723,7 +792,11 @@ Email
 
               </tr>
             </thead>
-            {this.state.facilityusersdyndis ?this.state.facilityusersdyndis.map((o)  => {
+            {this.state.facilityusersdyndis ?this.state.facilityusersdyndis
+            .slice(
+              this.state.pageIndex * this.state.pageSize,
+              this.state.pageIndex * this.state.pageSize + this.state.pageSize
+            ).map((o)  => {
           return(
           this.state.array=(o.practitionerName).split(' '),
           this.state.splitfirstname=this.state.array[0],
@@ -731,23 +804,29 @@ Email
             <tbody>
             <tr
             >
-                <td className="align-middle-2" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{o.firstName}</td>
-                <td className="align-middle-2" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{o.lastName}</td>
-          <td className="align-middle-2" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{o.email}</td>
-                <td className="align-middle-2" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{o.roleName}</td>
+                <td className="align-middle-2" data-toggle="tooltip" data-placement="top" title="Edit" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{o.firstName}</td>
+                <td className="align-middle-2" data-toggle="tooltip" data-placement="top" title="Edit" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{o.lastName}</td>
+          <td className="align-middle-2" data-toggle="tooltip" data-placement="top" title="Edit" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{o.email}</td>
+                <td className="align-middle-2" data-toggle="tooltip" data-placement="top" title="Edit" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{o.roleName}</td>
                 <td className="align-middle-2">
-                <Button className="trashbutton fa fa-trash" onClick={() => this.OnHandleDeleteFacilityUser(o.practitionerId)}></Button>
+                <Button className="trashbutton fa fa-trash" data-toggle="tooltip" data-placement="top" title="Edit" onClick={() => this.OnHandleDeleteFacilityUser(o.practitionerId)}></Button>
                   </td>                </tr>
 
             </tbody>
                     )}):null}
           </Table>
+          <div className="modusadminprevnext">
+            <Button className="modusadminprev" onClick={event => this.handlePrevPageClickuser(event)} >&laquo; Prev
+        </Button>
+        <Button className="modusadminnext" onClick={event => this.handleNextPageClickuser(event)} >Next &raquo;
+        </Button>
+        </div>
           {this.state.showPopup ? (
-          <Redirect to={{pathname:"/base/Facilityusers",state:{singledata:this.state.jsondata}}}></Redirect>):null}
+          <Redirect to={{pathname:"/base/Facilityusers",state:{singledata:this.state.jsondata,singlefacilityuserdata:this.state.singlefacilityuserdata}}}></Redirect>):null}
+</div>
+          </div>
+          </div>
 
-          </div>
-          </div>
-):null}
 
 
 
@@ -861,7 +940,7 @@ Email
       </Label>
       <Input
         name="Birthdate"
-        type="text"
+        type="date"
         id="Birthdate"
         placeholder="Enter Birth Date"
         required

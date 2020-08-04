@@ -1,8 +1,7 @@
-const YOUR_TOKEN='Bearer ya29.a0AfH6SMDNHBq3L0C2avOV9C1NIJaTasx6y4E6-qbnnQOXH1hiivvUbEszo6Yco61yx0tmMj32D87TviadnecG2rlbZNmqhqNBWDRujocgl1Im9Q45dG46Wm8fgw3IIv7D8Yhat4S2jUQpXCnR0uqZWvN87a-q9Gt1nDI';
-
+const YOUR_TOKEN=sessionStorage.getItem("tokenId")
 export const OrgUpdate = function(id,body){
 
-  return fetch(`/rest/organization/`+id, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/organization/`+id, {
     method: 'PUT',
 
     headers:{
@@ -18,7 +17,7 @@ export const OrgUpdate = function(id,body){
 }
 export const OrgAdd = function(body){
 
-  return fetch(`/rest/organization`, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/organization`, {
     method: 'POST',
 
     headers:{
@@ -34,7 +33,7 @@ export const OrgAdd = function(body){
 }
 export const OrgDelete = function(id){
 
-  return fetch(`/rest/organization/`+id, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/organization/`+id, {
     method: 'DELETE',
    headers:{
       'Authorization': YOUR_TOKEN,
@@ -44,7 +43,7 @@ export const OrgDelete = function(id){
 }
 export const OrgFacilityDelete = function(id){
 
-  return fetch(`/rest/facility/`+id, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/facility/`+id, {
     method: 'DELETE',
    headers:{
       'Authorization': YOUR_TOKEN,
@@ -55,7 +54,7 @@ export const OrgFacilityDelete = function(id){
 export const OrgAdminUserGetAll=function(practionerid){
 
   var abc;
-  return fetch(`/rest/organization/user/`+practionerid, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/organization/user/`+practionerid, {
       method: 'GET',
 
       headers:{
@@ -70,7 +69,7 @@ export const OrgAdminUserGetAll=function(practionerid){
 }
 export const OrgAdminuserDelete = function(practionerid){
 
-  return fetch(`/rest/organization/user/`+practionerid, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/organization/user/`+practionerid, {
     method: 'DELETE',
    headers:{
       'Authorization': YOUR_TOKEN,
@@ -80,7 +79,7 @@ export const OrgAdminuserDelete = function(practionerid){
 }
 export const OrgAdminuserAdd = function(body){
 
-  return fetch(`/rest/organization/user`, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/organization/user`, {
     method: 'POST',
     headers:{
       'Authorization': YOUR_TOKEN,
@@ -96,7 +95,7 @@ export const OrgAdminuserAdd = function(body){
 
 export const OrgAdminuserUpdate = function(practionerid,body){
 
-  return fetch(`/rest/organization/user/`+practionerid, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/organization/user/`+practionerid, {
     method: 'PUT',
     headers:{
       'Authorization': YOUR_TOKEN,
@@ -110,7 +109,7 @@ export const OrgAdminuserUpdate = function(practionerid,body){
   .catch(error => console.error('Error:', error));
 }
 export const OrgFacilityGetAll=function(id) {
-  return fetch(`/rest/facility/`+id, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/facility/`+id, {
       method:'GET',
       headers:{
           'Authorization': YOUR_TOKEN,

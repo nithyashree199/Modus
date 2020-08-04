@@ -28,7 +28,8 @@ class Organisation extends Component {
       jsondata: [],
       facilitydata:[],
       orgadminuserdata:[],
-      neworupdate:"new"
+      neworupdate:"new",
+      trueorfalse:true
 
     };
     this.Dynamicrenderoforg = this.Dynamicrenderoforg.bind(this);
@@ -85,14 +86,19 @@ class Organisation extends Component {
     await OrgAdminuserGet(orgid).then((data)=>
     this.setState({ orgadminuserdata:data})
     )
+    sessionStorage.setItem("orgdata",JSON.stringify(this.state.jsondata));
+    sessionStorage.setItem("facilitytable",JSON.stringify(this.state.facilitydata));
+    sessionStorage.setItem("orgadmintable",JSON.stringify(this.state.orgadminuserdata));
 
     this.togglePopup("update");
   }
   togglePopup(neworupdate) {
     this.setState({
       neworupdate:neworupdate,
+
       showPopup: !this.state.showPopup,
     });
+    sessionStorage.setItem("neworold",this.state.neworupdate)
   }
   render() {
     return (

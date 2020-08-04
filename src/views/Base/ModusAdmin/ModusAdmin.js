@@ -19,8 +19,9 @@ import {
   validateEmail,
   formatPhoneNumber,
 } from "../../../validation/validator";
-
+//import PaginationComponent from "react-reactstrap-pagination";
 import { AddModusadmin,DeleteModusadmin,ModusadminTableGet } from "./Api";
+//import {errorlogging} from "../../../errorlogging/errorlogging"
 var sortJsonArray = require('sort-json-array');
 class ModusAdmin extends Component {
   constructor(props) {
@@ -33,8 +34,12 @@ class ModusAdmin extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.addupdatebuttonhandler = this.addupdatebuttonhandler.bind(this);
     this.deletebuttonhandler=this.deletebuttonhandler.bind(this);
+    this.handleNextPageClick=this.handleNextPageClick.bind(this);
+    this.handlePrevPageClick=this.handlePrevPageClick.bind(this);
 
     this.state = {
+      pageSize: 3, // <- 2 items will be shown on single page
+      pageIndex: 0,
       currentSort: 'des',
       erroremail: true,
       errorphone: true,
@@ -67,16 +72,17 @@ class ModusAdmin extends Component {
    currentSort=this.state.currentSort;
    var nextSort;
    if (currentSort=='asc') nextSort = 'des';
-		else if (currentSort == 'des') nextSort = 'asc';
-		this.setState({
-			currentSort: nextSort
+    else if (currentSort == 'des') nextSort = 'asc';
+    this.setState({
+      currentSort: nextSort
     });
     this.setState({
       modusadmindata: sortJsonArray(this.state.modusadmindata,property,this.state.currentSort)
     })
 
-	}
+  }
   toggleInfo() {
+   // errorlogging();
     this.setState({
       info: !this.state.info,
     });
@@ -115,7 +121,7 @@ class ModusAdmin extends Component {
   }
   Previousbuttonhandler(e) {
     e.preventDefault();
-   // window.location.href = "#/base/payerform";
+    window.location.href = "#/base/payerform";
   }
   async addupdatebuttonhandler(e) {
    e.preventDefault();
@@ -147,6 +153,26 @@ class ModusAdmin extends Component {
   async deletebuttonhandler(practitionerId){
   await DeleteModusadmin(practitionerId)
    window.location.reload();
+  }
+
+  handlePrevPageClick(event) {
+    event.preventDefault();
+    this.setState(prevState => ({
+      pageIndex: prevState.pageIndex > 0 ? prevState.pageIndex - 1 : 0
+    }));
+  }
+
+  handleNextPageClick(event) {
+   event.preventDefault();
+    this.setState(prevState => ({
+      pageIndex:
+        prevState.pageIndex <
+       ( Math.ceil(prevState.modusadmindata.length / prevState.pageSize)-1)
+          ? prevState.pageIndex + 1
+          : prevState.pageIndex
+    }));
+
+
   }
 
   render() {
@@ -470,17 +496,20 @@ class ModusAdmin extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                { this.state.modusadmindata?this.state.modusadmindata.map((o)=>{
+                { this.state.modusadmindata?this.state.modusadmindata.slice(
+                this.state.pageIndex * this.state.pageSize,
+                this.state.pageIndex * this.state.pageSize + this.state.pageSize
+              ).map((o)=>{
                   const [fname,lname]=o.practitionerName.split(" ")
                     return(
                       <tr key={o.id} >
                       <td className="modusalign-middle2"
                       //onClick={this.toggleInfo}
                       >{o.firstName}</td>
-                      <td className="modusalign-middle2" data-toggle="tooltip" data-placement="top" title="Edit">{o.lastName}</td>
-                    <td className="modusalign-middle2">{o.email}</td>
+                      <td data-toggle="tooltip" data-placement="top" title="Edit" className="modusalign-middle2" data-toggle="tooltip" data-placement="top" title="Edit">{o.lastName}</td>
+                    <td data-toggle="tooltip" data-placement="top" title="Edit" className="modusalign-middle2">{o.email}</td>
                       <td className="modusalign-middle2">
-                        <Button className="modustrashbutton fa fa-trash" onClick={()=>this.deletebuttonhandler(o.practitionerId)}></Button>
+                        <Button data-toggle="tooltip" data-placement="top" title="Delete" className="modustrashbutton fa fa-trash" onClick={()=>this.deletebuttonhandler(o.practitionerId)}></Button>
                       </td>
                     </tr>
                     )
@@ -488,7 +517,17 @@ class ModusAdmin extends Component {
                 }
                 </tbody>
               </Table>
+
             </div>
+
+
+            <div className="modusadminprevnext">
+            <Button className="modusadminprev" onClick={event => this.handlePrevPageClick(event)} >&laquo; Prev
+        </Button>
+        <Button className="modusadminnext" onClick={event => this.handleNextPageClick(event)} >Next &raquo;
+        </Button>
+        </div>
+
             <br></br>
           </CardBody>
         </Card>

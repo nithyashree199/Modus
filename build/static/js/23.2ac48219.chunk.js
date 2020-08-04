@@ -1,0 +1,2 @@
+(this["webpackJsonp@modus/modus-software"]=this["webpackJsonp@modus/modus-software"]||[]).push([[23],{1342:function(e,t,n){"use strict";n.r(t);var a=n(6),u=n(7),r=n(22),o=n(23),s=n(0),c=n.n(s),i=(n(837),n(855),function(e){Object(r.a)(n,e);var t=Object(o.a)(n);function n(){return Object(a.a)(this,n),t.apply(this,arguments)}return Object(u.a)(n,[{key:"render",value:function(){return c.a.createElement("div",null,c.a.createElement("p",null,"Welcome!!"))}}]),n}(s.Component));t.default=i}}]);
+//# sourceMappingURL=23.2ac48219.chunk.js.map

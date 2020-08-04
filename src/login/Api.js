@@ -5,7 +5,7 @@ const urlforsingleorg='https://modus-services-testing.azurewebsites.net/rest/org
 export const getuserinfo = function(YOUR_TOKEN)  {
 
 
-  return fetch(`/rest/userinfo`, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/userinfo`, {
       method: 'GET',
 
       headers:{
@@ -21,7 +21,7 @@ export const getuserinfo = function(YOUR_TOKEN)  {
 export const getRoles = function(YOUR_TOKEN)  {
 
 
-  return fetch(`/rest/modus/roles`, {
+  return fetch(`https://modus-services-testing.azurewebsites.net/rest/modus/roles`, {
       method: 'GET',
 
       headers:{
