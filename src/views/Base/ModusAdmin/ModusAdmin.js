@@ -506,10 +506,10 @@ class ModusAdmin extends Component {
                       <td className="modusalign-middle2"
                       //onClick={this.toggleInfo}
                       >{o.firstName}</td>
-                      <td data-toggle="tooltip" data-placement="top" title="Edit" className="modusalign-middle2" data-toggle="tooltip" data-placement="top" title="Edit">{o.lastName}</td>
-                    <td data-toggle="tooltip" data-placement="top" title="Edit" className="modusalign-middle2">{o.email}</td>
+                      <td data-toggle="tooltip" data-placement="top" title="Edit" className="modusalign-middle2" data-toggle="tooltip" data-placement="top" title="Click here to Edit">{o.lastName}</td>
+                    <td data-toggle="tooltip" data-placement="top" title="Click here to Edit" className="modusalign-middle2">{o.email}</td>
                       <td className="modusalign-middle2">
-                        <Button data-toggle="tooltip" data-placement="top" title="Delete" className="modustrashbutton fa fa-trash" onClick={()=>this.deletebuttonhandler(o.practitionerId)}></Button>
+                        <Button data-toggle="tooltip" data-placement="top" title="Click here to Delete" className="modustrashbutton fa fa-trash" onClick={()=>this.deletebuttonhandler(o.practitionerId)}></Button>
                       </td>
                     </tr>
                     )

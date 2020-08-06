@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import "./style.css";
+import Moment from 'moment';
 import Select from "react-select";
 import { Button, Form,Card, CardBody, Input, Label } from "reactstrap";
 import prev from "../../../assets/img/brand/prevbutton.png";
 import { AppNavbarBrand } from "@coreui/react";
 import {validateZipcode,formatPhoneNumber , validateTaxID, validateEmail} from "../../../validation/validator";
-import {AddFacilityUser,UpdateFacilityUser,DeleteFacilityUser,GetRoles} from "./Api";
-import Moment from 'moment';
+import {AddFacilityUser,UpdateFacilityUser,DeleteFacilityUser,GetRoles} from "./Api"
+import {GetSingleFacilityUser} from "./../Facilities/Api"
 var abc=[];
 class Facilityusers extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class Facilityusers extends Component {
      this.handleChange = this.handleChange.bind(this);
      //this.onHandleSubmit=this.onHandleSubmit.bind(this);
      this.onHandleUpdate=this.onHandleUpdate.bind(this);
-
+     this.TogglePopup = this.TogglePopup.bind(this);
      this.onchangeofrole = this.onchangeofrole.bind(this);
      this.state = {
       roleselected:"",
@@ -35,6 +36,7 @@ class Facilityusers extends Component {
        taxid: "",
        lno: "",
        birthdate: "",
+       jsondata:[],
        toggleactive:false,
        dataDMY:"",
       furoles:[
@@ -63,9 +65,8 @@ class Facilityusers extends Component {
        toggleactive:false,
 
      };
-
-
  }
+
  async componentDidMount() {
   if( this.props.location.state) {
    if( this.props.location.state.singledata) {
@@ -117,6 +118,7 @@ else if(sessionStorage.getItem("facilityusersdata")){
   })
 } else{
   sessionStorage.removeItem("facilityusersdata")
+
 }
 await  GetRoles().then(data => {
   let rolesFromApi = data.map(role => {
@@ -127,9 +129,9 @@ await  GetRoles().then(data => {
   });
 })
  }
-onHandleUpdate(e) {
+async onHandleUpdate(e) {
   e.preventDefault();
-  var id=this.props.location.state.singledata.practitionerId;
+  var id=this.state.singledata.practitionerId;
   var dataToUpdate = {
 "firstName": this.state.fname,
 "cellphone": this.state.phone,
@@ -144,11 +146,17 @@ onHandleUpdate(e) {
 "role": this.state.roleselected.value,
 "practitionerId": id,
 "originalEmail": this.state.email,
-"orgId":this.props.location.state.singledata.orgId ,
-"healthcareServiceId":this.props.location.state.singledata.healthcareServiceId,
+"orgId":this.state.singledata.orgId ,
+"healthcareServiceId":this.state.singledata.healthcareServiceId,
 "source": null
 }
 UpdateFacilityUser(id,dataToUpdate)
+await GetSingleFacilityUser(id).then((data) =>
+        this.setState({ jsondata: data })
+      );
+      sessionStorage.setItem("facilityusersdata",JSON.stringify(this.state.jsondata));
+      alert(" Updated Successfully!!")
+      this.TogglePopup();
 }
 
 
@@ -161,7 +169,7 @@ UpdateFacilityUser(id,dataToUpdate)
 
  Previousbuttonhandler(e) {
    e.preventDefault();
-   if(this.props.location.state){
+  if(this.props.location.state){
     if(this.props.location.state.redirect=="OrgFacility")
     {
      window.location.href = "#/base/OrgFacility";
@@ -178,8 +186,6 @@ UpdateFacilityUser(id,dataToUpdate)
        window.location.href = "#/base/Facilities";
      }
    }
-
-
  }
  Onchangehandler(evt) {
   evt.preventDefault();
@@ -220,6 +226,12 @@ UpdateFacilityUser(id,dataToUpdate)
   });
 };
 
+TogglePopup() {
+
+  this.setState({
+    showPopup: !this.state.showPopup,
+  });
+}
  render() {
    return (
      <Card className="Facilityuser-body-style">
@@ -267,7 +279,7 @@ UpdateFacilityUser(id,dataToUpdate)
      />
 
 
-                 <Label htmlFor="mname" className="Facilityusers-label Facilityusers-label-mobileview requiredfield">
+                 <Label htmlFor="mname" className="Facilityusers-label Facilityusers-label-mobileview ">
      Middle Name
      </Label>
      <Input
@@ -340,6 +352,7 @@ UpdateFacilityUser(id,dataToUpdate)
      />
 
    </div>
+
              <div className="Facilityusers-row">
      <Label htmlFor="Birthdate" className="Facilityusers-label Facilityusers-label-mobileview requiredfield">
        Birth Date
@@ -434,7 +447,7 @@ UpdateFacilityUser(id,dataToUpdate)
              >
         <i className="fa fa-dot-circle-o "></i>  Update
            </Button>
-           <Button type="cancel" className="cancel-button-style"  >
+           <Button type="cancel" className="cancel-button-style" onClick={this.Previousbuttonhandler}  >
            <i className="fa fa-ban "></i> Cancel
            </Button>
 </div>
@@ -451,3 +464,4 @@ UpdateFacilityUser(id,dataToUpdate)
 }
 
 export default Facilityusers;
+

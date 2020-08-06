@@ -6,7 +6,7 @@
     width: 2%;
     height: 24px;
     background-size: 70%;
-    margin-left: 7%;
+
 
 }
 
@@ -56,18 +56,19 @@
 }
 .modus-srcbuttoncolor {
 
-background-color: #008081;
-    color: rgb(221, 219, 219);
-    margin-left: 15px;
-    width: 140px;
+  background-color: #008081;
+  color: rgb(221, 219, 219);
+  /* margin-left: 15px; */
+  width: 140px;
+  float: right;
 }
 .modus-clrbuttoncolor {
   background-color: white;
   border-color: #008081;
   color: #008081;
-  margin-left: 74%;
+  margin-left: 14px;
   width: 140px;
-
+  float: right;
 }
 .additional-note{
   min-height: 5em;
@@ -338,9 +339,7 @@ margin: 10px;
     color: red;
     font-size: 15px;
   }
-  .modustableheaderwidth{
-    min-width: 100px;
-  }
+
   .container-fluid{
     padding-left: unset;
     padding-right: unset;
@@ -369,6 +368,13 @@ margin: 10px;
   width: 140px;
   margin-right: 2%;
 }
+}
+.modustableheaderwidth{
+  min-width: 100px;
+}
+.modusadmincard{
+
+  overflow: auto;
 }
 .modusadminprevnext{
   float: right;

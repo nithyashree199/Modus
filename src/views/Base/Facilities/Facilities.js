@@ -18,18 +18,23 @@ import Select from "react-select";
 import Table from "react-bootstrap/Table";
 import prev from "../../../assets/img/brand/prevbutton.png";
 import {validateZipcode,formatPhoneNumber,validateEmail , validateTaxID} from "../../../validation/validator";
-import {GetFacilityUsers,GetSingleFacilityUser,AddFacility,UpdateFacility,AddFacilityUser,DeleteFacility,GetRoles} from "./Api"
+import {GetSingleFacility,GetFacilityUsers,GetSingleFacilityUser,AddFacility,UpdateFacility,AddFacilityUser,DeleteFacility,GetRoles} from "./Api"
 import {DeleteFacilityUser} from "../Facilityusers/Api"
+import statejson from "../Neworganisation/states.json"
 var sortJsonArray = require('sort-json-array');
 class Facilities extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageSize:3,
+      pstateselected:"",
+      states:this.settingstatevalue(),
+      estates:null,
+     pageSize:3,
       pageIndex:0,
       singlefacilityuserdata:'new',
       jsondata:[],
       newFacilityData:[],
+      showPopup:false,
       country:[
         { value: 'United States', label: 'United States' },
         { value: 'INDIA', label: 'INDIA' }
@@ -73,7 +78,6 @@ class Facilities extends Component {
       city: "",
       npi: "",
       taxid: "",
-      state: "",
       country: "",
       zipcode: "",
       newphone:"",
@@ -89,9 +93,12 @@ class Facilities extends Component {
         { value: '', label: '' },
 
       ],
+      closePopup:false,
+
     };
 
     this.initialState = {
+
       errorphone:true,
       errorzipcode:true,
       errortaxid:true,
@@ -114,7 +121,6 @@ class Facilities extends Component {
       city: "",
       npi: "",
       taxid: "",
-      state: "",
       country: "",
       zipcode: "",
       newphone:"",
@@ -130,12 +136,14 @@ class Facilities extends Component {
     this.OnHandleUpdateFacility=this.OnHandleUpdateFacility.bind(this);
     this.OnClickOfFacilityUser=this.OnClickOfFacilityUser.bind(this);
     this.TogglePopup = this.TogglePopup.bind(this);
+    this.ToggleClose = this.ToggleClose.bind(this);
     this.OnHandleSubmitFacilityUser=this.OnHandleSubmitFacilityUser.bind(this);
     this.OnHandleDeleteFacility=this.OnHandleDeleteFacility.bind(this);
     this.Rolesmethod=this.Rolesmethod.bind(this);
     this.OnChangeOfRoles=this.OnChangeOfRoles.bind(this);
     this.OnHandleDeleteFacilityUser=this.OnHandleDeleteFacilityUser.bind(this);
     this.OnchangeofCountry=this.OnchangeofCountry.bind(this);
+    this.settingstatevalue=this.settingstatevalue.bind(this);
     }
 async Rolesmethod(e) {
   e.preventDefault();
@@ -168,7 +176,9 @@ this.state.facilityusersdyndis ?this.state.facilityusersdyndis.map((o)  => {
         city: this.props.location.state.FacilityUpdate.city,
         npi: this.props.location.state.FacilityUpdate.npi,
         taxid: this.props.location.state.FacilityUpdate.taxId,
-        state: this.props.location.state.FacilityUpdate.state,
+        estate: this.props.location.state.FacilityUpdate.state,
+        pstateselected: this.props.location.state.FacilityUpdate.state,
+        estates:{value:this.props.location.state.FacilityUpdate.state,label:this.props.location.state.FacilityUpdate.state},
         country: this.props.location.state.FacilityUpdate.country,
         zipcode: this.props.location.state.FacilityUpdate.zipCode,
         website: this.props.location.state.FacilityUpdate.website,
@@ -215,7 +225,8 @@ else if(sessionStorage.getItem("facildata") && (sessionStorage.getItem("neworold
     city: this.state.FacilityUpdate.city,
     npi: this.state.FacilityUpdate.npi,
     taxid: this.state.FacilityUpdate.taxId,
-    state: this.state.FacilityUpdate.state,
+    pstateselected: this.state.FacilityUpdate.state,
+        estates:{value:this.state.FacilityUpdate.state,label:this.state.FacilityUpdate.state},
     country: this.state.FacilityUpdate.country,
     zipcode: this.state.FacilityUpdate.zipCode,
     website: this.state.FacilityUpdate.website,
@@ -253,7 +264,10 @@ await  GetRoles().then(data => {
     };
 
 
-
+    Onchangeofstate  = selectedOption => {
+      this.setState({ pstateselected:selectedOption.value,
+      estates:selectedOption });
+    };
     Onchangehandler(evt) {
       evt.preventDefault();
       var error,formatedvalue;
@@ -288,14 +302,14 @@ await  GetRoles().then(data => {
         });
       }
      }
-    async OnHandleDeleteFacilityUser(id){
+     async OnHandleDeleteFacilityUser(id){
+       await DeleteFacilityUser(id);
+       await  GetFacilityUsers(this.state.FacilityUpdate.id).then((data) =>
+       this.setState({ facilityusersdyndis: data, facilitiyusers: data ,singlefacilityuserdata:'new'
 
-
-     await DeleteFacilityUser(id);
-     await  GetFacilityUsers(this.state.FacilityUpdate.id).then((data) =>
-      this.setState({ facilityusersdyndis: data, facilitiyusers: data })
-      );
-    }
+     }));
+     sessionStorage.setItem("singledata",JSON.stringify(this.state.facilityusersdyndis));
+      }
     onSortChange = (property) => {
       var currentSort;
      currentSort=this.state.currentSort;
@@ -365,7 +379,7 @@ await  GetRoles().then(data => {
           "name": this.state.txtname,
           "addressLine":this.state.address,
           "city": this.state.city,
-          "state": this.state.state,
+          "state": this.state.pstateselected,
           "zipCode": this.state.zipcode,
           "country": this.state.pcountryselected,
           "npi":this.state.npi,
@@ -386,11 +400,14 @@ await  GetRoles().then(data => {
       if(dataToSend){
         await  AddFacility(dataToSend).then((data)=> this.setState({newFacilityData:data}))
       if(this.state.newFacilityData.length!=0){
+        sessionStorage.setItem("facildata",JSON.stringify(this.state.newFacilityData));
+        sessionStorage.setItem("singledata",JSON.stringify(this.state.facilitydata));
+        sessionStorage.setItem("neworold","update")
         document.getElementById("facilityUsers").style.display="block"
       }
 
       }
-
+      alert(" Added successfully!!")
       }
  async OnHandleSubmitFacilityUser(e) {
         e.preventDefault();
@@ -418,8 +435,12 @@ await  GetRoles().then(data => {
        await AddFacilityUser(dataToSend);
       await  GetFacilityUsers(this.state.FacilityUpdate.id).then((data) =>
       this.setState({ facilityusersdyndis: data, facilitiyusers: data ,singlefacilityuserdata:'new'
+
     }));
+    sessionStorage.setItem("singledata",JSON.stringify(this.state.facilityusersdyndis));
+
       this.ToggleInfo();
+
       }
 
     async  OnHandleUpdateFacility(e){
@@ -431,7 +452,7 @@ await  GetRoles().then(data => {
      "name": this.state.txtname,
      "addressLine":this.state.address,
      "city": this.state.city,
-     "state": this.state.state,
+     "state": this.state.pstateselected,
      "zipCode": this.state.zipcode,
      "country": this.state.pcountryselected,
      "npi":this.state.npi,
@@ -449,7 +470,15 @@ await  GetRoles().then(data => {
           }
 
          await UpdateFacility(id,dataToUpdate)
-
+         await GetSingleFacility(id).then((data) =>
+         this.setState({ jsondata: data })
+       );
+       await GetFacilityUsers(id).then((data)=>
+       this.setState({ facilitydata : data })
+       );
+       sessionStorage.setItem("facildata",JSON.stringify(this.state.jsondata));
+       sessionStorage.setItem("singledata",JSON.stringify(this.state.facilitydata));
+       alert(" Updated Successfully!!")
        }
        async OnClickOfFacilityUser(faciityuser_id) {
 
@@ -467,12 +496,29 @@ await  GetRoles().then(data => {
         sessionStorage.setItem("fromorgfac","Facility")
         sessionStorage.setItem("neworold","update")
       }
+      ToggleClose() {
 
-      OnHandleDeleteFacility(e){
+        this.setState({
+          info: !this.state.info,
+        });
+        this.setState(this.initialState);
+      }
+      settingstatevalue(){
+        var dummy=[]
+        statejson.map((s)=>{
+          dummy.push({value:s.name,label:s.name})
+        })
+        console.log(dummy)
+        return dummy;
+      }
+     async OnHandleDeleteFacility(e){
         e.preventDefault();
      var id=this.state.FacilityUpdate.id;
 
-          DeleteFacility(id);
+          await DeleteFacility(id);
+
+    sessionStorage.setItem("singledata",JSON.stringify(this.state.facilityusersdyndis));
+
        }
        handlePrevPageClickuser(event) {
         event.preventDefault();
@@ -651,17 +697,19 @@ Email
             <Label htmlFor="state" className="Facilities-label requiredfield">
                 State
               </Label>
-              <Input
+  <Select
                 name="state"
-                type="text"
                 id="state"
-                placeholder="Enter State"
-                required
+                closeMenuOnSelect={true}
+                isMulti={false}
+                options={this.state.states}
+                value={this.state.estates}
+                onChange={this.Onchangeofstate}
+
                 className="textinputforfacilities"
-                onChange={this.Onchangehandler}
-                value={this.state.state}
+
               />
-            <Label htmlFor="country" className="Facilities-label requiredfield">
+                <Label htmlFor="country" className="Facilities-label requiredfield">
                 Country
               </Label>
               <Select
@@ -748,7 +796,7 @@ Email
                             <Button className="save-button-style" type="submit" onClick={this.OnHandleUpdateFacility}>
                             <i className="fa fa-dot-circle-o"></i> Update
                             </Button>
-                             <Button type="cancel" className="cancel-button-style" >
+                             <Button  className="cancel-button-style" onClick={this.Previousbuttonhandler}  >
                              <i className="fa fa-ban "></i> Cancel
                                </Button>
                                </div>
@@ -759,7 +807,7 @@ Email
                     <Button className="save-button-style" type="submit" onClick={this.OnHandleSubmitFacility} >
                   <i className="fa fa-dot-circle-o"></i> Save
                   </Button>
-                   <Button type="cancel" className="cancel-button-style" >
+                   <Button  className="cancel-button-style" onClick={this.Previousbuttonhandler} >
                    <i className="fa fa-ban "></i> Cancel
                      </Button>
                      </div>
@@ -804,12 +852,12 @@ Email
             <tbody>
             <tr
             >
-                <td className="align-middle-2" data-toggle="tooltip" data-placement="top" title="Edit" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{o.firstName}</td>
-                <td className="align-middle-2" data-toggle="tooltip" data-placement="top" title="Edit" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{o.lastName}</td>
-          <td className="align-middle-2" data-toggle="tooltip" data-placement="top" title="Edit" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{o.email}</td>
-                <td className="align-middle-2" data-toggle="tooltip" data-placement="top" title="Edit" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{o.roleName}</td>
+                <td className="align-middle-2" data-toggle="tooltip" data-placement="top" title="Click here to Edit" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{o.firstName}</td>
+                <td className="align-middle-2" data-toggle="tooltip" data-placement="top" title="Click here to Edit" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{o.lastName}</td>
+          <td className="align-middle-2" data-toggle="tooltip" data-placement="top" title="Click here to Edit" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{o.email}</td>
+                <td className="align-middle-2" data-toggle="tooltip" data-placement="top" title="Click here to Edit" onClick={() => this.OnClickOfFacilityUser(o.practitionerId)}>{o.roleName}</td>
                 <td className="align-middle-2">
-                <Button className="trashbutton fa fa-trash" data-toggle="tooltip" data-placement="top" title="Edit" onClick={() => this.OnHandleDeleteFacilityUser(o.practitionerId)}></Button>
+                <Button className="trashbutton fa fa-trash" data-toggle="tooltip" data-placement="top" title="Click here to Delete" onClick={() => this.OnHandleDeleteFacilityUser(o.practitionerId)}></Button>
                   </td>                </tr>
 
             </tbody>
@@ -839,8 +887,8 @@ Email
                    backdrop="static"
                    keyboard="false"
                    isOpen={this.state.info}
-                   toggle={this.ToggleInfo}>
-      <ModalHeader toggle={this.ToggleInfo} className="linearGradientcolorforheading">
+                   toggle={this.ToggleClose}>
+      <ModalHeader toggle={this.ToggleClose} className="linearGradientcolorforheading">
                 New User
               </ModalHeader>
               <ModalBody>
@@ -861,7 +909,7 @@ Email
       />
 
 
-                  <Label htmlFor="newmname" className="search-label23 Facilities-label requiredfield">
+                  <Label htmlFor="newmname" className="search-label23 Facilities-label ">
       Middle Name
       </Label>
       <Input
@@ -1020,7 +1068,7 @@ Email
 
  <ModalFooter className="Newuser-button-style">
 
-            <Button type="cancel" className="cancel-button-style-popup"  >
+            <Button  className="cancel-button-style-popup" onClick={this.ToggleClose}  >
            <i className="fa fa-ban "></i> Cancel
             </Button>
             <Button className="save-button-style-popup" onClick={this.OnHandleSubmitFacilityUser}

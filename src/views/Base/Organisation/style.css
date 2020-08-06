@@ -1,3 +1,9 @@
+
+.orgcardstyle {
+  display: grid !important;
+  height: 100% !important;
+  overflow: auto;
+}
 .sort-icon{
 
   background: url('../../../../src/assets/img/brand/iconsort.png') no-repeat center center;
@@ -6,117 +12,8 @@
     width: 2%;
     height: 24px;
     background-size: 70%;
-    margin-left: 7%;
 
-}
-@media only screen and (min-width: 768px) {
-  .btn:focus {
-    outline: none;
-  }
 
-  .orgflexdisplay {
-    display: flex;
-    pointer-events: none;
-  }
-  .orgsearch-inputfororg {
-    width: 30%;
-    margin: 10px;
-    display: unset;
-    margin-left: 35px;
-    text-align: center;
-  }
-  .orgsearchboxstylefororg {
-    margin-bottom: 3%;
-    width: 30%;
-    margin-top: 2%;
-  }
-  .orgAdd_Admin_image {
-    padding: 0;
-    border: none;
-    background: none;
-    float: right;
-  }
-  .orgadd-admin {
-    margin-left: 76%;
-    font-weight: 400;
-  }
-
-  .orgcursorforaddadmin {
-    cursor: pointer;
-  }
-  .orglinearGradientcolor {
-    background: linear-gradient(45deg, #66a0a0, #596b6b);
-  }
-  .orgcarddetails {
-    margin-left: 5%;
-    font-size: 105%;
-  }
-  .org-container {
-    max-width: 1790px;
-    max-height: 100%;
-  }
-  .orgcardstyle {
-    display: grid !important;
-    height: 100% !important;
-  }
-
-  .orgstylefor-orgsrch-header {
-    font-size: 140%;
-    font-weight: 600;
-  }
-}
-@media only screen and (max-width: 767px) and (min-width: 320px) {
-  .container-fluid {
-    padding-left: unset;
-    padding-right: unset;
-  }
-  .main .container-fluid {
-    padding: unset;
-  }
-  .orgsearchboxstylefororg {
-    margin-bottom: 3%;
-    width: 100%;
-    margin-top: 7%;
-  }
-  .row {
-    display: unset;
-  }
-  .orgcarddetails {
-    margin-left: 5%;
-    font-size: 18px;
-  }
-  .org-container {
-    max-width: 1790px;
-    max-height: 100%;
-  }
-  .orgcardstyle {
-    display: grid !important;
-    height: 100% !important;
-  }
-
-  .orgstylefor-orgsrch-header {
-    font-size: 140%;
-    font-weight: 600;
-  }
-
-  .orgflexdisplay {
-    display: flex;
-    pointer-events: none;
-  }
-
-  .orgAdd_Admin_image {
-    padding: 0;
-    border: none;
-    background: none;
-    float: right;
-  }
-  .orgadd-admin {
-    font-weight: 400;
-  }
-
-  .orgcursorforaddadmin {
-    cursor: pointer;
-  }
 }
 .orgtilepicmargin {
   margin-top: 2%;
@@ -193,7 +90,59 @@
   text-align: center;
   padding: 10px 0px;
 }
+@media only screen and (min-width: 768px)  {
+  .btn:focus {
+    outline: none;
+  }
 
+  .orgflexdisplay {
+    display: flex;
+    pointer-events: none;
+  }
+  .orgsearch-inputfororg {
+    width: 30%;
+    margin: 10px;
+    display: unset;
+    margin-left: 35px;
+    text-align: center;
+  }
+  .orgsearchboxstylefororg {
+    margin-bottom: 3%;
+    width: 30%;
+    margin-top: 2%;
+  }
+  .orgAdd_Admin_image {
+    padding: 0;
+    border: none;
+    background: none;
+    float: right;
+  }
+  .orgadd-admin {
+    margin-left: 76%;
+    font-weight: 400;
+  }
+
+  .orgcursorforaddadmin {
+    cursor: pointer;
+  }
+  .orglinearGradientcolor {
+    background: linear-gradient(45deg, #66a0a0, #596b6b);
+  }
+  .orgcarddetails {
+    margin-left: 5%;
+    font-size: 105%;
+  }
+  .org-container {
+    max-width: 1790px;
+    max-height: 100%;
+  }
+
+
+  .orgstylefor-orgsrch-header {
+    font-size: 140%;
+    font-weight: 600;
+  }
+}
 @media only screen and (max-width: 767px) and (min-width: 320px) {
   .tileholder {
     display: block;
@@ -205,5 +154,53 @@
   .tilebody > div {
     margin-bottom: 20px;
     width: 335px;
+  }
+  .container-fluid {
+    padding-left: unset;
+    padding-right: unset;
+  }
+  .main .container-fluid {
+    padding: unset;
+  }
+  .orgsearchboxstylefororg {
+    margin-bottom: 3%;
+    width: 100%;
+    margin-top: 7%;
+  }
+  .row {
+    display: unset;
+  }
+  .orgcarddetails {
+    margin-left: 5%;
+    font-size: 18px;
+  }
+  .org-container {
+    max-width: 1790px;
+    max-height: 100%;
+  }
+
+
+  .orgstylefor-orgsrch-header {
+    font-size: 140%;
+    font-weight: 600;
+  }
+
+  .orgflexdisplay {
+    display: flex;
+    pointer-events: none;
+  }
+
+  .orgAdd_Admin_image {
+    padding: 0;
+    border: none;
+    background: none;
+    float: right;
+  }
+  .orgadd-admin {
+    font-weight: 400;
+  }
+
+  .orgcursorforaddadmin {
+    cursor: pointer;
   }
 }

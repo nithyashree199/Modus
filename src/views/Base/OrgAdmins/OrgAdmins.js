@@ -358,7 +358,7 @@ if(dataToSend){
                 />
               </div>
               <div className="orgadmin-searchsrcbutton" >
-                <Button type="reset" className="orgAdmin-clrbuttoncolor">
+                <Button type="reset" className="orgAdmin-clrbuttoncolor" onClick={this.Handlereset}>
                   <i className="fa fa-ban "></i> Reset
                 </Button>
                 <Button
@@ -551,11 +551,11 @@ if(dataToSend){
 
                 <tbody>
             <tr >
-                  <td className="align-middle2" data-toggle="tooltip" data-placement="top" title="Edit" onClick={() => this.onclickoforgadmin(o.practitionerId)}>{o.firstName}</td>
-                    <td className="align-middle2" data-toggle="tooltip" data-placement="top" title="Edit" onClick={() => this.onclickoforgadmin(o.practitionerId)}>{o.lastName}</td>
-                  <td className="align-middle2" data-toggle="tooltip" data-placement="top" title="Edit" onClick={() => this.onclickoforgadmin(o.practitionerId)}>{o.email}</td>
+                  <td className="align-middle2" data-toggle="tooltip" data-placement="top" title="Click here to Edit" onClick={() => this.onclickoforgadmin(o.practitionerId)}>{o.firstName}</td>
+                    <td className="align-middle2" data-toggle="tooltip" data-placement="top" title="Click here to Edit" onClick={() => this.onclickoforgadmin(o.practitionerId)}>{o.lastName}</td>
+                  <td className="align-middle2" data-toggle="tooltip" data-placement="top" title="Click here to Edit" onClick={() => this.onclickoforgadmin(o.practitionerId)}>{o.email}</td>
                     <td className="align-middle2">
-                      <Button className="trashbutton fa fa-trash" data-toggle="tooltip" data-placement="top" title="Edit" onClick={() => this.onHandledeleteorgadminuser(o.practitionerId)}></Button>
+                      <Button className="trashbutton fa fa-trash" data-toggle="tooltip" data-placement="top" title="Click here to Delete" onClick={() => this.onHandledeleteorgadminuser(o.practitionerId)}></Button>
                     </td>
                   </tr>
                 </tbody>

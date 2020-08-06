@@ -110,7 +110,7 @@ class Organisation extends Component {
         />
 
         <Card className="orgcardstyle">
-          <CardBody>
+          <CardBody >
             <div className="orgsearch-card-headerfororg">
               <span className="orgstylefor-orgsrch-header">Organizations</span>
 
@@ -163,10 +163,10 @@ class Organisation extends Component {
                   <div className="tilebody">
                     {this.state.orgdyndis.map((o) => {
                       return (
-                        <div key={o.id} className="tilelayout">
+                        <div key={o.id} className="tilelayout" onClick={() => this.onclickoftile(o.id)}>
                           <h5
                             className="tileheaderh3"
-                            onClick={() => this.onclickoftile(o.id)}
+
                           >
                             {o.name} ({o.alias})
                           </h5>

@@ -236,6 +236,7 @@ cursor: pointer;
 .mainfacilitycardstyle{
   display: grid !important;
   height: 100% !important;
+  overflow:auto;
 }
 .facilitytilelayout {
   color: white;
@@ -418,6 +419,7 @@ font-size: 140%;
 .facility-container {
   max-width: 1790px;
   max-height: 100%;
+  overflow:auto;
 }
 .fu-switch{
   display:flex;

@@ -145,15 +145,15 @@ togglePopup(data) {
                   <div class="facilitytilebody">
                     {this.state.facilitydyndis?this.state.facilitydyndis.map((o)  => {
                       return (
-                        <div class="facilitytilelayout">
+                        <div class="facilitytilelayout"  onClick={() => this.onclickoftile(o.id)}>
                           <h5
                             className="facilitytileheaderh3"
-                            onClick={() => this.onclickoftile(o.id)}
+
                           >
                             {o.name}
                           </h5>
 
-                           
+
 
                           <div className="mainrfacilityflexdisplay">
                             <img

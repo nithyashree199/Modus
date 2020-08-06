@@ -22,6 +22,7 @@ import {validateZipcode,formatPhoneNumber,validateEmail , validateTaxID} from ".
 import {GetFacilityUsers,GetSingleFacilityUser,AddFacility,UpdateFacility,AddFacilityUser,DeleteFacility,GetRoles} from "../Facilities/Api"
 import {DeleteFacilityUser} from "../Facilityusers/Api"
 import {  OrgFacilityGet } from "../Organisation/Api.js";
+import statejson from "./states.json"
 var sortJsonArray = require('sort-json-array');
 class OrgFacility extends Component {
   constructor(props) {
@@ -36,6 +37,9 @@ class OrgFacility extends Component {
       ],
       ecountry:{ value: 'United States', label: 'United States' },
       pcountryselected:"United States",
+      states:this.settingstatevalue(),
+      estates:null,
+      pstateselected:"",
       currentSort: 'des',
       orgId:"",
       facilitydata:[],
@@ -95,6 +99,17 @@ furoles:[
     };
 
     this.initialState = {
+      newfname:"",
+      newphone:"",
+      newmname:"",
+      newlname:"",
+      newlno:"",
+      newNPI:"",
+      newtaxid:"",
+      Birthdate:"",
+      toggleActiveNew:"",
+      newemail:"",
+      roleselected:"",
       errorphone:true,
       errorzipcode:true,
       errortaxid:true,
@@ -103,25 +118,7 @@ furoles:[
       errorzipcodepopup:true,
       errortaxidpopup:true,
       erroremailpopup:true,
-      firstname: "",
-      lastname: "",
 
-      newphone:"",
-      name:"",
-      rolept:"",
-      roledoctor:"",
-      txtname: "",
-      email: "",
-      website: "",
-      phone: "",
-      fax: "",
-      address: "",
-      city: "",
-      npi: "",
-      taxid: "",
-      state: "",
-      country: "",
-      zipcode: "",
 
 
     };
@@ -137,6 +134,7 @@ furoles:[
     this.onHandleUpdate=this.onHandleUpdate.bind(this);
     this.onclickoffacilityuser=this.onclickoffacilityuser.bind(this);
     this.togglePopup = this.togglePopup.bind(this);
+    this.togglePopupclose=this.togglePopupclose.bind(this);
     this.onHandleSubmitnew=this.onHandleSubmitnew.bind(this);
 
     this.Rolesmethod=this.Rolesmethod.bind(this);
@@ -152,8 +150,16 @@ this.state.facilityusersdyndis ?this.state.facilityusersdyndis.map((o)  => {
     this.state.furoles=(o.text)
     }):null)
 }
+settingstatevalue(){
+  var dummy=[]
+  statejson.map((s)=>{
+    dummy.push({value:s.name,label:s.name})
+  })
+  console.log(dummy)
+  return dummy;
+}
     async componentDidMount() {
-      console.log((sessionStorage.getItem("newfacoroldfac")))
+
 
      if( this.props.location.state) {
       if(this.props.location.state.facilitytable=='new'){
@@ -177,8 +183,10 @@ this.setState({ orgId:this.props.location.state.orgid});
         city: this.props.location.state.orgfacilitydatafull.city,
         npi: this.props.location.state.orgfacilitydatafull.npi,
         taxid: this.props.location.state.orgfacilitydatafull.taxId,
-        state: this.props.location.state.orgfacilitydatafull.state,
-        country: this.props.location.state.orgfacilitydatafull.country,
+        pstateselected: this.props.location.state.orgfacilitydatafull.state,
+        estates:{value:this.props.location.state.orgfacilitydatafull.state,label:this.props.location.state.orgfacilitydatafull.state},
+        pcountryselected: this.props.location.state.orgfacilitydatafull.country,
+        ecountry:{value:this.props.location.state.orgfacilitydatafull.country,label:this.props.location.state.orgfacilitydatafull.country},
         zipcode: this.props.location.state.orgfacilitydatafull.zipCode,
         website: this.props.location.state.orgfacilitydatafull.website,
         toggleactive: this.props.location.state.orgfacilitydatafull.active,
@@ -204,8 +212,10 @@ else if(sessionStorage.getItem("orgfacility") && sessionStorage.getItem("newfaco
         city: this.state.facilitydata.city,
         npi: this.state.facilitydata.npi,
         taxid: this.state.facilitydata.taxId,
-        state:this.state.facilitydata.state,
-        country: this.state.facilitydata.country,
+        pstateselected:this.state.facilitydata.state,
+        estates:{value:this.state.facilitydata.state,label:this.state.facilitydata.state},
+        pcountryselected: this.state.facilitydata.country,
+        ecountry:{value:this.state.facilitydata.country,label:this.state.facilitydata.country},
         zipcode: this.state.facilitydata.zipCode,
         website: this.state.facilitydata.website,
         toggleactive: this.state.facilitydata.active,
@@ -245,6 +255,10 @@ console.log(this.state.facilitydata)
       ecountry:selectedOption
     });
     };
+    Onchangeofstate = selectedOption => {
+      this.setState({pstateselected:selectedOption.value,
+      estates:selectedOption})
+    }
     onSortChange = (property) => {
       var currentSort;
      currentSort=this.state.currentSort;
@@ -296,7 +310,7 @@ console.log(this.state.facilitydata)
     async onHandledeletefacilityuser(id){
 
        await DeleteFacilityUser(id);
-        await  GetFacilityUsers(this.props.location.state.orgfacilitydatafull.id).then((data) =>
+        await  GetFacilityUsers(this.state.facilitydata.id).then((data) =>
         this.setState({ facilityusersdyndis: data, facilitiyusers: data })
         );
      }
@@ -371,7 +385,7 @@ console.log(this.state.facilitydata)
  "name": this.state.txtname,
  "addressLine":this.state.address,
  "city": this.state.city,
- "state": this.state.state,
+ "state": this.state.pstateselected,
  "zipCode": this.state.zipcode,
  "country": this.state.pcountryselected,
  "npi":this.state.npi,
@@ -388,7 +402,7 @@ console.log(this.state.facilitydata)
 "rooms": []
       }
 if(dataToSend){
-  await  AddFacility(dataToSend).then((data)=> this.setState({newFacilityData:data}))
+  await  AddFacility(dataToSend).then((data)=> this.setState({newFacilityData:data}),alert("Added successfully"))
 if(this.state.newFacilityData.length!=0){
   document.getElementById("facilityUsers").style.display="block"
   sessionStorage.setItem("orgfacility",JSON.stringify(this.state.newFacilityData));
@@ -403,6 +417,7 @@ if(this.state.newFacilityData.length!=0){
 
       }
    async   onHandleSubmitnew(e) {
+     console.log("inside add user")
         e.preventDefault();
         var dataToSend = {
       "firstName": this.state.newfname,
@@ -417,32 +432,32 @@ if(this.state.newFacilityData.length!=0){
       "email": this.state.newemail,
       "role": this.state.roleselected.value,
       "practitionerId": "",
-      "originalEmail": "ptuser2@modus.org",
-      "orgId":this.props.location.state.orgfacilitydatafull?this.props.location.state.orgfacilitydatafull.organizationId:JSON.parse(sessionStorage.getItem("orgfacility")).organizationId,
-      "healthcareServiceId":this.props.location.state.orgfacilitydatafull.id,
+      "originalEmail": this.state.newemail,
+      "orgId":this.state.facilitydata?this.state.facilitydata.organizationId:JSON.parse(sessionStorage.getItem("orgfacility")).organizationId,
+      "healthcareServiceId":this.state.facilitydata.id,
       "source": null
       }
-
+console.log(dataToSend)
     await AddFacilityUser(dataToSend);
-      this.toggleInfo()
-      await  GetFacilityUsers(this.props.location.state.orgfacilitydatafull.id).then((data) =>
+      this.togglePopupclose()
+      await  GetFacilityUsers(this.state.facilitydata.id).then((data) =>
       this.setState({ facilityusersdyndis: data, facilitiyusers: data })
       );
 
       }
 
-      onHandleUpdate(e){
+     async onHandleUpdate(e){
         e.preventDefault();
 
-     var id=this.props.location.state.orgfacilitydatafull.id;
+     var id=this.state.facilitydata.id;
      var dataToUpdate = {
       "id":id,
      "name": this.state.txtname,
      "addressLine":this.state.address,
      "city": this.state.city,
-     "state": this.state.state,
+     "state": this.state.pstateselected,
      "zipCode": this.state.zipcode,
-     "country": this.state.country,
+     "country": this.state.pcountryselected,
      "npi":this.state.npi,
      "taxId":this.state.taxid,
      "phone":this.state.phone,
@@ -457,7 +472,11 @@ if(this.state.newFacilityData.length!=0){
     "rooms": []
           }
 
-          UpdateFacility(id,dataToUpdate)
+        await UpdateFacility(id,dataToUpdate).then((data)=>
+        sessionStorage.setItem("orgfacility",JSON.stringify(data)),
+        sessionStorage.setItem("newfacoroldfac","update"),
+        alert("updated successfully")
+        )
        }
        async onclickoffacilityuser(faciityuser_id) {
         await GetSingleFacilityUser(faciityuser_id).then((data) =>
@@ -474,6 +493,13 @@ if(this.state.newFacilityData.length!=0){
           showPopup: !this.state.showPopup,
         });
         sessionStorage.setItem("fromorgfac","OrgFacility")
+      }
+      togglePopupclose(){
+       // e.preventDefault();
+        this.setState(this.initialState);
+        this.setState({
+          info: !this.state.info,
+        });
       }
 
       handlePrevPageClickuser(event) {
@@ -653,15 +679,17 @@ Email
             <Label htmlFor="state" className="Facilities-label requiredfield">
                 State
               </Label>
-              <Input
+              <Select
                 name="state"
-                type="text"
                 id="state"
-                placeholder="Enter State"
-                required
+                closeMenuOnSelect={true}
+                isMulti={false}
+                options={this.state.states}
+                value={this.state.estates}
+                onChange={this.Onchangeofstate}
+
                 className="textinputforfacilities"
-                onChange={this.Onchangehandler}
-                value={this.state.state}
+
               />
             <Label htmlFor="country" className="Facilities-label requiredfield">
                 Country
@@ -788,10 +816,10 @@ Email
 
             <thead>
               <tr className="align-middle Facilities-tablecolor">
-                <th className="align-middle" onClick={()=>this.onSortChange("firstName")}><i class="sort-icon"></i> First Name</th>
-                <th className="align-middle"onClick={()=>this.onSortChange("lastName")}><i class="sort-icon"></i> Last Name</th>
-                <th className="align-middle" onClick={()=>this.onSortChange("email")}><i class="sort-icon"></i> Email-ID</th>
-                <th className="align-middle" onClick={()=>this.onSortChange("roleName")}><i class="sort-icon"></i>Roles(s)</th>
+                <th className="align-middle" onClick={()=>this.onSortChange("firstName")}>First Name <i class="sort-icon"></i> </th>
+                <th className="align-middle"onClick={()=>this.onSortChange("lastName")}> Last Name <i class="sort-icon"></i></th>
+                <th className="align-middle" onClick={()=>this.onSortChange("email")}>Email-ID <i class="sort-icon"></i> </th>
+                <th className="align-middle" onClick={()=>this.onSortChange("roleName")}>Roles(s) <i class="sort-icon"></i></th>
                 <th className="align-middle" >Action</th>
 
               </tr>
@@ -807,12 +835,12 @@ Email
             <tbody>
             <tr
             >
-                <td data-toggle="tooltip" data-placement="top" title="Edit" className="align-middle-2" onClick={() => this.onclickoffacilityuser(o.practitionerId)}>{o.firstName}</td>
-                <td data-toggle="tooltip" data-placement="top" title="Edit" className="align-middle-2" onClick={() => this.onclickoffacilityuser(o.practitionerId)}>{o.lastName}</td>
-          <td data-toggle="tooltip" data-placement="top" title="Edit" className="align-middle-2"onClick={() => this.onclickoffacilityuser(o.practitionerId)}>{o.email}</td>
-                <td data-toggle="tooltip" data-placement="top" title="Edit" className="align-middle-2"onClick={() => this.onclickoffacilityuser(o.practitionerId)}>{o.roleName}</td>
+                <td data-toggle="tooltip" data-placement="top" title="Click here to Edit" className="align-middle-2" onClick={() => this.onclickoffacilityuser(o.practitionerId)}>{o.firstName}</td>
+                <td data-toggle="tooltip" data-placement="top" title="Click here to Edit" className="align-middle-2" onClick={() => this.onclickoffacilityuser(o.practitionerId)}>{o.lastName}</td>
+          <td data-toggle="tooltip" data-placement="top" title="Click here to Edit" className="align-middle-2"onClick={() => this.onclickoffacilityuser(o.practitionerId)}>{o.email}</td>
+                <td data-toggle="tooltip" data-placement="top" title="Click here to Edit" className="align-middle-2"onClick={() => this.onclickoffacilityuser(o.practitionerId)}>{o.roleName}</td>
                 <td className="align-middle-2">
-                    <Button data-toggle="tooltip" data-placement="top" title="Delete" className="trashbutton fa fa-trash" onClick={() => this.onHandledeletefacilityuser(o.practitionerId)}></Button>
+                    <Button data-toggle="tooltip" data-placement="top" title="Click here to Delete" className="trashbutton fa fa-trash" onClick={() => this.onHandledeletefacilityuser(o.practitionerId)}></Button>
                   </td>                </tr>
 
             </tbody>
@@ -842,8 +870,8 @@ Email
                    backdrop="static"
                    keyboard="false"
                    isOpen={this.state.info}
-                   toggle={this.toggleInfo}>
-      <ModalHeader toggle={this.toggleInfo} className="linearGradientcolorforheading">
+                   toggle={this.togglePopupclose}>
+      <ModalHeader toggle={this.togglePopupclose} className="linearGradientcolorforheading">
                 New User
               </ModalHeader>
               <ModalBody>
@@ -1019,7 +1047,7 @@ Email
 
  <ModalFooter className="Newuser-button-style">
 
-            <Button type="cancel" className="cancel-button-style-popup"  >
+            <Button type="cancel" className="cancel-button-style-popup" onClick={this.togglePopupclose} >
            <i className="fa fa-ban "></i> Cancel
             </Button>
             <Button className="save-button-style-popup" onClick={this.onHandleSubmitnew}

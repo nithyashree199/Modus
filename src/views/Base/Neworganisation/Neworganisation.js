@@ -27,6 +27,7 @@ import {
 } from "../../../validation/validator";
 import { Redirect } from "react-router-dom";
 import  Select  from "react-select";
+import statejson from "./states.json"
 var sortJsonArray = require('sort-json-array');
 const fs =require ('fs');
 class Neworganisation extends Component {
@@ -42,6 +43,9 @@ class Neworganisation extends Component {
         { value: 'INDIA', label: 'INDIA' }
       ],
       ecountry:{ value: 'United States', label: 'United States' },
+      states:this.settingstatevalue(),
+      estates:null,
+      pstateselected:"",
       pcountryselected:"United States",
       currentSort: 'des',
       currentSort2: 'des',
@@ -94,7 +98,7 @@ class Neworganisation extends Component {
       errorphone: true,
       errorzipcode: true,
       errortaxid: true,
-      buttonvalue:"Add"
+
     }
     this.Handlereset = this.Handlereset.bind(this);
     this.toggleInfo = this.toggleInfo.bind(this);
@@ -120,6 +124,14 @@ this.OnchangeofCountry=this.OnchangeofCountry.bind(this);
     window.addEventListener("drop",function(e){
      e.preventDefault();
     },false);
+  }
+  settingstatevalue(){
+    var dummy=[]
+    statejson.map((s)=>{
+      dummy.push({value:s.name,label:s.name})
+    })
+    console.log(dummy)
+    return dummy;
   }
   onSortChangeForOrgUser = (property) => {
     var currentSort;
@@ -154,18 +166,14 @@ this.OnchangeofCountry=this.OnchangeofCountry.bind(this);
     ecountry:selectedOption
   });
   };
+  Onchangeofstate = selectedOption => {
+    this.setState({pstateselected:selectedOption.value,
+    estates:selectedOption})
+  }
 
+ componentDidMount() {
 
-
-
-
-
-
-
-
-   componentDidMount() {
-
-
+    console.log(this.state.ecountry)
     if(this.props.location.state){
      this.setState({
       singleorgdata: this.props.location.state.singleorgdata,
@@ -179,6 +187,24 @@ this.OnchangeofCountry=this.OnchangeofCountry.bind(this);
       this.setState({
         buttonvalue:"Update"
       })
+      this.setState({
+        txtname: this.props.location.state.singleorgdata.name,
+        txtalias: this.props.location.state.singleorgdata.alias,
+        txtphone: this.props.location.state.singleorgdata.phone,
+        txtaddress: this.props.location.state.singleorgdata.addressLine,
+        txtfax: this.props.location.state.singleorgdata.fax,
+        txtnpi: this.props.location.state.singleorgdata.npi,
+        pstateselected: this.props.location.state.singleorgdata.state,
+        estates:{value:this.props.location.state.singleorgdata.state,label:this.props.location.state.singleorgdata.state},
+        pcountryselected: this.props.location.state.singleorgdata.country,
+        ecountry:{value:this.props.location.state.singleorgdata.country,label:this.props.location.state.singleorgdata.country},
+        txtcity: this.props.location.state.singleorgdata.city,
+        txtzipcode: this.props.location.state.singleorgdata.zipCode,
+        txttaxid: this.props.location.state.singleorgdata.taxId,
+        switchactive: this.props.location.state.singleorgdata.active,
+  base64valueforlogo:this.props.location.state.singleorgdata.logo,
+  base64valueforconsentform:this.props.location.state.singleorgdata.patientConsentForm
+      });
     }
     if(this.props.location.state.neworupdate=="new"){
       document.getElementById("orgusers").style.display="none"
@@ -189,22 +215,7 @@ this.OnchangeofCountry=this.OnchangeofCountry.bind(this);
       document.getElementById("orgfacility").style.display="inline-block"
     }
 
-   this.setState({
-      txtname: this.props.location.state.singleorgdata.name,
-      txtalias: this.props.location.state.singleorgdata.alias,
-      txtphone: this.props.location.state.singleorgdata.phone,
-      txtaddress: this.props.location.state.singleorgdata.addressLine,
-      txtfax: this.props.location.state.singleorgdata.fax,
-      txtnpi: this.props.location.state.singleorgdata.npi,
-      txtstate: this.props.location.state.singleorgdata.state,
-      txtcountry: this.props.location.state.singleorgdata.country,
-      txtcity: this.props.location.state.singleorgdata.city,
-      txtzipcode: this.props.location.state.singleorgdata.zipCode,
-      txttaxid: this.props.location.state.singleorgdata.taxId,
-      switchactive: this.props.location.state.singleorgdata.active,
-base64valueforlogo:this.props.location.state.singleorgdata.logo,
-base64valueforconsentform:this.props.location.state.singleorgdata.patientConsentForm
-    });
+
 
 
 }
@@ -212,7 +223,7 @@ else if(sessionStorage.getItem("orgdata") && (sessionStorage.getItem("neworold")
     this.state.singleorgdata=JSON.parse(sessionStorage.getItem("orgdata"));
     this.state.facilitydata=JSON.parse(sessionStorage.getItem("facilitytable"));
     this.state.orgadminuserdata=JSON.parse(sessionStorage.getItem("orgadmintable"));
-    console.log(JSON.stringify(sessionStorage.getItem("orgdata")))
+
     this.setState({
      txtname: this.state.singleorgdata.name,
      txtalias: this.state.singleorgdata.alias,
@@ -220,8 +231,10 @@ else if(sessionStorage.getItem("orgdata") && (sessionStorage.getItem("neworold")
      txtaddress: this.state.singleorgdata.addressLine,
      txtfax: this.state.singleorgdata.fax,
      txtnpi: this.state.singleorgdata.npi,
-     txtstate: this.state.singleorgdata.state,
-     txtcountry: this.state.singleorgdata.country,
+     pstateselected: this.state.singleorgdata.state,
+     estates:{value:this.state.singleorgdata.state,label:this.state.singleorgdata.state},
+     pcountryselected: this.state.singleorgdata.country,
+     ecountry:{value:this.state.singleorgdata.country,label:this.state.singleorgdata.country},
      txtcity: this.state.singleorgdata.city,
      txtzipcode: this.state.singleorgdata.zipCode,
      txttaxid: this.state.singleorgdata.taxId,
@@ -317,7 +330,9 @@ base64valueforconsentform:this.state.singleorgdata.patientConsentForm
   }
  Previousbuttonhandler(e) {
     e.preventDefault();
-   // sessionStorage.removeItem("orgdata")
+    sessionStorage.removeItem("orgdata");
+    sessionStorage.removeItem("facilitytable");
+    sessionStorage.removeItem("orgadmintable");
     window.location.href = "#/base/Organisation";
   }
   async addupdatebuttonhandler(e) {
@@ -329,7 +344,7 @@ base64valueforconsentform:this.state.singleorgdata.patientConsentForm
       "active": this.state.switchactive,
       "addressLine": this.state.txtaddress,
       "city": this.state.txtcity,
-      "state": this.state.txtstate,
+      "state": this.state.pstateselected,
       "zipCode": this.state.txtzipcode,
       "country": this.state.pcountryselected,
       "phone": this.state.txtphone,
@@ -347,7 +362,7 @@ base64valueforconsentform:this.state.singleorgdata.patientConsentForm
       "active": this.state.switchactive,
       "addressLine": this.state.txtaddress,
       "city": this.state.txtcity,
-      "state": this.state.txtstate,
+      "state": this.state.pstateselected,
       "zipCode": this.state.txtzipcode,
       "country": this.state.pcountryselected,
       "phone": this.state.txtphone,
@@ -360,21 +375,28 @@ base64valueforconsentform:this.state.singleorgdata.patientConsentForm
     };
 
 
-
+console.log(datatoadd)
     if(e.target.value=="Add"){
 
     await OrgAdd(datatoadd).then((data) =>
       this.setState({ newaddeddata: data })
     );
     if(this.state.newaddeddata.length!=0){
+      alert("Added successfully");
       sessionStorage.setItem("orgdata",JSON.stringify(this.state.newaddeddata));
+      sessionStorage.setItem("neworold","update");
   document.getElementById("orgusers").style.display="inline-block"
   document.getElementById("orgfacility").style.display="inline-block"
     }
+    this.setState({
+      buttonvalue:"Update"
+    })
 
     }
     else if(e.target.value=="Update"){
-    await OrgUpdate(this.state.singleorgdata.id, datatoupdate);
+    await OrgUpdate(this.state.singleorgdata.id, datatoupdate).then((data)=>
+    sessionStorage.setItem("orgdata",JSON.stringify(data)),alert("Updated successfully")
+    )
     }
 
   }
@@ -398,7 +420,7 @@ base64valueforconsentform:this.state.singleorgdata.patientConsentForm
           gotofacility:true,
           facilitytable:'new'
         })
-        sessionStorage.setItem("newfacoroldfac",JSON.stringify(this.state.facilitytable));
+        sessionStorage.setItem("newfacoroldfac",this.state.facilitytable);
       }
  async handleaddusers(e){
  e.preventDefault();
@@ -447,7 +469,9 @@ base64valueforconsentform:this.state.singleorgdata.patientConsentForm
         this.setState({ orgadminuserdata:data})
 
 
-    )}
+
+    )
+    sessionStorage.setItem("orgadmintable",JSON.stringify(this.state.orgadminuserdata));}
        this.toggleInfoClose();
       }
       else if(this.state.orguserbuttonvalue=="Update"){
@@ -456,6 +480,7 @@ base64valueforconsentform:this.state.singleorgdata.patientConsentForm
         await OrgAdminuserGet(this.state.singleorgdata.id).then((data)=>
         this.setState({ orgadminuserdata:data})
         )
+        sessionStorage.setItem("orgadmintable",JSON.stringify(this.state.orgadminuserdata));
        }
 
         this.toggleInfoClose();
@@ -572,11 +597,11 @@ base64valueforconsentform:this.state.singleorgdata.patientConsentForm
   }
   render() {
     return (
-      <form>
+
 
       <div className="neworg-container">
-        <Card id="abcd">
-         <CardBody id="abc">
+        <Card className="neworgcard">
+         <CardBody >
             <div className="neworgprevbutton">
                 <img
                  src={previmg} width= "30" height="30"
@@ -585,6 +610,7 @@ base64valueforconsentform:this.state.singleorgdata.patientConsentForm
 
                  </img>
                  </div>
+
             <div
               style={{
                 background: "darkslategrey",
@@ -603,6 +629,8 @@ base64valueforconsentform:this.state.singleorgdata.patientConsentForm
                 )}
               </div>
             </div>
+
+            <div className="neworgdetailspart">
             <div className="neworgsearch-row22" style={{ marginTop: "1%" }}>
               <Label htmlFor="lblname" className="neworgsearch-label22 requiredfield">
                 Name
@@ -717,16 +745,18 @@ base64valueforconsentform:this.state.singleorgdata.patientConsentForm
               <Label htmlFor="lblstate" className="neworgsearch-label22 requiredfield">
                 State
               </Label>
-              <Input
-                name="txtstate"
-                type="text"
-                id="txtstate"
-                placeholder="Enter State"
-                required
+              <Select
+                name="state"
+                id="state"
                 className="neworgtextinputforneworg"
-                onChange={this.Onchangehandler}
-                value={this.state.txtstate}
-              />
+                closeMenuOnSelect={true}
+                isMulti={false}
+                options={this.state.states}
+                value={this.state.estates}
+                onChange={this.Onchangeofstate}
+
+              ></Select>
+
               <Label htmlFor="lblcountry" className="neworgsearch-label22 requiredfield">
                 Country
               </Label>
@@ -739,6 +769,7 @@ base64valueforconsentform:this.state.singleorgdata.patientConsentForm
                 options={this.state.country}
                 value={this.state.ecountry}
                 onChange={this.OnchangeofCountry}
+                isDisabled={true}
               ></Select>
 
               <Label htmlFor="lblzipcode" className="neworgsearch-label22 requiredfield">
@@ -797,9 +828,11 @@ base64valueforconsentform:this.state.singleorgdata.patientConsentForm
               <div className="neworgmarginleftalignforfile">
                 <DragAndDrop message="Patient Consent Form" type="file" base64valueforconsentform={this.state.base64valueforconsentform} updatebase64valueforconsentform={this.updatebase64valueforconsentform}></DragAndDrop>
               </div>
+
               <div className="neworgmarginleftalignforicon">
                 <DragAndDrop  message="Logo"  type="image" base64valueforlogo={this.state.base64valueforlogo} updatebase64valueforlogo={this.updatebase64valueforlogo}></DragAndDrop>
             </div>
+
             </div>
 
             <div className="neworgsearch-row22 neworgbottombuttonalignment neworggapbtwuploadandbuttons">
@@ -817,10 +850,10 @@ base64valueforconsentform:this.state.singleorgdata.patientConsentForm
                 style={{ marginRight: "20px" }}
                 value={this.state.buttonvalue}
                 onClick={this.addupdatebuttonhandler}
-
               ><i className="fa fa-dot-circle-o"></i> {this.state.buttonvalue}
               </Button>
 
+            </div>
             </div>
 
           <ModalFooter className="neworgfootertable">
@@ -845,7 +878,7 @@ base64valueforconsentform:this.state.singleorgdata.patientConsentForm
                    >
                      Users
                    </ModalHeader>
-                   <Form>
+                   <Form >
                    <ModalBody>
                      <div className="neworgsearch-row2">
                        <Label htmlFor="pname" className="neworgsearch-label2 requiredfield">
@@ -964,7 +997,8 @@ base64valueforconsentform:this.state.singleorgdata.patientConsentForm
                        type="submit"
                        className="neworgpopup-addbuttoncolor"
                        value={this.state.orguserbuttonvalue}
-                      onClick={this.handleaddusers}
+                       onClick={this.handleaddusers}
+
                      ><i className="fa fa-dot-circle-o"></i> {this.state.orguserbuttonvalue}
                      </Button>{" "}
                    </ModalFooter>
@@ -995,8 +1029,8 @@ base64valueforconsentform:this.state.singleorgdata.patientConsentForm
                     >
                       <thead>
                         <tr className="neworgalign-middle3 neworgtablecolorforneworg">
-                          <th onClick={()=>this.onSortChangeForOrgUser("practitionerName")}><i class="sort-icon"></i> User</th>
-                          <th onClick={()=>this.onSortChangeForOrgUser("roleName")}><i class="sort-icon"></i>Roles</th>
+                          <th onClick={()=>this.onSortChangeForOrgUser("practitionerName")}>User <i class="sort-icon"></i></th>
+                          <th onClick={()=>this.onSortChangeForOrgUser("roleName")}>Roles <i class="sort-icon"></i></th>
                           <th>Status</th>
                           <th></th>
                         </tr>
@@ -1009,11 +1043,11 @@ base64valueforconsentform:this.state.singleorgdata.patientConsentForm
                           return(
 
                             <tr key={o.practitionerId}>
-                            <td className="neworgalign-middle3" data-toggle="tooltip" data-placement="top" title="Edit" onClick={()=>this.handleorgusertable(o.practitionerId)}>{o.practitionerName}</td>
-                            <td className="neworgalign-middle3" data-toggle="tooltip" data-placement="top" title="Edit" onClick={()=>this.handleorgusertable(o.practitionerId)}>{o.roleName}</td>
-                            <td className="neworgalign-middle3" data-toggle="tooltip" data-placement="top" title="Edit" onClick={()=>this.handleorgusertable(o.practitionerId)}>accepted</td>
+                            <td className="neworgalign-middle3" data-toggle="tooltip" data-placement="top" title="Click here to Edit" onClick={()=>this.handleorgusertable(o.practitionerId)}>{o.practitionerName}</td>
+                            <td className="neworgalign-middle3" data-toggle="tooltip" data-placement="top" title="Click here to Edit" onClick={()=>this.handleorgusertable(o.practitionerId)}>{o.roleName}</td>
+                            <td className="neworgalign-middle3" data-toggle="tooltip" data-placement="top" title="Click here to Edit" onClick={()=>this.handleorgusertable(o.practitionerId)}>accepted</td>
                             <td className="neworgalign-middle3">
-                              <Button className="neworgtrashbutton fa fa-trash" data-toggle="tooltip" data-placement="top" title="Delete" onClick={()=>this.handleorgadminuserdelete(o.id)}></Button>
+                              <Button className="neworgtrashbutton fa fa-trash" data-toggle="tooltip" data-placement="top" title="Click here to Delete"  onClick={()=>this.handleorgadminuserdelete(o.id)}></Button>
                             </td>
                           </tr>
               )
@@ -1078,7 +1112,7 @@ base64valueforconsentform:this.state.singleorgdata.patientConsentForm
                     >
                       <thead>
                         <tr className="neworgalign-middle3 neworgtablecolorforneworg">
-                          <th  onClick={()=>this.onSortChange("name")}><i class="sort-icon"></i>Facility Name</th>
+                          <th  onClick={()=>this.onSortChange("name")}>Facility Name <i class="sort-icon"></i></th>
                           <th></th>
                         </tr>
                       </thead>
@@ -1089,11 +1123,11 @@ base64valueforconsentform:this.state.singleorgdata.patientConsentForm
               ).map((o)=>{
                           return(
                             <tr key={o.id} >
-                          <td className="neworgalign-middle3" data-toggle="tooltip" data-placement="top" title="Edit" onClick={()=>this.handleorgfacilitytable(o.id)}>
+                          <td className="neworgalign-middle3" data-toggle="tooltip" data-placement="top" title="Click here to Edit" onClick={()=>this.handleorgfacilitytable(o.id)}>
                             {o.name}
                           </td>
                           <td className="neworgalign-middle3">
-                            <Button className="neworgtrashbutton fa fa-trash"data-toggle="tooltip" data-placement="top" title="Delete"  onClick={()=>this.handlefacilitydelete(o.id)}></Button>
+                            <Button className="neworgtrashbutton fa fa-trash" data-toggle="tooltip" data-placement="top" title="Click here to Delete" onClick={()=>this.handlefacilitydelete(o.id)}></Button>
                           </td>
                         </tr>
                         );
@@ -1119,7 +1153,7 @@ base64valueforconsentform:this.state.singleorgdata.patientConsentForm
 
         </Card>
       </div>
-      </form>
+
     );
   }
 }

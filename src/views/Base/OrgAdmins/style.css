@@ -77,6 +77,7 @@ margin-right: 15px;
     .orgadmin-container {
       max-width: 1790px;
       height: 100%;
+      overflow:auto;
     }
     .linearGradientcolorforheading {
       padding-top: 0.5rem !important;
